@@ -1,4 +1,4 @@
-./target
-./classpath
-./github
-./settings
+/target
+.classpath
+.github
+.settings
