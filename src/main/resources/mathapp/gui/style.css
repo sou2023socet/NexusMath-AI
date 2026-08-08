@@ -1,0 +1,109 @@
+.root-pane {
+    -fx-background-color: #f4f7f6;
+    -fx-font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+}
+
+.header {
+    -fx-background-color: #2c3e50;
+    -fx-padding: 15 20 15 20;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 2);
+}
+
+.footer {
+    -fx-background-color: #ffffff;
+    -fx-padding: 10 20 10 20;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1 0 0 0;
+}
+
+.screen-card{
+    -fx-background-color:white;
+    -fx-background-radius:18;
+    -fx-padding:30;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 15, 0, 0, 5);
+}
+
+.title-text {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.body-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #555555;
+}
+
+.btn-nav {
+    -fx-background-color: transparent;
+    -fx-text-fill: #7f8c8d;
+    -fx-font-weight: bold;
+    -fx-font-size: 13px;
+    -fx-cursor: hand;
+    -fx-padding: 8 15 8 15;
+}
+
+.btn-nav:hover {
+    -fx-background-color: #ecf0f1;
+    -fx-background-radius: 8;
+    -fx-text-fill: #2c3e50;
+}
+
+.btn-nav-active {
+    -fx-text-fill: #3498db;
+}
+
+.btn-primary {
+    -fx-background-color: #3498db;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 10 20 10 20;
+    -fx-cursor: hand;
+}
+
+.btn-primary:hover {
+    -fx-background-color: #2980b9;
+}
+
+.clear-button {
+    -fx-background-color: #e74c3c;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 8;
+    -fx-padding: 10 20 10 20;
+    -fx-cursor: hand;
+}
+
+.clear-button:hover {
+    -fx-background-color: #c0392b;
+}
+
+.text-field, .text-area {
+    -fx-background-radius: 5;
+    -fx-border-color: #bdc3c7;
+    -fx-border-radius: 5;
+    -fx-padding: 5;
+}
+
+.text-field:focused, .text-area:focused {
+    -fx-border-color: #3498db;
+    -fx-border-width: 2;
+}
+
+.sidebar {
+    -fx-padding:15;
+}
+
+.sidebar-button {
+    -fx-pref-height:42;
+    -fx-max-width:Infinity;
+}
+
+.user-card {
+    -fx-padding:10;
+}
+
+.user-menu {
+    -fx-background-color:transparent;
+}
