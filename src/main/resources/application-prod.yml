@@ -1,0 +1,21 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:mysql://PROD_SERVER:3306/mathapp_auth
+    username: PROD_USER
+    password: PROD_PASSWORD
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+
+logging:
+  level:
+    root: WARN
+    com.mathapp: INFO
