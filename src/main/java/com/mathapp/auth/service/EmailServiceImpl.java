@@ -1,5 +1,6 @@
 package com.mathapp.auth.service;
 
+import com.mathapp.auth.logging.LogService;
 import org.springframework.beans.factory.annotation.Value;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -11,12 +12,14 @@ import org.springframework.stereotype.Service;
 public class EmailServiceImpl implements EmailService {
 
     private final JavaMailSender mailSender;
+    private final LogService logService;
 
     @Value("${spring.mail.username}")
     private String fromEmail;
 
-    public EmailServiceImpl(JavaMailSender mailSender) {
+    public EmailServiceImpl(JavaMailSender mailSender, LogService logService) {
         this.mailSender = mailSender;
+        this.logService = logService;
     }
 
     @Override
@@ -25,8 +28,10 @@ public class EmailServiceImpl implements EmailService {
             String userName,
             String resetLink) {
 
+        logService.operationStarted("SEND_PASSWORD_RESET_EMAIL", to);
         try {
 
+            logService.operationStep("SEND_PASSWORD_RESET_EMAIL", "BUILD_MESSAGE", "to=" + to);
             MimeMessage message = mailSender.createMimeMessage();
 
             MimeMessageHelper helper = new MimeMessageHelper(
@@ -87,10 +92,14 @@ public class EmailServiceImpl implements EmailService {
                     html,
                     true);
 
+            logService.operationStep("SEND_PASSWORD_RESET_EMAIL", "SEND", "to=" + to);
             mailSender.send(message);
+
+            logService.operationSuccess("SEND_PASSWORD_RESET_EMAIL", "email sent to " + to);
 
         } catch (MessagingException e) {
 
+            logService.operationFailed("SEND_PASSWORD_RESET_EMAIL", "Unable to send email", e);
             throw new RuntimeException(
                     "Unable to send email");
 
