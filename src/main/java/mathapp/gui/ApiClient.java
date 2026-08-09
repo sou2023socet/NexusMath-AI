@@ -7,6 +7,8 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.nio.charset.StandardCharsets;
 
+import mathapp.logging.MathLogger;
+
 public class ApiClient {
 
     private final HttpClient httpClient = HttpClient.newHttpClient();
@@ -18,6 +20,7 @@ public class ApiClient {
     }
 
     public String postJson(String path, String json, String bearerToken) throws IOException, InterruptedException {
+        MathLogger.apiCall("POST", path);
         HttpRequest.Builder builder = HttpRequest.newBuilder()
                 .uri(URI.create(baseUrl + path))
                 .header("Content-Type", "application/json")
@@ -30,8 +33,10 @@ public class ApiClient {
         HttpRequest request = builder.build();
         HttpResponse<String> response = httpClient.send(request, HttpResponse.BodyHandlers.ofString(StandardCharsets.UTF_8));
         if (response.statusCode() >= 200 && response.statusCode() < 300) {
+            MathLogger.apiSuccess("POST", path, response.statusCode());
             return response.body();
         }
+        MathLogger.apiError("POST", path, response.statusCode(), response.body());
         throw new IOException("HTTP " + response.statusCode() + ": " + response.body());
     }
 }

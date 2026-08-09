@@ -7,6 +7,7 @@ import javafx.scene.control.TextField;
 
 import mathapp.arithmetic.ArithmeticOperations;
 import mathapp.arithmetic.ExponentFunctions;
+import mathapp.logging.MathLogger;
 
 public class SimpleCalculatorController {
 
@@ -20,6 +21,7 @@ public class SimpleCalculatorController {
     @FXML
     public void initialize() {
         displayField.setText("0");
+        MathLogger.screenOpened("SIMPLE_CALCULATOR");
     }
 
     // ==========================
@@ -94,9 +96,10 @@ public class SimpleCalculatorController {
     // Equals
     // ==========================
 
-    @FXML
+@FXML
     private void handleEquals(ActionEvent event) {
 
+        MathLogger.operationStarted("CALCULATE", firstNumber + " " + operator);
         try {
 
             double secondNumber = Double.parseDouble(displayField.getText());
@@ -136,6 +139,7 @@ public class SimpleCalculatorController {
             }
 
             displayResult(result);
+            MathLogger.operationSuccess("CALCULATE", firstNumber + " " + operator + " " + secondNumber + " = " + result);
 
             operator = "";
 
@@ -143,12 +147,14 @@ public class SimpleCalculatorController {
 
         } catch (ArithmeticException ex) {
 
+            MathLogger.operationFailed("CALCULATE", "Arithmetic error: " + ex.getMessage(), ex);
             displayField.setText("Cannot divide by zero");
 
             startNewNumber = true;
 
         } catch (Exception ex) {
 
+            MathLogger.operationFailed("CALCULATE", "Calculation error", ex);
             displayField.setText("Error");
 
             startNewNumber = true;

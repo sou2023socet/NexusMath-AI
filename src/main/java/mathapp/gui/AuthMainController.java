@@ -16,6 +16,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import mathapp.logging.MathLogger;
+
 public class AuthMainController {
 
     @FXML private VBox authContainer;
@@ -231,6 +233,7 @@ public class AuthMainController {
 
     private void showLogin() {
         if (authContainer == null) return;
+        MathLogger.screenOpened("LOGIN_SCREEN");
         authContainer.getChildren().clear();
         if (loginView != null) {
             authContainer.getChildren().add(loginView);
@@ -240,6 +243,7 @@ public class AuthMainController {
 
     private void showRegister() {
         if (authContainer == null) return;
+        MathLogger.screenOpened("REGISTER_SCREEN");
         authContainer.getChildren().clear();
         if (registerView != null) {
             authContainer.getChildren().add(registerView);
@@ -249,6 +253,7 @@ public class AuthMainController {
 
     private void showForgot() {
         if (authContainer == null) return;
+        MathLogger.screenOpened("FORGOT_PASSWORD_SCREEN");
         authContainer.getChildren().clear();
         if (forgotView != null) {
             authContainer.getChildren().add(forgotView);
@@ -361,7 +366,7 @@ public class AuthMainController {
             updateActionButtons();
             notifyUserLabelsUpdated();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            MathLogger.operationFailed("LOGIN", "login failed for " + e, ex);
             if (msg != null) {
                 msg.setText("❌ Login failed: " + ex.getMessage());
                 msg.setManaged(true);
@@ -432,7 +437,7 @@ public class AuthMainController {
             updateActionButtons();
             notifyUserLabelsUpdated();
         } catch (Exception ex) {
-            ex.printStackTrace();
+            MathLogger.operationFailed("REGISTER", "registration failed for " + e, ex);
             if (msg != null) {
                 msg.setText("❌ Registration failed: " + ex.getMessage());
                 msg.setManaged(true);
@@ -466,7 +471,7 @@ public class AuthMainController {
             }
             clearTextField("forgotEmail");
         } catch (Exception ex) {
-            ex.printStackTrace();
+            MathLogger.operationFailed("FORGOT_PASSWORD", "forgot password failed for " + e, ex);
             if (msg != null) {
                 msg.setText("❌ Failed: " + ex.getMessage());
                 msg.setManaged(true);

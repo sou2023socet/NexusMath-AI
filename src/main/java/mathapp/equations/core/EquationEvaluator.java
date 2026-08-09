@@ -2,10 +2,13 @@ package mathapp.equations.core;
 
 import mathapp.arithmetic.ArithmeticOperations;
 import mathapp.arithmetic.ExponentFunctions;
+import mathapp.logging.MathLogger;
 
 import java.util.*;
 
 public class EquationEvaluator {
+
+    private static final String CAT = "EQUATION_EVALUATOR";
 
     // --- 1. Priority Handler ---
     // Higher return value means higher precedence
@@ -26,17 +29,27 @@ public class EquationEvaluator {
 
     // --- 2. Main Solve Method ---
     public double solveEquation(String equation, Map<String, Double> values) {
+        MathLogger.operationStarted("solveEquation", "equation=" + equation + ", values=" + values);
+
         // Clean up whitespace
         equation = equation.replaceAll("\\s+", "");
+        MathLogger.operationStep(CAT, "CLEAN", "equation=" + equation);
 
         // If the equation contains an '=', isolate the expression side
         if (equation.contains("=")) {
             equation = equation.split("=")[0];
+            MathLogger.operationStep(CAT, "ISOLATE_LHS", "equation=" + equation);
         }
 
         List<String> tokens = tokenize(equation);
+        MathLogger.operationStep(CAT, "TOKENIZE", "tokens=" + tokens);
+
         List<String> rpn = convertToRPN(tokens);
-        return evaluateRPN(rpn, values);
+        MathLogger.operationStep(CAT, "RPN", "rpn=" + rpn);
+
+        double result = evaluateRPN(rpn, values);
+        MathLogger.operationSuccess(CAT, "solveEquation result=" + result);
+        return result;
     }
 
     // --- 3. Helper: Break string into variables and operators ---

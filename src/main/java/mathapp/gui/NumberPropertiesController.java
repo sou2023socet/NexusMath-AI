@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import mathapp.numberproperties.NumberProperties;
+import mathapp.logging.MathLogger;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,6 +23,7 @@ public class NumberPropertiesController {
 
     @FXML
     public void initialize() {
+        MathLogger.screenOpened("NUMBER_PROPERTIES_SCREEN");
         // Populate the property selection dropdown
         propertyCombo.setItems(FXCollections.observableArrayList(
                 "Check Even Number",
@@ -56,7 +58,9 @@ public class NumberPropertiesController {
         String inputText = inputField.getText().trim();
         String selectedProperty = propertyCombo.getValue();
 
+        MathLogger.operationStarted("CHECK_PROPERTY", selectedProperty + " | input=" + inputText);
         if (inputText.isEmpty()) {
+            MathLogger.operationFailed("CHECK_PROPERTY", "Empty input");
             resultArea.setText("❌ Please enter a number or a list of numbers (comma-separated).");
             return;
         }
@@ -64,7 +68,9 @@ public class NumberPropertiesController {
         try {
             String result = evaluateProperty(inputText, selectedProperty);
             resultArea.setText(result);
+            MathLogger.operationSuccess("CHECK_PROPERTY", selectedProperty + " -> " + result.replace("\n", " | "));
         } catch (Exception e) {
+            MathLogger.operationFailed("CHECK_PROPERTY", selectedProperty + " failed", e);
             resultArea.setText("❌ Error: " + e.getMessage());
         }
     }

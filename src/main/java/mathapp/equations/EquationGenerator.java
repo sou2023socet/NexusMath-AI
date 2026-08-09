@@ -1,6 +1,7 @@
 package mathapp.equations;
 
 import mathapp.equations.api.EquationSolver;
+import mathapp.logging.MathLogger;
 
 import java.util.HashMap;
 import java.util.List;
@@ -8,6 +9,9 @@ import java.util.Map;
 import java.util.ArrayList;
 
 public class EquationGenerator {
+
+    private static final String CAT = "EQUATION_GENERATOR";
+
     private final EquationSolver solver;
 
     public EquationGenerator(EquationSolver solver) {
@@ -15,6 +19,8 @@ public class EquationGenerator {
     }
 
     public Map<String, Double> processAndSolve(String rawData, String formula) {
+        MathLogger.operationStarted("processAndSolve", "formula=" + formula + ", rawData=" + rawData);
+
         Map<String, Double> values = new HashMap<>();
         String unknownVar = null;
 
@@ -33,14 +39,23 @@ public class EquationGenerator {
             }
         }
 
+        MathLogger.operationStep(CAT, "PARSE_INPUT", "values=" + values + ", unknown=" + unknownVar);
+
         if (unknownVar == null) {
+            MathLogger.operationFailed(CAT, "No unknown variable ('=?') specified in input data.");
             throw new IllegalArgumentException("No unknown variable ('=?') specified in input data.");
         }
 
-        String correctedEquation = generateCorrectEquation(formula, unknownVar);
-        double result = solver.solveEquation(correctedEquation, values);
+     // 1. Normalize implicit multiplication (e.g., "3x" -> "3*x")
+        String normalizedFormula = normalizeImplicitMultiplication(formula);
+        MathLogger.operationStep(CAT, "NORMALIZE_FORMULA", "normalized=" + normalizedFormula);
+
+        // 2. Solve linear equation numerically
+        double result = solveLinearEquation(normalizedFormula, unknownVar, values);
+        MathLogger.operationStep(CAT, "SOLVE_RESULT", "result=" + result);
 
         values.put(unknownVar, result);
+        MathLogger.operationSuccess(CAT, "processAndSolve result=" + values);
         return values;
     }
 
@@ -86,6 +101,40 @@ public class EquationGenerator {
 
         // Returns format: mathematical_expression=targetVariable
         return correctedLeftExpression.toString() + "=" + targetVar;
+    }
+    
+    private double solveLinearEquation(String formula, String targetVar, Map<String, Double> knownValues) {
+        String[] sides = formula.split("=");
+        if (sides.length != 2) {
+            throw new IllegalArgumentException("Invalid formula structure. Must contain exactly one '='.");
+        }
+
+        String lhs = sides[0].trim();
+        String rhs = sides[1].trim();
+
+        // Evaluate f(0)
+        Map<String, Double> eval0 = new HashMap<>(knownValues);
+        eval0.put(targetVar, 0.0);
+        double f0 = solver.solveEquation(lhs, eval0) - solver.solveEquation(rhs, eval0);
+
+        // Evaluate f(1)
+        Map<String, Double> eval1 = new HashMap<>(knownValues);
+        eval1.put(targetVar, 1.0);
+        double f1 = solver.solveEquation(lhs, eval1) - solver.solveEquation(rhs, eval1);
+
+        double A = f1 - f0;
+        double B = f0;
+
+        if (Math.abs(A) < 1e-9) {
+            throw new ArithmeticException("Equation has no unique solution for variable '" + targetVar + "' (A = 0).");
+        }
+
+        return -B / A;
+    }
+
+    
+    public static String normalizeImplicitMultiplication(String expr) {
+        return expr.replaceAll("(\\d+(?:\\.\\d+)?)\\s*([a-zA-Z_])", "$1*$2");
     }
 
     private char getInverseOperator(char op) {
