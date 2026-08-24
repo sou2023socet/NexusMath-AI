@@ -1,0 +1,27 @@
+I have added a skills in project directory, Now create a large in detailed documentation which given points and add more relevent point to create largest and in detailed doumentation that cover all things realted to project.
+
+1) project detailed documentation (in detailed eatch and every point should be cover and notesed in documentation)
+that should be cover eatch and every point related to project 
+- i wants eatch and every point of project in documentation
+-Project 
+- Project Title (& Description of project title)
+- Abstration
+- Goals
+- Vsion 
+- Feautures
+- Application or Use cases
+- Objective
+- Marketplace Value
+- Cover Which Tyes Client or audience
+- Domain we are covers etc...
+
+
+- Project Looks
+- Project Futures
+- Which tyoes functionalitys will provide
+- implementation
+- planing
+- Technologies
+- Implemementation plan Guide lines, Project overview
+- Which Techonogy and ai tools we will use etc...
+- All Project Detailes from starting to end

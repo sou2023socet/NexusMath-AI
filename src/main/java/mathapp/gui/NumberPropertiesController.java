@@ -26,14 +26,59 @@ public class NumberPropertiesController {
         MathLogger.screenOpened("NUMBER_PROPERTIES_SCREEN");
         // Populate the property selection dropdown
         propertyCombo.setItems(FXCollections.observableArrayList(
-                "Check Even Number",
-                "Check Odd Number",
-                "Check Positive Number",
-                "Check Negative Number",
-                "Check Prime Number",
+                
                 "Check Natural Numbers (List)",
                 "Check Whole Numbers (List)",
+                "Check Number Is Integers",// add logic
+                "Check Positive Number",
+                "Check Negative Number",
                 "Check Rational Numbers (List)",
+                "Check Irrational Number (List)",// add logic
+                "Check Real Number",// add logic
+                "Complex Number",// add logic
+                "Number Sets & Classification",// add logic
+                "Number Line",// add logic
+                "Place Value",// add logic
+                "Comparing Number",// add logic
+                "Ordering Number",// add logic
+                "Ordering Number",// add logic
+                "Numerical Distance",// add logic
+                "Properties of Numbers",// add logic
+                "Closure property",// add logic
+                "Commutative property",// add logic
+                "Associative property",// add logic
+                "Distributive property",// add logic
+                "Identity elements",// add logic
+                "Inverse elements",// add logic
+                "Check Even Number",
+                "Check Odd Number",
+                "Check Prime Number",
+                "Check Composite Number",// add logic
+                "Check CoPrime Number",// add logic
+                "Consecutive Number",// add logic
+                
+                // Basic Oprations (Calculator is also covered) 
+                "Addition",
+                "Subtraction",
+                "Multiplication",
+                "Division",
+                "Order of operations",
+                
+                
+                "BODMAS",// need to check for add
+                "PEMDAS",// need to check for add
+                "Estimation",// add logic not requred but need to be add
+                "Approximation",// add logic 
+                "Rounding / Round Off",// add logic
+                "Significant figures",// add logic
+                "Error bounds",// add logic (+- value that should so error) (∣true value−approximation∣≤E)
+                "Absolute error",// add logic (Absolute error = |True Value - Approximate Value)
+                "Relative error",// add logic (
+                "Percentage error",// add logic
+                "Numerical expressions",// add logic
+                "Nested expressions",// add logic
+                
+                
                 "Check Any Even in List",
                 "Check Any Odd in List",
                 "Count Odd Numbers in List",

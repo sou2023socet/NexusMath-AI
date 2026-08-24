@@ -1,0 +1,2222 @@
+# NexusMath-AI  
+## Complete Project Documentation and Implementation Blueprint
+
+**Document type:** Master project documentation  
+**Project version:** Version 1 planning baseline  
+**Primary domains:** Mathematics, Physics and Data Structures & Algorithms  
+**Architecture style:** Separate frontend and backend applications  
+**Backend:** Java 21, Spring Boot and native computational engines  
+**Frontend:** Angular and TypeScript  
+**Database:** MongoDB as the primary Version 1 database  
+**Communication:** REST APIs and Server-Sent Events  
+**Deployment:** Docker-based, independently deployable services  
+
+***
+
+# 1. Project Identity
+
+## 1.1 Project title
+
+### NexusMath-AI
+
+The name combines three ideas:
+
+- **Nexus:** A central connection point joining different subjects, tools, algorithms and learning paths.
+- **Math:** The primary computational and educational foundation of the platform.
+- **AI:** The intelligent orchestration layer that interprets user requests, selects domain operations and constructs multi-step workflows.
+
+### Full title
+
+> **NexusMath-AI: A deterministic, explainable and interactive platform for Mathematics, Physics and Data Structures & Algorithms.**
+
+### Short description
+
+NexusMath-AI is a full-stack educational, scientific and algorithmic computing platform. It provides structured theory, formula-based calculators, symbolic and numerical computation, Physics simulations, DSA visualisations, step-by-step execution traces, learning paths and an agentic problem-solving workflow.
+
+The platform separates:
+
+1. **Understanding and orchestration**, which interprets a user’s request.
+2. **Domain computation**, which performs trusted mathematical, scientific or algorithmic operations.
+3. **Presentation**, which displays explanations, formulas, graphs, simulations and execution traces.
+
+The existing project design already defines this separation through Application Mode, Agentic Mode, native Java engines, an Angular workspace, MongoDB persistence, REST communication and SSE workflow streaming. cite [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/1894394140/7b798a1e-5fca-4673-91b4-ab45fab6a4c1/paste.txt?AWSAccessKeyId=ASIA2F3EMEYESAMFH6RH&Signature=qDRwdGDbPWtS0vtllX2Z0IPANOQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEGUaCXVzLWVhc3QtMSJHMEUCIEZtjpnmo7NXiMmlSa4sb62idEI6w3kDCh3R%2F%2Frw7FVZAiEAoPl7WLoUq0fSO8UM%2FCzcLkVq%2BlmTU2KNxr7cfeRvZkUq8wQILhABGgw2OTk3NTMzMDk3MDUiDN4rOB1lHsAZTFHIWyrQBM3SXbPk%2FKusJ6jKwoproZcK5%2BHQ1YAon2vDOjNtbMmL4xOQ%2FS%2F8xlC4PYRjhO%2BLMo4zaLxDJxaysm%2FBO8S9y1zlUeWkk0xWyQFfskpyQJ1HbeG%2FLwumkqq4UC2Z8lk1P9FHaRE%2FdbmXW7ZWM3bgRUgRWDpE1lGPyT9RKBodoqxWenkZTSZQJGYuyjMtI6OrDuq5bBP225x%2FvP9Cgk1XNCx0BWZaw7cQ9%2Bvqg3n8GM2ZHFK38Px90TwUpbR4OtTRlwDg6u2kwlHaAHrQXjdPIJvPKoGyLtR0ig%2BZaE6Km1Qio8pWPa88TJ%2BpTTAFZlJb%2BPVk2zwpoI6KjyDGvrMcNqbmq62WHna0dquNXTG%2B5d%2BY7O2L8x5N6OMYjF%2FyadUw8k1e7ugFj9Bh1Rvy7vsxz2PyVlfC7PDCKWvYWwDgQUkB1tItv%2FWhpYTWGD43YjKVQ%2BB%2FYkuj8QF9ixWIUc8gkZgbVNfFSoMvNDN5M2OVDfZf%2B9d5gOJlCunvSj%2F0ermT5vqO%2BUbfMOy%2Bd3mbfOGa3QHptZWC9Br2Ync6MYxLgbSDn0MXiv50r3qXNGhlzauChxe3fPvypztRkn98EtzleU5ukjnrhTEwzvRAJ%2BRJz0U8V1ObKAPMiQQjM%2BUc%2FOUxZzcHQFeoPRsbhEXy5V8oWhlh7WhFTAXLNsaAzjDVrrilnyz%2BVZBXJjbGHnrMCP3i4J0mg9%2BN62%2FTyGF7Nc3LD%2BvRWte5TNiuRRgKMu5x6uSawLICerKFtUb6czX0NPQABOMLBVg%2BYu0ZZlgEh8VjfIQwuOaG1AY6mAG4PIjivZqRdsIy7XjIomWAxWkuRfptjb4tZVp1HFKhmKu%2FB%2B1IrPTRJyOQrdgSEtxoFrwjP6F7iQLj8ZkBu59OrIPJ8B1H2y6ndT2xdBIR518%2BXcA3B%2FqOjR4SkB%2FDte9V9woyRhG2GQX6fJeSfBKO4rM4lD%2FEHnCgUOC%2BZa5MbMM4te1DGrosvY0pkMboFG8F8wXhOPJ%2BHQ%3D%3D&Expires=1786888459)
+
+***
+
+## 1.2 Project type
+
+NexusMath-AI is a combination of:
+
+- Educational technology platform.
+- Scientific calculator system.
+- Mathematical computation engine.
+- Physics experimentation platform.
+- DSA learning and visualisation system.
+- Deterministic agentic workflow platform.
+- Interactive technical knowledge base.
+- Auditable calculation environment.
+- Developer and student productivity tool.
+
+## 1.3 Project classification
+
+| Classification | Description |
+|---|---|
+| Education technology | Learning concepts, formulas, examples and exercises |
+| Scientific computing | Mathematics and Physics computation |
+| Developer education | DSA, complexity and algorithm visualisation |
+| Decision-support tool | Reproducible calculations and traceable results |
+| Interactive web application | Browser-based workspace with multiple tools |
+| Research platform | Numerical methods, modelling and experiments |
+| Agentic application | Multi-step task planning and execution |
+| Knowledge platform | Searchable theory and prerequisite graph |
+
+***
+
+# 2. Abstract
+
+NexusMath-AI is an on-premise, modular and explainable platform for learning and solving problems in Mathematics, Physics and Data Structures & Algorithms.
+
+The system is designed to support Mathematics from beginner arithmetic through advanced subjects such as real analysis, linear algebra, multivariable calculus, numerical methods, optimisation and mathematical modelling. It also provides a selected Physics curriculum and an interactive DSA environment containing data structures, algorithms, complexity analysis and visual execution.
+
+The platform uses a separate Angular frontend and Java Spring Boot backend. The frontend provides theory pages, calculators, structured forms, chat interfaces, graphs, simulations, algorithm animations, user workspaces and progress tracking. The backend provides authenticated REST APIs, deterministic computation services, validation, parser logic, theory management, calculation history and agentic workflow orchestration.
+
+The central principle is that conversational or AI-based interpretation must not directly determine numerical results. A request is first transformed into a structured and validated task. The task is then executed by a registered Mathematics, Physics or DSA engine. The platform records the input, assumptions, formulas, intermediate values, execution steps, warnings and final result.
+
+The system is therefore intended to be:
+
+- Deterministic.
+- Explainable.
+- Auditable.
+- Modular.
+- Extensible.
+- Educational.
+- Secure.
+- Suitable for local or controlled deployment.
+
+***
+
+# 3. Goals
+
+## 3.1 Primary goal
+
+The primary goal is to create a unified environment where users can learn, calculate, experiment, visualise and solve problems across Mathematics, Physics and DSA.
+
+## 3.2 Version 1 goals
+
+Your Version 1 scope is intentionally large:
+
+- Cover 100% of the planned Mathematics roadmap at the topic level.
+- Implement approximately 20–40% of Physics.
+- Implement approximately 30–40% of DSA.
+- Provide theory for every planned topic.
+- Provide functional calculators and engines for appropriate topics.
+- Provide visualisation for graphs, geometry, simulations and algorithms.
+- Provide step-by-step traces.
+- Provide user accounts and history.
+- Provide structured and free-form workflows.
+- Maintain separation between frontend and backend.
+- Provide a foundation for future AI-enhanced learning.
+
+“100% Mathematics” should be measured by a formal topic registry. A topic can be marked as:
+
+- Theory complete.
+- Formula complete.
+- Calculator complete.
+- Symbolic solver complete.
+- Numerical solver complete.
+- Visualisation complete.
+- Exercise complete.
+- Fully functional.
+
+This is more accurate than requiring every Mathematics topic to be implemented as a calculator.
+
+## 3.3 Engineering goals
+
+- Use a modular architecture.
+- Keep controllers thin.
+- Keep domain logic inside domain services.
+- Use strongly typed DTOs.
+- Validate all external input.
+- Preserve numerical precision.
+- Prevent unsafe AI-generated computation.
+- Maintain complete test coverage for core engines.
+- Support independent deployment of frontend and backend.
+- Provide versioned APIs.
+- Maintain backward compatibility where possible.
+
+## 3.4 Educational goals
+
+- Explain concepts in simple and advanced language.
+- Show prerequisites before advanced topics.
+- Provide worked examples.
+- Connect theory to practical applications.
+- Show formulas in readable LaTeX.
+- Provide exercises and solutions.
+- Track learning progress.
+- Support multiple learner levels.
+- Visualise abstract concepts.
+- Help users understand the method, not only the answer.
+
+***
+
+# 4. Vision
+
+## 4.1 Long-term vision
+
+The long-term vision of NexusMath-AI is to become an intelligent scientific learning environment in which a user can move seamlessly between:
+
+```text
+Learn → Ask → Calculate → Visualise → Practise → Save → Review
+```
+
+A user should be able to:
+
+- Learn the definition of a derivative.
+- View its prerequisites.
+- See a graph demonstrating the slope.
+- Solve a derivative problem.
+- Compare symbolic and numerical results.
+- Ask for a related Physics application.
+- Use a DSA algorithm to process the generated data.
+- Save the entire workflow for later review.
+
+## 4.2 Vision principles
+
+### Trust
+
+Every answer should have a source of computation, formula or algorithm.
+
+### Explainability
+
+The platform should display how a result was obtained.
+
+### Determinism
+
+The same validated input and computation version should produce reproducible output.
+
+### Modularity
+
+Each domain should be independently expandable.
+
+### Education first
+
+The result should improve understanding, not merely provide a number.
+
+### Human control
+
+Agentic workflows should be inspectable, interruptible and reviewable.
+
+### Safety
+
+Invalid units, invalid domains, unsafe inputs and unauthorised actions must be rejected.
+
+***
+
+# 5. Problem Statement
+
+## 5.1 Current problems
+
+Learners and developers often use separate tools for:
+
+- Mathematics theory.
+- Formula calculators.
+- Graph plotting.
+- Physics calculations.
+- Algorithm visualisation.
+- Coding practice.
+- Numerical methods.
+- Problem-solving explanations.
+- Saved learning history.
+
+These tools often suffer from:
+
+- Fragmented user experience.
+- Inconsistent explanations.
+- No prerequisite structure.
+- No reliable step trace.
+- No common history.
+- Unclear assumptions.
+- Incorrect unit handling.
+- Weak algorithm visualisation.
+- Uncontrolled AI-generated answers.
+- Lack of auditability.
+
+## 5.2 NexusMath-AI solution
+
+NexusMath-AI addresses these problems by providing a central platform with:
+
+- One unified workspace.
+- Domain-specific modes.
+- A searchable theory system.
+- Deterministic computation engines.
+- Unit-aware Physics services.
+- Visual DSA execution.
+- Step-by-step traces.
+- User history.
+- Progress tracking.
+- Controlled agentic orchestration.
+- Clear separation between interpretation and computation.
+
+***
+
+# 6. Target Users and Market
+
+## 6.1 Primary users
+
+### School students
+
+Use cases:
+
+- Arithmetic.
+- Algebra.
+- Geometry.
+- Trigonometry.
+- Statistics.
+- School Physics.
+- Exam preparation.
+- Guided explanations.
+
+### University students
+
+Use cases:
+
+- Calculus.
+- Linear algebra.
+- Differential equations.
+- Probability.
+- Numerical methods.
+- Engineering Physics.
+- DSA and algorithm analysis.
+
+### Competitive-exam candidates
+
+Use cases:
+
+- Fast formula access.
+- Practice questions.
+- Timed calculations.
+- Step-by-step solutions.
+- Topic dependency planning.
+- Error analysis.
+
+### Programmers and software engineers
+
+Use cases:
+
+- DSA learning.
+- Complexity comparison.
+- Graph algorithms.
+- Numerical algorithms.
+- Mathematical modelling.
+- Algorithm visualisation.
+
+### Teachers and educators
+
+Use cases:
+
+- Demonstrating concepts.
+- Creating examples.
+- Showing simulations.
+- Preparing exercises.
+- Reviewing learner progress.
+- Using theory nodes in lessons.
+
+### Researchers and technical users
+
+Use cases:
+
+- Numerical experiments.
+- Mathematical modelling.
+- Reproducible calculations.
+- Scientific parameter exploration.
+- Calculation traces.
+- Local or on-premise deployment.
+
+### Training institutions
+
+Use cases:
+
+- Curriculum mapping.
+- Student progress.
+- Internal learning environments.
+- Secure deployments.
+- Custom theory content.
+- Institutional analytics.
+
+## 6.2 Secondary users
+
+- Technical content creators.
+- Tutors.
+- Engineering teams.
+- Coding bootcamps.
+- Science clubs.
+- Educational product companies.
+- Research laboratories.
+- Internal corporate training departments.
+
+## 6.3 Audience by learning level
+
+| Level | Covered functionality |
+|---|---|
+| Beginner | Arithmetic, numbers, basic operations, measurement |
+| School | Algebra, geometry, trigonometry, probability and school Physics |
+| Intermediate | Functions, matrices, vectors, statistics, calculus and DSA |
+| Advanced | Differential equations, numerical methods, optimisation and modelling |
+| Expert | Real analysis, advanced linear algebra, multivariable calculus and research workflows |
+
+## 6.4 Marketplace value
+
+NexusMath-AI can provide value in several markets:
+
+| Market | Value |
+|---|---|
+| EdTech | Structured learning and interactive practice |
+| Scientific software | Explainable calculations and modelling |
+| Exam preparation | Topic-driven study and fast problem solving |
+| Developer education | Visual DSA and complexity analysis |
+| Engineering education | Physics and mathematical modelling |
+| Institutional learning | Controlled, private deployments |
+| Research tooling | Reproducible numerical workflows |
+| AI-assisted development | A domain-specific computational assistant |
+
+The strongest differentiator is not simply “AI solves Mathematics.” The stronger proposition is:
+
+> **A controlled and auditable learning-and-computation environment where AI plans the work, but verified engines perform the calculation.**
+
+***
+
+# 7. Domain Coverage
+
+## 7.1 Mathematics domain
+
+### Arithmetic and number systems
+
+- Natural numbers.
+- Whole numbers.
+- Integers.
+- Rational numbers.
+- Irrational numbers.
+- Real numbers.
+- Number lines.
+- Absolute value.
+- Prime numbers.
+- Composite numbers.
+- Divisibility.
+- Euclidean division.
+- Fundamental theorem of arithmetic.
+- Fractions and decimals.
+- Estimation and approximation.
+- HCF and LCM.
+- Ratio and proportion.
+- Percentages.
+- Profit, loss, interest, tax and depreciation.
+- Measurement and dimensional analysis.
+
+### Algebra
+
+- Variables and constants.
+- Expressions.
+- Substitution.
+- Algebraic identities.
+- Linear equations.
+- Simultaneous equations.
+- Inequalities.
+- Exponents.
+- Surds.
+- Logarithms.
+- Polynomials.
+- Factorisation.
+- Quadratic equations.
+- Functions.
+- Relations.
+- Composite functions.
+- Inverse functions.
+- Piecewise functions.
+- Exponential and logarithmic functions.
+
+### Geometry
+
+- Points, lines, rays and planes.
+- Angles.
+- Parallel and perpendicular lines.
+- Triangles.
+- Congruence and similarity.
+- Pythagorean theorem.
+- Triangle centres.
+- Quadrilaterals.
+- Polygons.
+- Circles.
+- Tangents and secants.
+- Coordinate geometry.
+- Distance and section formulas.
+- Lines and slopes.
+- Mensuration.
+- Prisms, pyramids, cones, cylinders and spheres.
+- Transformations and symmetry.
+
+### Trigonometry
+
+- Right-triangle ratios.
+- Standard angles.
+- Unit circle.
+- Radians.
+- Trigonometric graphs.
+- Identities.
+- Compound angles.
+- Double angles.
+- Half angles.
+- Trigonometric equations.
+- Inverse trigonometric functions.
+- Heights and distances.
+- Navigation.
+- Wave modelling.
+
+### Advanced algebra
+
+- Arithmetic progression.
+- Geometric progression.
+- Harmonic progression.
+- Infinite series.
+- Permutations.
+- Combinations.
+- Binomial theorem.
+- Complex numbers.
+- Argand plane.
+- De Moivre’s theorem.
+- Matrices.
+- Determinants.
+- Inverse matrices.
+- Rank.
+- Eigenvalues and eigenvectors.
+- Mathematical induction.
+
+### Calculus
+
+- Limits.
+- Continuity.
+- Differentiation.
+- Product, quotient and chain rules.
+- Implicit differentiation.
+- Parametric differentiation.
+- Higher-order derivatives.
+- Maxima and minima.
+- Concavity.
+- Optimisation.
+- Antiderivatives.
+- Definite and indefinite integration.
+- Substitution.
+- Integration by parts.
+- Partial fractions.
+- Areas and volumes.
+- Arc length.
+- Differential equations.
+- Growth and decay models.
+- Euler and RK4 methods.
+
+### Probability and statistics
+
+- Data handling.
+- Mean, median and mode.
+- Quartiles and percentiles.
+- Variance.
+- Standard deviation.
+- Correlation.
+- Regression.
+- Sample spaces.
+- Events.
+- Conditional probability.
+- Bayes’ theorem.
+- Random variables.
+- Probability distributions.
+- Expected value.
+
+### Discrete and higher Mathematics
+
+- Logic.
+- Sets.
+- Relations.
+- Graph theory.
+- Trees.
+- Paths and cycles.
+- Real analysis.
+- Sequences.
+- Convergence.
+- Cauchy sequences.
+- Riemann integration.
+- Vector spaces.
+- Linear transformations.
+- Rank-nullity.
+- Multivariable calculus.
+- Numerical methods.
+- Convex optimisation.
+- Mathematical modelling.
+
+## 7.2 Physics domain
+
+Version 1 should prioritise:
+
+- Units and dimensions.
+- Significant figures.
+- Measurement.
+- Kinematics.
+- Projectile motion.
+- Newton’s laws.
+- Friction.
+- Work and energy.
+- Power.
+- Momentum.
+- Collisions.
+- Circular motion.
+- Gravitation.
+- Oscillations.
+- Waves.
+- Heat and temperature.
+- Ideal gas law.
+- Thermodynamic processes.
+- Carnot efficiency.
+- Charge and voltage.
+- Current and resistance.
+- Ohm’s law.
+- Kirchhoff’s laws.
+- Series and parallel circuits.
+- Capacitors.
+- Radioactive decay.
+- Basic optics.
+
+The current specification already includes kinematics, ballistics, thermodynamics, circuits and exponential decay as native engines. cite [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/1894394140/7b798a1e-5fca-4673-91b4-ab45fab6a4c1/paste.txt?AWSAccessKeyId=ASIA2F3EMEYESAMFH6RH&Signature=qDRwdGDbPWtS0vtllX2Z0IPANOQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEGUaCXVzLWVhc3QtMSJHMEUCIEZtjpnmo7NXiMmlSa4sb62idEI6w3kDCh3R%2F%2Frw7FVZAiEAoPl7WLoUq0fSO8UM%2FCzcLkVq%2BlmTU2KNxr7cfeRvZkUq8wQILhABGgw2OTk3NTMzMDk3MDUiDN4rOB1lHsAZTFHIWyrQBM3SXbPk%2FKusJ6jKwoproZcK5%2BHQ1YAon2vDOjNtbMmL4xOQ%2FS%2F8xlC4PYRjhO%2BLMo4zaLxDJxaysm%2FBO8S9y1zlUeWkk0xWyQFfskpyQJ1HbeG%2FLwumkqq4UC2Z8lk1P9FHaRE%2FdbmXW7ZWM3bgRUgRWDpE1lGPyT9RKBodoqxWenkZTSZQJGYuyjMtI6OrDuq5bBP225x%2FvP9Cgk1XNCx0BWZaw7cQ9%2Bvqg3n8GM2ZHFK38Px90TwUpbR4OtTRlwDg6u2kwlHaAHrQXjdPIJvPKoGyLtR0ig%2BZaE6Km1Qio8pWPa88TJ%2BpTTAFZlJb%2BPVk2zwpoI6KjyDGvrMcNqbmq62WHna0dquNXTG%2B5d%2BY7O2L8x5N6OMYjF%2FyadUw8k1e7ugFj9Bh1Rvy7vsxz2PyVlfC7PDCKWvYWwDgQUkB1tItv%2FWhpYTWGD43YjKVQ%2BB%2FYkuj8QF9ixWIUc8gkZgbVNfFSoMvNDN5M2OVDfZf%2B9d5gOJlCunvSj%2F0ermT5vqO%2BUbfMOy%2Bd3mbfOGa3QHptZWC9Br2Ync6MYxLgbSDn0MXiv50r3qXNGhlzauChxe3fPvypztRkn98EtzleU5ukjnrhTEwzvRAJ%2BRJz0U8V1ObKAPMiQQjM%2BUc%2FOUxZzcHQFeoPRsbhEXy5V8oWhlh7WhFTAXLNsaAzjDVrrilnyz%2BVZBXJjbGHnrMCP3i4J0mg9%2BN62%2FTyGF7Nc3LD%2BvRWte5TNiuRRgKMu5x6uSawLICerKFtUb6czX0NPQABOMLBVg%2BYu0ZZlgEh8VjfIQwuOaG1AY6mAG4PIjivZqRdsIy7XjIomWAxWkuRfptjb4tZVp1HFKhmKu%2FB%2B1IrPTRJyOQrdgSEtxoFrwjP6F7iQLj8ZkBu59OrIPJ8B1H2y6ndT2xdBIR518%2BXcA3B%2FqOjR4SkB%2FDte9V9woyRhG2GQX6fJeSfBKO4rM4lD%2FEHnCgUOC%2BZa5MbMM4te1DGrosvY0pkMboFG8F8wXhOPJ%2BHQ%3D%3D&Expires=1786888459)
+
+## 7.3 DSA domain
+
+Version 1 should include:
+
+- Complexity analysis.
+- Arrays.
+- Strings.
+- Linked lists.
+- Stacks.
+- Queues.
+- Deques.
+- Hash tables.
+- Recursion.
+- Searching.
+- Sorting.
+- Binary trees.
+- Binary search trees.
+- Heaps.
+- Priority queues.
+- AVL trees.
+- Tries.
+- Graph representation.
+- BFS.
+- DFS.
+- Cycle detection.
+- Topological sorting.
+- Dijkstra.
+- Bellman–Ford.
+- Prim.
+- Kruskal.
+- Disjoint-set union.
+- KMP.
+- Greedy algorithms.
+- Basic dynamic programming.
+
+The project’s current documentation already lists arrays, stacks, queues, AVL trees, graph algorithms and KMP. cite [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/1894394140/7b798a1e-5fca-4673-91b4-ab45fab6a4c1/paste.txt?AWSAccessKeyId=ASIA2F3EMEYESAMFH6RH&Signature=qDRwdGDbPWtS0vtllX2Z0IPANOQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEGUaCXVzLWVhc3QtMSJHMEUCIEZtjpnmo7NXiMmlSa4sb62idEI6w3kDCh3R%2F%2Frw7FVZAiEAoPl7WLoUq0fSO8UM%2FCzcLkVq%2BlmTU2KNxr7cfeRvZkUq8wQILhABGgw2OTk3NTMzMDk3MDUiDN4rOB1lHsAZTFHIWyrQBM3SXbPk%2FKusJ6jKwoproZcK5%2BHQ1YAon2vDOjNtbMmL4xOQ%2FS%2F8xlC4PYRjhO%2BLMo4zaLxDJxaysm%2FBO8S9y1zlUeWkk0xWyQFfskpyQJ1HbeG%2FLwumkqq4UC2Z8lk1P9FHaRE%2FdbmXW7ZWM3bgRUgRWDpE1lGPyT9RKBodoqxWenkZTSZQJGYuyjMtI6OrDuq5bBP225x%2FvP9Cgk1XNCx0BWZaw7cQ9%2Bvqg3n8GM2ZHFK38Px90TwUpbR4OtTRlwDg6u2kwlHaAHrQXjdPIJvPKoGyLtR0ig%2BZaE6Km1Qio8pWPa88TJ%2BpTTAFZlJb%2BPVk2zwpoI6KjyDGvrMcNqbmq62WHna0dquNXTG%2B5d%2BY7O2L8x5N6OMYjF%2FyadUw8k1e7ugFj9Bh1Rvy7vsxz2PyVlfC7PDCKWvYWwDgQUkB1tItv%2FWhpYTWGD43YjKVQ%2BB%2FYkuj8QF9ixWIUc8gkZgbVNfFSoMvNDN5M2OVDfZf%2B9d5gOJlCunvSj%2F0ermT5vqO%2BUbfMOy%2Bd3mbfOGa3QHptZWC9Br2Ync6MYxLgbSDn0MXiv50r3qXNGhlzauChxe3fPvypztRkn98EtzleU5ukjnrhTEwzvRAJ%2BRJz0U8V1ObKAPMiQQjM%2BUc%2FOUxZzcHQFeoPRsbhEXy5V8oWhlh7WhFTAXLNsaAzjDVrrilnyz%2BVZBXJjbGHnrMCP3i4J0mg9%2BN62%2FTyGF7Nc3LD%2BvRWte5TNiuRRgKMu5x6uSawLICerKFtUb6czX0NPQABOMLBVg%2BYu0ZZlgEh8VjfIQwuOaG1AY6mAG4PIjivZqRdsIy7XjIomWAxWkuRfptjb4tZVp1HFKhmKu%2FB%2B1IrPTRJyOQrdgSEtxoFrwjP6F7iQLj8ZkBu59OrIPJ8B1H2y6ndT2xdBIR518%2BXcA3B%2FqOjR4SkB%2FDte9V9woyRhG2GQX6fJeSfBKO4rM4lD%2FEHnCgUOC%2BZa5MbMM4te1DGrosvY0pkMboFG8F8wXhOPJ%2BHQ%3D%3D&Expires=1786888459)
+
+***
+
+# 8. Features
+
+## 8.1 Theory Encyclopedia
+
+The Theory Encyclopedia is the knowledge layer of the platform.
+
+Each theory node should contain:
+
+- Subject.
+- Domain.
+- Category.
+- Topic.
+- Subtopic.
+- Definition.
+- Explanation.
+- Prerequisites.
+- Key formulas.
+- LaTeX representation.
+- Worked examples.
+- Common mistakes.
+- Visual examples.
+- Related algorithms.
+- Time complexity.
+- Space complexity.
+- Physics units where applicable.
+- Industrial or real-world case study.
+- Practice questions.
+- References.
+- Version.
+- Author or editor.
+- Publication status.
+
+The existing project includes theory nodes with definitions, formulas, complexity and case studies. cite [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/1894394140/7b798a1e-5fca-4673-91b4-ab45fab6a4c1/paste.txt?AWSAccessKeyId=ASIA2F3EMEYESAMFH6RH&Signature=qDRwdGDbPWtS0vtllX2Z0IPANOQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEGUaCXVzLWVhc3QtMSJHMEUCIEZtjpnmo7NXiMmlSa4sb62idEI6w3kDCh3R%2F%2Frw7FVZAiEAoPl7WLoUq0fSO8UM%2FCzcLkVq%2BlmTU2KNxr7cfeRvZkUq8wQILhABGgw2OTk3NTMzMDk3MDUiDN4rOB1lHsAZTFHIWyrQBM3SXbPk%2FKusJ6jKwoproZcK5%2BHQ1YAon2vDOjNtbMmL4xOQ%2FS%2F8xlC4PYRjhO%2BLMo4zaLxDJxaysm%2FBO8S9y1zlUeWkk0xWyQFfskpyQJ1HbeG%2FLwumkqq4UC2Z8lk1P9FHaRE%2FdbmXW7ZWM3bgRUgRWDpE1lGPyT9RKBodoqxWenkZTSZQJGYuyjMtI6OrDuq5bBP225x%2FvP9Cgk1XNCx0BWZaw7cQ9%2Bvqg3n8GM2ZHFK38Px90TwUpbR4OtTRlwDg6u2kwlHaAHrQXjdPIJvPKoGyLtR0ig%2BZaE6Km1Qio8pWPa88TJ%2BpTTAFZlJb%2BPVk2zwpoI6KjyDGvrMcNqbmq62WHna0dquNXTG%2B5d%2BY7O2L8x5N6OMYjF%2FyadUw8k1e7ugFj9Bh1Rvy7vsxz2PyVlfC7PDCKWvYWwDgQUkB1tItv%2FWhpYTWGD43YjKVQ%2BB%2FYkuj8QF9ixWIUc8gkZgbVNfFSoMvNDN5M2OVDfZf%2B9d5gOJlCunvSj%2F0ermT5vqO%2BUbfMOy%2Bd3mbfOGa3QHptZWC9Br2Ync6MYxLgbSDn0MXiv50r3qXNGhlzauChxe3fPvypztRkn98EtzleU5ukjnrhTEwzvRAJ%2BRJz0U8V1ObKAPMiQQjM%2BUc%2FOUxZzcHQFeoPRsbhEXy5V8oWhlh7WhFTAXLNsaAzjDVrrilnyz%2BVZBXJjbGHnrMCP3i4J0mg9%2BN62%2FTyGF7Nc3LD%2BvRWte5TNiuRRgKMu5x6uSawLICerKFtUb6czX0NPQABOMLBVg%2BYu0ZZlgEh8VjfIQwuOaG1AY6mAG4PIjivZqRdsIy7XjIomWAxWkuRfptjb4tZVp1HFKhmKu%2FB%2B1IrPTRJyOQrdgSEtxoFrwjP6F7iQLj8ZkBu59OrIPJ8B1H2y6ndT2xdBIR518%2BXcA3B%2FqOjR4SkB%2FDte9V9woyRhG2GQX6fJeSfBKO4rM4lD%2FEHnCgUOC%2BZa5MbMM4te1DGrosvY0pkMboFG8F8wXhOPJ%2BHQ%3D%3D&Expires=1786888459)
+
+## 8.2 Function Module
+
+The Function Module provides structured forms for deterministic operations.
+
+Examples:
+
+- Quadratic solver.
+- Matrix solver.
+- Derivative calculator.
+- Integration calculator.
+- Projectile calculator.
+- Circuit calculator.
+- Statistics calculator.
+- Binary search executor.
+- Dijkstra visualiser.
+- AVL tree operation tool.
+
+Each function should contain:
+
+- Input form.
+- Field descriptions.
+- Unit selection.
+- Validation messages.
+- Execute button.
+- Loading state.
+- Step trace.
+- Result panel.
+- Graph or visualisation.
+- Save result option.
+- Related theory link.
+
+## 8.3 Domain Chat
+
+Domain Chat should require a selected domain:
+
+- Mathematics.
+- Physics.
+- DSA.
+
+The selection prevents semantic confusion. For example:
+
+- “Momentum” in Physics differs from a momentum-like concept in an algorithmic context.
+- “Root” may mean a polynomial root or a tree root.
+- “Power” may mean exponentiation, electrical power or computational power.
+
+Domain Chat should support:
+
+- Topic-aware conversations.
+- Formula explanations.
+- Follow-up questions.
+- Related examples.
+- Clarification requests.
+- Links to the Function Module.
+- Links to Theory Encyclopedia.
+- Conversation history.
+
+## 8.4 Autonomous Agent
+
+The Autonomous Agent accepts free-form requests and constructs a task workflow.
+
+Example:
+
+```text
+Calculate the maximum height and range of a projectile,
+plot its trajectory and explain the assumptions.
+```
+
+Possible workflow:
+
+```text
+1. Detect Physics domain.
+2. Extract initial velocity and angle.
+3. Request missing gravity if necessary.
+4. Validate units.
+5. Calculate time of flight.
+6. Calculate maximum height.
+7. Calculate range.
+8. Generate trajectory samples.
+9. Render graph.
+10. Save execution history.
+```
+
+The current design describes tokenisation, intent classification, DAG construction, typed task nodes, value piping, cycle detection and SSE progress events. cite [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/1894394140/7b798a1e-5fca-4673-91b4-ab45fab6a4c1/paste.txt?AWSAccessKeyId=ASIA2F3EMEYESAMFH6RH&Signature=qDRwdGDbPWtS0vtllX2Z0IPANOQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEGUaCXVzLWVhc3QtMSJHMEUCIEZtjpnmo7NXiMmlSa4sb62idEI6w3kDCh3R%2F%2Frw7FVZAiEAoPl7WLoUq0fSO8UM%2FCzcLkVq%2BlmTU2KNxr7cfeRvZkUq8wQILhABGgw2OTk3NTMzMDk3MDUiDN4rOB1lHsAZTFHIWyrQBM3SXbPk%2FKusJ6jKwoproZcK5%2BHQ1YAon2vDOjNtbMmL4xOQ%2FS%2F8xlC4PYRjhO%2BLMo4zaLxDJxaysm%2FBO8S9y1zlUeWkk0xWyQFfskpyQJ1HbeG%2FLwumkqq4UC2Z8lk1P9FHaRE%2FdbmXW7ZWM3bgRUgRWDpE1lGPyT9RKBodoqxWenkZTSZQJGYuyjMtI6OrDuq5bBP225x%2FvP9Cgk1XNCx0BWZaw7cQ9%2Bvqg3n8GM2ZHFK38Px90TwUpbR4OtTRlwDg6u2kwlHaAHrQXjdPIJvPKoGyLtR0ig%2BZaE6Km1Qio8pWPa88TJ%2BpTTAFZlJb%2BPVk2zwpoI6KjyDGvrMcNqbmq62WHna0dquNXTG%2B5d%2BY7O2L8x5N6OMYjF%2FyadUw8k1e7ugFj9Bh1Rvy7vsxz2PyVlfC7PDCKWvYWwDgQUkB1tItv%2FWhpYTWGD43YjKVQ%2BB%2FYkuj8QF9ixWIUc8gkZgbVNfFSoMvNDN5M2OVDfZf%2B9d5gOJlCunvSj%2F0ermT5vqO%2BUbfMOy%2Bd3mbfOGa3QHptZWC9Br2Ync6MYxLgbSDn0MXiv50r3qXNGhlzauChxe3fPvypztRkn98EtzleU5ukjnrhTEwzvRAJ%2BRJz0U8V1ObKAPMiQQjM%2BUc%2FOUxZzcHQFeoPRsbhEXy5V8oWhlh7WhFTAXLNsaAzjDVrrilnyz%2BVZBXJjbGHnrMCP3i4J0mg9%2BN62%2FTyGF7Nc3LD%2BvRWte5TNiuRRgKMu5x6uSawLICerKFtUb6czX0NPQABOMLBVg%2BYu0ZZlgEh8VjfIQwuOaG1AY6mAG4PIjivZqRdsIy7XjIomWAxWkuRfptjb4tZVp1HFKhmKu%2FB%2B1IrPTRJyOQrdgSEtxoFrwjP6F7iQLj8ZkBu59OrIPJ8B1H2y6ndT2xdBIR518%2BXcA3B%2FqOjR4SkB%2FDte9V9woyRhG2GQX6fJeSfBKO4rM4lD%2FEHnCgUOC%2BZa5MbMM4te1DGrosvY0pkMboFG8F8wXhOPJ%2BHQ%3D%3D&Expires=1786888459)
+
+## 8.5 Scientific Sandbox
+
+The Scientific Sandbox should support:
+
+- Equation input.
+- Parameter sliders.
+- Real-time graphs.
+- Multiple functions.
+- Data tables.
+- Coordinate systems.
+- Simulation controls.
+- Play and pause.
+- Reset.
+- Sampling resolution.
+- Export of data.
+- Experiment history.
+
+Possible experiments:
+
+- Projectile motion.
+- Function transformation.
+- Sine-wave interference.
+- Numerical integration.
+- Population growth.
+- Probability simulation.
+- Sorting algorithm comparison.
+- Graph traversal.
+
+## 8.6 Profiles and identity
+
+User profiles should support:
+
+- Username.
+- Email.
+- Password management.
+- Roles.
+- Permissions.
+- Learning level.
+- Preferred subjects.
+- Saved workspaces.
+- Calculation history.
+- Topic completion.
+- Exercise history.
+- Activity ledger.
+- API access settings.
+- Notification preferences.
+
+The current documentation includes JWT authentication, roles and activity tracking. cite [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/1894394140/7b798a1e-5fca-4673-91b4-ab45fab6a4c1/paste.txt?AWSAccessKeyId=ASIA2F3EMEYESAMFH6RH&Signature=qDRwdGDbPWtS0vtllX2Z0IPANOQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEGUaCXVzLWVhc3QtMSJHMEUCIEZtjpnmo7NXiMmlSa4sb62idEI6w3kDCh3R%2F%2Frw7FVZAiEAoPl7WLoUq0fSO8UM%2FCzcLkVq%2BlmTU2KNxr7cfeRvZkUq8wQILhABGgw2OTk3NTMzMDk3MDUiDN4rOB1lHsAZTFHIWyrQBM3SXbPk%2FKusJ6jKwoproZcK5%2BHQ1YAon2vDOjNtbMmL4xOQ%2FS%2F8xlC4PYRjhO%2BLMo4zaLxDJxaysm%2FBO8S9y1zlUeWkk0xWyQFfskpyQJ1HbeG%2FLwumkqq4UC2Z8lk1P9FHaRE%2FdbmXW7ZWM3bgRUgRWDpE1lGPyT9RKBodoqxWenkZTSZQJGYuyjMtI6OrDuq5bBP225x%2FvP9Cgk1XNCx0BWZaw7cQ9%2Bvqg3n8GM2ZHFK38Px90TwUpbR4OtTRlwDg6u2kwlHaAHrQXjdPIJvPKoGyLtR0ig%2BZaE6Km1Qio8pWPa88TJ%2BpTTAFZlJb%2BPVk2zwpoI6KjyDGvrMcNqbmq62WHna0dquNXTG%2B5d%2BY7O2L8x5N6OMYjF%2FyadUw8k1e7ugFj9Bh1Rvy7vsxz2PyVlfC7PDCKWvYWwDgQUkB1tItv%2FWhpYTWGD43YjKVQ%2BB%2FYkuj8QF9ixWIUc8gkZgbVNfFSoMvNDN5M2OVDfZf%2B9d5gOJlCunvSj%2F0ermT5vqO%2BUbfMOy%2Bd3mbfOGa3QHptZWC9Br2Ync6MYxLgbSDn0MXiv50r3qXNGhlzauChxe3fPvypztRkn98EtzleU5ukjnrhTEwzvRAJ%2BRJz0U8V1ObKAPMiQQjM%2BUc%2FOUxZzcHQFeoPRsbhEXy5V8oWhlh7WhFTAXLNsaAzjDVrrilnyz%2BVZBXJjbGHnrMCP3i4J0mg9%2BN62%2FTyGF7Nc3LD%2BvRWte5TNiuRRgKMu5x6uSawLICerKFtUb6czX0NPQABOMLBVg%2BYu0ZZlgEh8VjfIQwuOaG1AY6mAG4PIjivZqRdsIy7XjIomWAxWkuRfptjb4tZVp1HFKhmKu%2FB%2B1IrPTRJyOQrdgSEtxoFrwjP6F7iQLj8ZkBu59OrIPJ8B1H2y6ndT2xdBIR518%2BXcA3B%2FqOjR4SkB%2FDte9V9woyRhG2GQX6fJeSfBKO4rM4lD%2FEHnCgUOC%2BZa5MbMM4te1DGrosvY0pkMboFG8F8wXhOPJ%2BHQ%3D%3D&Expires=1786888459)
+
+## 8.7 Progress and learning system
+
+Add:
+
+- Topic completion.
+- Prerequisite warnings.
+- Learning streaks.
+- Practice scores.
+- Difficulty progression.
+- Weak-topic detection.
+- Recommended next topics.
+- Saved questions.
+- Revision lists.
+- Topic mastery levels.
+- Learning analytics.
+
+## 8.8 Audit and history
+
+Every calculation should preserve:
+
+- User ID.
+- Request ID.
+- Input.
+- Domain.
+- Operation.
+- Assumptions.
+- Units.
+- Formula.
+- Intermediate steps.
+- Output.
+- Warnings.
+- Precision.
+- Algorithm version.
+- Timestamp.
+- Execution status.
+- Error details, if failed.
+
+The current system already uses append-only calculation history with embedded execution traces and LaTeX-rendered steps. cite [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/1894394140/7b798a1e-5fca-4673-91b4-ab45fab6a4c1/paste.txt?AWSAccessKeyId=ASIA2F3EMEYESAMFH6RH&Signature=qDRwdGDbPWtS0vtllX2Z0IPANOQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEGUaCXVzLWVhc3QtMSJHMEUCIEZtjpnmo7NXiMmlSa4sb62idEI6w3kDCh3R%2F%2Frw7FVZAiEAoPl7WLoUq0fSO8UM%2FCzcLkVq%2BlmTU2KNxr7cfeRvZkUq8wQILhABGgw2OTk3NTMzMDk3MDUiDN4rOB1lHsAZTFHIWyrQBM3SXbPk%2FKusJ6jKwoproZcK5%2BHQ1YAon2vDOjNtbMmL4xOQ%2FS%2F8xlC4PYRjhO%2BLMo4zaLxDJxaysm%2FBO8S9y1zlUeWkk0xWyQFfskpyQJ1HbeG%2FLwumkqq4UC2Z8lk1P9FHaRE%2FdbmXW7ZWM3bgRUgRWDpE1lGPyT9RKBodoqxWenkZTSZQJGYuyjMtI6OrDuq5bBP225x%2FvP9Cgk1XNCx0BWZaw7cQ9%2Bvqg3n8GM2ZHFK38Px90TwUpbR4OtTRlwDg6u2kwlHaAHrQXjdPIJvPKoGyLtR0ig%2BZaE6Km1Qio8pWPa88TJ%2BpTTAFZlJb%2BPVk2zwpoI6KjyDGvrMcNqbmq62WHna0dquNXTG%2B5d%2BY7O2L8x5N6OMYjF%2FyadUw8k1e7ugFj9Bh1Rvy7vsxz2PyVlfC7PDCKWvYWwDgQUkB1tItv%2FWhpYTWGD43YjKVQ%2BB%2FYkuj8QF9ixWIUc8gkZgbVNfFSoMvNDN5M2OVDfZf%2B9d5gOJlCunvSj%2F0ermT5vqO%2BUbfMOy%2Bd3mbfOGa3QHptZWC9Br2Ync6MYxLgbSDn0MXiv50r3qXNGhlzauChxe3fPvypztRkn98EtzleU5ukjnrhTEwzvRAJ%2BRJz0U8V1ObKAPMiQQjM%2BUc%2FOUxZzcHQFeoPRsbhEXy5V8oWhlh7WhFTAXLNsaAzjDVrrilnyz%2BVZBXJjbGHnrMCP3i4J0mg9%2BN62%2FTyGF7Nc3LD%2BvRWte5TNiuRRgKMu5x6uSawLICerKFtUb6czX0NPQABOMLBVg%2BYu0ZZlgEh8VjfIQwuOaG1AY6mAG4PIjivZqRdsIy7XjIomWAxWkuRfptjb4tZVp1HFKhmKu%2FB%2B1IrPTRJyOQrdgSEtxoFrwjP6F7iQLj8ZkBu59OrIPJ8B1H2y6ndT2xdBIR518%2BXcA3B%2FqOjR4SkB%2FDte9V9woyRhG2GQX6fJeSfBKO4rM4lD%2FEHnCgUOC%2BZa5MbMM4te1DGrosvY0pkMboFG8F8wXhOPJ%2BHQ%3D%3D&Expires=1786888459)
+
+***
+
+# 9. Application Modes
+
+## 9.1 Application Mode
+
+Application Mode is the deterministic mode.
+
+Characteristics:
+
+- Structured forms.
+- Explicit parameters.
+- No ambiguous natural-language parsing.
+- Strict input validation.
+- Synchronous or controlled asynchronous execution.
+- Typed REST DTOs.
+- Step-by-step result.
+- Immutable history.
+
+Example:
+
+```text
+Operation: Solve Quadratic Equation
+
+a = 1
+b = -5
+c = 6
+```
+
+The system directly invokes the quadratic solver.
+
+## 9.2 Agentic Mode
+
+Agentic Mode is the workflow mode.
+
+Characteristics:
+
+- Free-form request.
+- Domain detection.
+- Parameter extraction.
+- Clarification.
+- Task decomposition.
+- DAG construction.
+- Registered operation selection.
+- Dependency execution.
+- SSE progress.
+- Intermediate results.
+- Final explanation.
+
+The AI should not invent a new formula implementation at runtime. It should select and connect approved operations.
+
+***
+
+# 10. System Architecture
+
+## 10.1 High-level architecture
+
+```text
+┌─────────────────────────────┐
+│       Angular Frontend      │
+│                             │
+│ Theory | Functions | Chat   │
+│ Agent  | Sandbox | Profile  │
+└──────────────┬──────────────┘
+               │ REST / SSE
+┌──────────────▼──────────────┐
+│       Spring Boot API       │
+│                             │
+│ Auth | Theory | Math        │
+│ Physics | DSA | Agent       │
+│ History | Validation        │
+└──────────────┬──────────────┘
+               │
+┌──────────────▼──────────────┐
+│ Native Domain Engines       │
+│                             │
+│ Parser | Symbolic | Numeric │
+│ Physics | Algorithms        │
+└──────────────┬──────────────┘
+               │
+┌──────────────▼──────────────┐
+│          MongoDB            │
+│                             │
+│ Users | Theory | History    │
+│ Workspaces | Progress       │
+└─────────────────────────────┘
+```
+
+## 10.2 Frontend application
+
+The frontend and backend should be separate repositories and separate deployment units.
+
+Recommended frontend technology:
+
+- Angular 18 or later.
+- TypeScript.
+- Angular Router.
+- Standalone components.
+- Reactive Forms.
+- HTTP Client.
+- OnPush change detection.
+- Lazy-loaded routes.
+- Server-Sent Events client.
+- HTML5 Canvas.
+- SVG.
+- KaTeX or MathJax.
+- CSS design system.
+- Angular testing tools.
+- Playwright or Cypress for E2E testing.
+
+The current plan uses Angular standalone components, OnPush change detection, lazy-loaded routes and HTML5 Canvas. cite [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/1894394140/7b798a1e-5fca-4673-91b4-ab45fab6a4c1/paste.txt?AWSAccessKeyId=ASIA2F3EMEYESAMFH6RH&Signature=qDRwdGDbPWtS0vtllX2Z0IPANOQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEGUaCXVzLWVhc3QtMSJHMEUCIEZtjpnmo7NXiMmlSa4sb62idEI6w3kDCh3R%2F%2Frw7FVZAiEAoPl7WLoUq0fSO8UM%2FCzcLkVq%2BlmTU2KNxr7cfeRvZkUq8wQILhABGgw2OTk3NTMzMDk3MDUiDN4rOB1lHsAZTFHIWyrQBM3SXbPk%2FKusJ6jKwoproZcK5%2BHQ1YAon2vDOjNtbMmL4xOQ%2FS%2F8xlC4PYRjhO%2BLMo4zaLxDJxaysm%2FBO8S9y1zlUeWkk0xWyQFfskpyQJ1HbeG%2FLwumkqq4UC2Z8lk1P9FHaRE%2FdbmXW7ZWM3bgRUgRWDpE1lGPyT9RKBodoqxWenkZTSZQJGYuyjMtI6OrDuq5bBP225x%2FvP9Cgk1XNCx0BWZaw7cQ9%2Bvqg3n8GM2ZHFK38Px90TwUpbR4OtTRlwDg6u2kwlHaAHrQXjdPIJvPKoGyLtR0ig%2BZaE6Km1Qio8pWPa88TJ%2BpTTAFZlJb%2BPVk2zwpoI6KjyDGvrMcNqbmq62WHna0dquNXTG%2B5d%2BY7O2L8x5N6OMYjF%2FyadUw8k1e7ugFj9Bh1Rvy7vsxz2PyVlfC7PDCKWvYWwDgQUkB1tItv%2FWhpYTWGD43YjKVQ%2BB%2FYkuj8QF9ixWIUc8gkZgbVNfFSoMvNDN5M2OVDfZf%2B9d5gOJlCunvSj%2F0ermT5vqO%2BUbfMOy%2Bd3mbfOGa3QHptZWC9Br2Ync6MYxLgbSDn0MXiv50r3qXNGhlzauChxe3fPvypztRkn98EtzleU5ukjnrhTEwzvRAJ%2BRJz0U8V1ObKAPMiQQjM%2BUc%2FOUxZzcHQFeoPRsbhEXy5V8oWhlh7WhFTAXLNsaAzjDVrrilnyz%2BVZBXJjbGHnrMCP3i4J0mg9%2BN62%2FTyGF7Nc3LD%2BvRWte5TNiuRRgKMu5x6uSawLICerKFtUb6czX0NPQABOMLBVg%2BYu0ZZlgEh8VjfIQwuOaG1AY6mAG4PIjivZqRdsIy7XjIomWAxWkuRfptjb4tZVp1HFKhmKu%2FB%2B1IrPTRJyOQrdgSEtxoFrwjP6F7iQLj8ZkBu59OrIPJ8B1H2y6ndT2xdBIR518%2BXcA3B%2FqOjR4SkB%2FDte9V9woyRhG2GQX6fJeSfBKO4rM4lD%2FEHnCgUOC%2BZa5MbMM4te1DGrosvY0pkMboFG8F8wXhOPJ%2BHQ%3D%3D&Expires=1786888459)
+
+### Frontend structure
+
+```text
+frontend/
+├── src/
+│   ├── app/
+│   │   ├── core/
+│   │   │   ├── auth/
+│   │   │   ├── interceptors/
+│   │   │   ├── guards/
+│   │   │   └── api/
+│   │   ├── shared/
+│   │   │   ├── components/
+│   │   │   ├── pipes/
+│   │   │   ├── validators/
+│   │   │   └── models/
+│   │   ├── features/
+│   │   │   ├── theory/
+│   │   │   ├── functions/
+│   │   │   ├── chat/
+│   │   │   ├── agent/
+│   │   │   ├── sandbox/
+│   │   │   ├── profile/
+│   │   │   ├── history/
+│   │   │   └── progress/
+│   │   └── app.routes.ts
+│   ├── assets/
+│   └── environments/
+├── angular.json
+├── package.json
+└── Dockerfile
+```
+
+## 10.3 Backend application
+
+Recommended backend technology:
+
+- Java 21.
+- Spring Boot 3.x.
+- Spring Web.
+- Spring Security.
+- Spring Validation.
+- Spring Data MongoDB.
+- Spring Actuator.
+- Maven.
+- JUnit 5.
+- Mockito.
+- Testcontainers.
+- OpenAPI.
+- Docker.
+
+The project specification already uses Java 21, Spring Boot 3.x, native computation services and MongoDB. cite [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/1894394140/7b798a1e-5fca-4673-91b4-ab45fab6a4c1/paste.txt?AWSAccessKeyId=ASIA2F3EMEYESAMFH6RH&Signature=qDRwdGDbPWtS0vtllX2Z0IPANOQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEGUaCXVzLWVhc3QtMSJHMEUCIEZtjpnmo7NXiMmlSa4sb62idEI6w3kDCh3R%2F%2Frw7FVZAiEAoPl7WLoUq0fSO8UM%2FCzcLkVq%2BlmTU2KNxr7cfeRvZkUq8wQILhABGgw2OTk3NTMzMDk3MDUiDN4rOB1lHsAZTFHIWyrQBM3SXbPk%2FKusJ6jKwoproZcK5%2BHQ1YAon2vDOjNtbMmL4xOQ%2FS%2F8xlC4PYRjhO%2BLMo4zaLxDJxaysm%2FBO8S9y1zlUeWkk0xWyQFfskpyQJ1HbeG%2FLwumkqq4UC2Z8lk1P9FHaRE%2FdbmXW7ZWM3bgRUgRWDpE1lGPyT9RKBodoqxWenkZTSZQJGYuyjMtI6OrDuq5bBP225x%2FvP9Cgk1XNCx0BWZaw7cQ9%2Bvqg3n8GM2ZHFK38Px90TwUpbR4OtTRlwDg6u2kwlHaAHrQXjdPIJvPKoGyLtR0ig%2BZaE6Km1Qio8pWPa88TJ%2BpTTAFZlJb%2BPVk2zwpoI6KjyDGvrMcNqbmq62WHna0dquNXTG%2B5d%2BY7O2L8x5N6OMYjF%2FyadUw8k1e7ugFj9Bh1Rvy7vsxz2PyVlfC7PDCKWvYWwDgQUkB1tItv%2FWhpYTWGD43YjKVQ%2BB%2FYkuj8QF9ixWIUc8gkZgbVNfFSoMvNDN5M2OVDfZf%2B9d5gOJlCunvSj%2F0ermT5vqO%2BUbfMOy%2Bd3mbfOGa3QHptZWC9Br2Ync6MYxLgbSDn0MXiv50r3qXNGhlzauChxe3fPvypztRkn98EtzleU5ukjnrhTEwzvRAJ%2BRJz0U8V1ObKAPMiQQjM%2BUc%2FOUxZzcHQFeoPRsbhEXy5V8oWhlh7WhFTAXLNsaAzjDVrrilnyz%2BVZBXJjbGHnrMCP3i4J0mg9%2BN62%2FTyGF7Nc3LD%2BvRWte5TNiuRRgKMu5x6uSawLICerKFtUb6czX0NPQABOMLBVg%2BYu0ZZlgEh8VjfIQwuOaG1AY6mAG4PIjivZqRdsIy7XjIomWAxWkuRfptjb4tZVp1HFKhmKu%2FB%2B1IrPTRJyOQrdgSEtxoFrwjP6F7iQLj8ZkBu59OrIPJ8B1H2y6ndT2xdBIR518%2BXcA3B%2FqOjR4SkB%2FDte9V9woyRhG2GQX6fJeSfBKO4rM4lD%2FEHnCgUOC%2BZa5MbMM4te1DGrosvY0pkMboFG8F8wXhOPJ%2BHQ%3D%3D&Expires=1786888459)
+
+### Backend structure
+
+```text
+backend/
+├── src/main/java/com/nexusmath/
+│   ├── auth/
+│   ├── users/
+│   ├── theory/
+│   ├── history/
+│   ├── workspace/
+│   ├── parser/
+│   ├── validation/
+│   ├── math/
+│   │   ├── arithmetic/
+│   │   ├── algebra/
+│   │   ├── geometry/
+│   │   ├── trigonometry/
+│   │   ├── calculus/
+│   │   ├── probability/
+│   │   ├── linearalgebra/
+│   │   └── numerical/
+│   ├── physics/
+│   │   ├── units/
+│   │   ├── mechanics/
+│   │   ├── thermodynamics/
+│   │   ├── circuits/
+│   │   └── waves/
+│   ├── dsa/
+│   │   ├── complexity/
+│   │   ├── structures/
+│   │   ├── sorting/
+│   │   ├── searching/
+│   │   ├── trees/
+│   │   ├── graphs/
+│   │   └── strings/
+│   ├── orchestration/
+│   ├── api/
+│   ├── common/
+│   └── config/
+├── src/main/resources/
+│   ├── application.yml
+│   └── db/
+└── pom.xml
+```
+
+## 10.4 Layered backend structure
+
+```text
+Controller
+   ↓
+Application Service
+   ↓
+Domain Service
+   ↓
+Algorithm / Calculation Engine
+   ↓
+Trace Builder
+   ↓
+Persistence Adapter
+```
+
+### Controller
+
+Responsible for:
+
+- Authentication.
+- DTO validation.
+- Calling the application service.
+- Returning an HTTP response.
+- Mapping errors.
+
+### Application service
+
+Responsible for:
+
+- Use-case orchestration.
+- Calling domain services.
+- Creating history records.
+- Preparing response DTOs.
+
+### Domain service
+
+Responsible for:
+
+- Mathematical, Physics or DSA logic.
+- Domain validation.
+- Assumption handling.
+- Trace generation.
+
+### Engine
+
+Responsible for:
+
+- The actual algorithm or calculation.
+- No HTTP logic.
+- No database logic.
+- No UI logic.
+
+### Repository
+
+Responsible for:
+
+- Persistence.
+- Querying.
+- Indexes.
+- Data access.
+
+***
+
+# 11. Technology Stack
+
+## 11.1 Core technologies
+
+| Area | Technology |
+|---|---|
+| Backend language | Java 21 |
+| Backend framework | Spring Boot 3.x |
+| Frontend framework | Angular 18+ |
+| Frontend language | TypeScript |
+| Database | MongoDB |
+| API | REST |
+| Streaming | Server-Sent Events |
+| Build backend | Maven |
+| Build frontend | npm and Angular CLI |
+| Runtime | Docker |
+| Static hosting | Nginx |
+| Security | Spring Security and JWT |
+| Testing backend | JUnit 5, Mockito, Testcontainers |
+| Testing frontend | Angular testing tools and E2E framework |
+| Mathematical rendering | KaTeX or MathJax |
+| Visualisation | Canvas and SVG |
+| Documentation | Markdown, OpenAPI and architecture decision records |
+
+## 11.2 Database recommendation
+
+Use MongoDB as the primary Version 1 database because the platform contains flexible theory documents, formulas, examples, trace arrays and evolving educational metadata.
+
+Potential collections:
+
+```text
+users
+roles
+theory_nodes
+formulas
+topic_prerequisites
+calculation_history
+calculation_steps
+agent_workflows
+agent_tasks
+workspaces
+exercises
+exercise_attempts
+learning_progress
+visualisation_sessions
+audit_events
+```
+
+Use MySQL later only if you require highly relational business features such as:
+
+- Institutional enrolment.
+- Billing.
+- Course registration.
+- Examination records.
+- Complex relational reporting.
+- Financial transactions.
+
+## 11.3 AI tools
+
+The AI layer should be used for:
+
+- Requirement interpretation.
+- Domain classification.
+- Parameter extraction.
+- Task decomposition.
+- Clarification questions.
+- Theory retrieval.
+- Workflow orchestration.
+- Explanation generation.
+- Code assistance during development.
+
+The AI should not be the trusted authority for:
+
+- Final numerical calculations.
+- Unit conversion.
+- Matrix operations.
+- Algorithm correctness.
+- Security decisions.
+- Database permissions.
+- Validation bypasses.
+
+The intended architecture separates natural-language processing from native computation. cite [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/1894394140/7b798a1e-5fca-4673-91b4-ab45fab6a4c1/paste.txt?AWSAccessKeyId=ASIA2F3EMEYESAMFH6RH&Signature=qDRwdGDbPWtS0vtllX2Z0IPANOQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEGUaCXVzLWVhc3QtMSJHMEUCIEZtjpnmo7NXiMmlSa4sb62idEI6w3kDCh3R%2F%2Frw7FVZAiEAoPl7WLoUq0fSO8UM%2FCzcLkVq%2BlmTU2KNxr7cfeRvZkUq8wQILhABGgw2OTk3NTMzMDk3MDUiDN4rOB1lHsAZTFHIWyrQBM3SXbPk%2FKusJ6jKwoproZcK5%2BHQ1YAon2vDOjNtbMmL4xOQ%2FS%2F8xlC4PYRjhO%2BLMo4zaLxDJxaysm%2FBO8S9y1zlUeWkk0xWyQFfskpyQJ1HbeG%2FLwumkqq4UC2Z8lk1P9FHaRE%2FdbmXW7ZWM3bgRUgRWDpE1lGPyT9RKBodoqxWenkZTSZQJGYuyjMtI6OrDuq5bBP225x%2FvP9Cgk1XNCx0BWZaw7cQ9%2Bvqg3n8GM2ZHFK38Px90TwUpbR4OtTRlwDg6u2kwlHaAHrQXjdPIJvPKoGyLtR0ig%2BZaE6Km1Qio8pWPa88TJ%2BpTTAFZlJb%2BPVk2zwpoI6KjyDGvrMcNqbmq62WHna0dquNXTG%2B5d%2BY7O2L8x5N6OMYjF%2FyadUw8k1e7ugFj9Bh1Rvy7vsxz2PyVlfC7PDCKWvYWwDgQUkB1tItv%2FWhpYTWGD43YjKVQ%2BB%2FYkuj8QF9ixWIUc8gkZgbVNfFSoMvNDN5M2OVDfZf%2B9d5gOJlCunvSj%2F0ermT5vqO%2BUbfMOy%2Bd3mbfOGa3QHptZWC9Br2Ync6MYxLgbSDn0MXiv50r3qXNGhlzauChxe3fPvypztRkn98EtzleU5ukjnrhTEwzvRAJ%2BRJz0U8V1ObKAPMiQQjM%2BUc%2FOUxZzcHQFeoPRsbhEXy5V8oWhlh7WhFTAXLNsaAzjDVrrilnyz%2BVZBXJjbGHnrMCP3i4J0mg9%2BN62%2FTyGF7Nc3LD%2BvRWte5TNiuRRgKMu5x6uSawLICerKFtUb6czX0NPQABOMLBVg%2BYu0ZZlgEh8VjfIQwuOaG1AY6mAG4PIjivZqRdsIy7XjIomWAxWkuRfptjb4tZVp1HFKhmKu%2FB%2B1IrPTRJyOQrdgSEtxoFrwjP6F7iQLj8ZkBu59OrIPJ8B1H2y6ndT2xdBIR518%2BXcA3B%2FqOjR4SkB%2FDte9V9woyRhG2GQX6fJeSfBKO4rM4lD%2FEHnCgUOC%2BZa5MbMM4te1DGrosvY0pkMboFG8F8wXhOPJ%2BHQ%3D%3D&Expires=1786888459)
+
+## 11.4 Development AI tools
+
+Recommended development tools:
+
+- Cline for repository-level coding.
+- Continue for project skills and custom rules.
+- Aider for terminal-based implementation.
+- Local Ollama models for privacy-sensitive development.
+- GitHub Copilot Free for autocomplete.
+- Static analysis and security scanners.
+- OpenAPI tooling.
+- GitHub Actions or equivalent CI.
+
+***
+
+# 12. Data Model
+
+## 12.1 User document
+
+```json
+{
+  "_id": "user-id",
+  "username": "student01",
+  "email": "user@example.com",
+  "passwordHash": "hashed-value",
+  "roles": ["USER"],
+  "preferredDomains": ["MATHEMATICS", "DSA"],
+  "createdAt": "timestamp",
+  "updatedAt": "timestamp",
+  "status": "ACTIVE"
+}
+```
+
+## 12.2 Theory node
+
+```json
+{
+  "_id": "topic-id",
+  "subject": "MATHEMATICS",
+  "category": "CALCULUS",
+  "subTopic": "DIFFERENTIATION",
+  "title": "Product Rule",
+  "level": "INTERMEDIATE",
+  "definition": "...",
+  "markdownContent": "...",
+  "latexFormulas": [],
+  "prerequisites": ["FUNCTIONS", "LIMITS"],
+  "examples": [],
+  "commonMistakes": [],
+  "visualisations": [],
+  "implementationStatus": "FULLY_FUNCTIONAL",
+  "version": "1.0.0",
+  "published": true
+}
+```
+
+## 12.3 Calculation history
+
+```json
+{
+  "_id": "calculation-id",
+  "userId": "user-id",
+  "requestId": "request-id",
+  "rawInputQuery": "Solve x^2 - 5x + 6 = 0",
+  "executionDomain": "MATHEMATICS",
+  "operation": "QUADRATIC_SOLVER",
+  "inputs": {},
+  "assumptions": [],
+  "derivedResult": {},
+  "linearExecutionTrace": [],
+  "precision": {
+    "mode": "EXACT"
+  },
+  "status": "SUCCESS",
+  "timestamp": "timestamp"
+}
+```
+
+## 12.4 Physics result
+
+Physics results should include:
+
+```json
+{
+  "quantity": "range",
+  "value": 35.31,
+  "unit": "m",
+  "dimension": "LENGTH",
+  "uncertainty": null,
+  "assumptions": [
+    "Air resistance ignored",
+    "Constant gravitational acceleration"
+  ]
+}
+```
+
+## 12.5 DSA execution result
+
+```json
+{
+  "algorithm": "DIJKSTRA",
+  "input": {
+    "vertices": [],
+    "edges": []
+  },
+  "output": {},
+  "timeComplexity": "O((V + E) log V)",
+  "spaceComplexity": "O(V)",
+  "operationCount": 42,
+  "events": []
+}
+```
+
+***
+
+# 13. Parser and Computation Architecture
+
+## 13.1 Tokenisation
+
+The tokenizer should identify:
+
+- Numeric constants.
+- Variables.
+- Functions.
+- Operators.
+- Units.
+- Parentheses.
+- Matrix delimiters.
+- Vector notation.
+- Keywords.
+- Domain-specific terms.
+
+The project specification already proposes character normalisation, lexical scanning, operator classification and protection of nested matrix and vector structures. cite [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/1894394140/7b798a1e-5fca-4673-91b4-ab45fab6a4c1/paste.txt?AWSAccessKeyId=ASIA2F3EMEYESAMFH6RH&Signature=qDRwdGDbPWtS0vtllX2Z0IPANOQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEGUaCXVzLWVhc3QtMSJHMEUCIEZtjpnmo7NXiMmlSa4sb62idEI6w3kDCh3R%2F%2Frw7FVZAiEAoPl7WLoUq0fSO8UM%2FCzcLkVq%2BlmTU2KNxr7cfeRvZkUq8wQILhABGgw2OTk3NTMzMDk3MDUiDN4rOB1lHsAZTFHIWyrQBM3SXbPk%2FKusJ6jKwoproZcK5%2BHQ1YAon2vDOjNtbMmL4xOQ%2FS%2F8xlC4PYRjhO%2BLMo4zaLxDJxaysm%2FBO8S9y1zlUeWkk0xWyQFfskpyQJ1HbeG%2FLwumkqq4UC2Z8lk1P9FHaRE%2FdbmXW7ZWM3bgRUgRWDpE1lGPyT9RKBodoqxWenkZTSZQJGYuyjMtI6OrDuq5bBP225x%2FvP9Cgk1XNCx0BWZaw7cQ9%2Bvqg3n8GM2ZHFK38Px90TwUpbR4OtTRlwDg6u2kwlHaAHrQXjdPIJvPKoGyLtR0ig%2BZaE6Km1Qio8pWPa88TJ%2BpTTAFZlJb%2BPVk2zwpoI6KjyDGvrMcNqbmq62WHna0dquNXTG%2B5d%2BY7O2L8x5N6OMYjF%2FyadUw8k1e7ugFj9Bh1Rvy7vsxz2PyVlfC7PDCKWvYWwDgQUkB1tItv%2FWhpYTWGD43YjKVQ%2BB%2FYkuj8QF9ixWIUc8gkZgbVNfFSoMvNDN5M2OVDfZf%2B9d5gOJlCunvSj%2F0ermT5vqO%2BUbfMOy%2Bd3mbfOGa3QHptZWC9Br2Ync6MYxLgbSDn0MXiv50r3qXNGhlzauChxe3fPvypztRkn98EtzleU5ukjnrhTEwzvRAJ%2BRJz0U8V1ObKAPMiQQjM%2BUc%2FOUxZzcHQFeoPRsbhEXy5V8oWhlh7WhFTAXLNsaAzjDVrrilnyz%2BVZBXJjbGHnrMCP3i4J0mg9%2BN62%2FTyGF7Nc3LD%2BvRWte5TNiuRRgKMu5x6uSawLICerKFtUb6czX0NPQABOMLBVg%2BYu0ZZlgEh8VjfIQwuOaG1AY6mAG4PIjivZqRdsIy7XjIomWAxWkuRfptjb4tZVp1HFKhmKu%2FB%2B1IrPTRJyOQrdgSEtxoFrwjP6F7iQLj8ZkBu59OrIPJ8B1H2y6ndT2xdBIR518%2BXcA3B%2FqOjR4SkB%2FDte9V9woyRhG2GQX6fJeSfBKO4rM4lD%2FEHnCgUOC%2BZa5MbMM4te1DGrosvY0pkMboFG8F8wXhOPJ%2BHQ%3D%3D&Expires=1786888459)
+
+## 13.2 Parsing
+
+Use a structured parser such as a Pratt parser for mathematical expressions.
+
+Support:
+
+- Operator precedence.
+- Unary operators.
+- Binary operators.
+- Implicit multiplication.
+- Function calls.
+- Nested expressions.
+- Variables.
+- Brackets.
+- Matrices.
+- Vectors.
+
+## 13.3 Abstract syntax tree
+
+Potential node types:
+
+```text
+ConstantNode
+VariableNode
+BinaryOperationNode
+UnaryOperationNode
+FunctionCallNode
+MatrixNode
+VectorNode
+UnitValueNode
+ComparisonNode
+EquationNode
+```
+
+Each node should support:
+
+- Evaluation.
+- Validation.
+- LaTeX output.
+- Simplification where applicable.
+- Trace generation.
+- Dependency collection.
+
+## 13.4 Symbolic versus numerical mode
+
+### Symbolic mode
+
+Use for:
+
+- Algebraic simplification.
+- Factorisation.
+- Differentiation.
+- Equation transformation.
+- Formula display.
+- Exact fractions.
+- Polynomial manipulation.
+
+### Numerical mode
+
+Use for:
+
+- Approximation.
+- Root finding.
+- Integration.
+- Differential equations.
+- Simulation.
+- Floating-point scientific values.
+
+Each result should state its mode.
+
+***
+
+# 14. Validation and Error Handling
+
+## 14.1 Validation layers
+
+Validation must occur at:
+
+1. Frontend form level.
+2. API DTO level.
+3. Application-service level.
+4. Domain-service level.
+5. Repository level where applicable.
+
+## 14.2 Mathematics validation
+
+Examples:
+
+- Denominator cannot be zero.
+- Logarithm argument must satisfy its domain.
+- Even root radicand cannot be negative in real mode.
+- Matrix dimensions must be compatible.
+- Variable values must be bound.
+- Probability must be between zero and one.
+- Iterative algorithms must have valid convergence parameters.
+
+## 14.3 Physics validation
+
+Examples:
+
+- Units must be convertible.
+- Dimensions must be compatible.
+- Kelvin temperature cannot be negative.
+- Mass cannot be negative.
+- Time intervals must be valid.
+- Resistance cannot be zero when calculating current from voltage.
+- Physical assumptions must be displayed.
+
+## 14.4 DSA validation
+
+Examples:
+
+- Binary search requires sorted input.
+- Graph vertices must be unique.
+- Edge weights must be valid for the selected algorithm.
+- Dijkstra must reject negative edge weights.
+- Tree operations must preserve invariants.
+- Array size must be within configured limits.
+
+## 14.5 Error categories
+
+```text
+VALIDATION_ERROR
+DOMAIN_ERROR
+PARSER_ERROR
+UNBOUND_VARIABLE
+DIMENSION_ERROR
+UNIT_CONVERSION_ERROR
+CONVERGENCE_ERROR
+MATRIX_SINGULARITY
+UNSUPPORTED_OPERATION
+AUTHENTICATION_ERROR
+AUTHORISATION_ERROR
+RESOURCE_LIMIT_ERROR
+INTERNAL_ERROR
+```
+
+The current project design already proposes domain-specific exceptions and a global sanitised error handler. cite [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/1894394140/7b798a1e-5fca-4673-91b4-ab45fab6a4c1/paste.txt?AWSAccessKeyId=ASIA2F3EMEYESAMFH6RH&Signature=qDRwdGDbPWtS0vtllX2Z0IPANOQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEGUaCXVzLWVhc3QtMSJHMEUCIEZtjpnmo7NXiMmlSa4sb62idEI6w3kDCh3R%2F%2Frw7FVZAiEAoPl7WLoUq0fSO8UM%2FCzcLkVq%2BlmTU2KNxr7cfeRvZkUq8wQILhABGgw2OTk3NTMzMDk3MDUiDN4rOB1lHsAZTFHIWyrQBM3SXbPk%2FKusJ6jKwoproZcK5%2BHQ1YAon2vDOjNtbMmL4xOQ%2FS%2F8xlC4PYRjhO%2BLMo4zaLxDJxaysm%2FBO8S9y1zlUeWkk0xWyQFfskpyQJ1HbeG%2FLwumkqq4UC2Z8lk1P9FHaRE%2FdbmXW7ZWM3bgRUgRWDpE1lGPyT9RKBodoqxWenkZTSZQJGYuyjMtI6OrDuq5bBP225x%2FvP9Cgk1XNCx0BWZaw7cQ9%2Bvqg3n8GM2ZHFK38Px90TwUpbR4OtTRlwDg6u2kwlHaAHrQXjdPIJvPKoGyLtR0ig%2BZaE6Km1Qio8pWPa88TJ%2BpTTAFZlJb%2BPVk2zwpoI6KjyDGvrMcNqbmq62WHna0dquNXTG%2B5d%2BY7O2L8x5N6OMYjF%2FyadUw8k1e7ugFj9Bh1Rvy7vsxz2PyVlfC7PDCKWvYWwDgQUkB1tItv%2FWhpYTWGD43YjKVQ%2BB%2FYkuj8QF9ixWIUc8gkZgbVNfFSoMvNDN5M2OVDfZf%2B9d5gOJlCunvSj%2F0ermT5vqO%2BUbfMOy%2Bd3mbfOGa3QHptZWC9Br2Ync6MYxLgbSDn0MXiv50r3qXNGhlzauChxe3fPvypztRkn98EtzleU5ukjnrhTEwzvRAJ%2BRJz0U8V1ObKAPMiQQjM%2BUc%2FOUxZzcHQFeoPRsbhEXy5V8oWhlh7WhFTAXLNsaAzjDVrrilnyz%2BVZBXJjbGHnrMCP3i4J0mg9%2BN62%2FTyGF7Nc3LD%2BvRWte5TNiuRRgKMu5x6uSawLICerKFtUb6czX0NPQABOMLBVg%2BYu0ZZlgEh8VjfIQwuOaG1AY6mAG4PIjivZqRdsIy7XjIomWAxWkuRfptjb4tZVp1HFKhmKu%2FB%2B1IrPTRJyOQrdgSEtxoFrwjP6F7iQLj8ZkBu59OrIPJ8B1H2y6ndT2xdBIR518%2BXcA3B%2FqOjR4SkB%2FDte9V9woyRhG2GQX6fJeSfBKO4rM4lD%2FEHnCgUOC%2BZa5MbMM4te1DGrosvY0pkMboFG8F8wXhOPJ%2BHQ%3D%3D&Expires=1786888459)
+
+***
+
+# 15. API and Communication
+
+## 15.1 REST API
+
+Use REST for:
+
+- Authentication.
+- Theory retrieval.
+- Structured calculations.
+- History queries.
+- User profiles.
+- Progress tracking.
+- Exercise submissions.
+- Workspace management.
+
+All APIs should use:
+
+- Versioning.
+- Typed request and response DTOs.
+- Consistent error responses.
+- Request IDs.
+- Authentication.
+- Pagination.
+- Rate limits.
+- OpenAPI documentation.
+
+## 15.2 SSE
+
+Use SSE for:
+
+- Autonomous workflow progress.
+- Long-running numerical simulations.
+- Algorithm animation events.
+- Streaming trace steps.
+- Background execution status.
+
+The planned event types are:
+
+```text
+TaskInit
+TaskTrace
+TaskComplete
+```
+
+Add:
+
+```text
+TaskValidation
+TaskWarning
+TaskFailed
+TaskCancelled
+WorkflowComplete
+```
+
+## 15.3 API response format
+
+```json
+{
+  "requestId": "uuid",
+  "status": "SUCCESS",
+  "domain": "MATHEMATICS",
+  "operation": "DERIVATIVE",
+  "inputs": {},
+  "assumptions": [],
+  "steps": [],
+  "result": {},
+  "visualisation": {},
+  "warnings": [],
+  "metadata": {
+    "executionTimeMs": 12,
+    "engineVersion": "1.0.0"
+  }
+}
+```
+
+***
+
+# 16. Frontend User Experience
+
+## 16.1 Main navigation
+
+Recommended main navigation:
+
+```text
+Dashboard
+Theory Encyclopedia
+Function Module
+Domain Chat
+Autonomous Agent
+Scientific Sandbox
+DSA Visualiser
+History
+Progress
+Profile
+Administration
+```
+
+## 16.2 Theory page layout
+
+```text
+┌────────────────────────────────────┐
+│ Search and breadcrumb               │
+├────────────┬──────────────┬────────┤
+│ Topic tree │ Main theory │ Related│
+│            │ definition   │ topics │
+│            │ formulas     │        │
+│            │ examples     │        │
+└────────────┴──────────────┴────────┘
+```
+
+## 16.3 Function page layout
+
+```text
+┌────────────────────────────────────┐
+│ Domain and operation selector      │
+├──────────────┬─────────────────────┤
+│ Input form   │ Result               │
+│ Validation   │ Formula              │
+│ Units        │ Step trace           │
+│ Execute      │ Graph                │
+└──────────────┴─────────────────────┘
+```
+
+## 16.4 Agent page layout
+
+```text
+┌────────────────────────────────────┐
+│ Free-form request                  │
+├──────────────┬─────────────────────┤
+│ DAG workflow │ Live execution log   │
+│ task nodes   │ TaskTrace events     │
+├──────────────┴─────────────────────┤
+│ Final result, assumptions, graph   │
+└────────────────────────────────────┘
+```
+
+## 16.5 Accessibility
+
+The frontend should include:
+
+- Keyboard navigation.
+- Accessible labels.
+- Screen-reader support.
+- High-contrast mode.
+- Colour-independent status indicators.
+- Accessible error messages.
+- Adjustable text size.
+- Reduced-motion option.
+- Focus management.
+- Accessible graph descriptions.
+
+***
+
+# 17. Implementation Planning
+
+## 17.1 Phase 0: Project preparation
+
+Deliverables:
+
+- Final project name.
+- Scope document.
+- Architecture decision record.
+- Repository creation.
+- Development skills directory.
+- Coding standards.
+- Branching strategy.
+- Issue templates.
+- Pull request template.
+- Initial README.
+- Environment template.
+
+## 17.2 Phase 1: Foundation
+
+Deliverables:
+
+- Spring Boot backend.
+- Angular frontend.
+- MongoDB connection.
+- Authentication.
+- JWT security.
+- User profiles.
+- Global error handling.
+- Base API response.
+- Base frontend layout.
+- CI pipeline.
+- Docker development environment.
+
+## 17.3 Phase 2: Knowledge system
+
+Deliverables:
+
+- Topic registry.
+- Theory node model.
+- Prerequisite relationships.
+- Search.
+- Theory pages.
+- Formula rendering.
+- Example storage.
+- Admin theory editor.
+- Mathematics coverage dashboard.
+
+## 17.4 Phase 3: Mathematics engine
+
+Implementation order:
+
+1. Arithmetic.
+2. Fractions and decimals.
+3. Number theory.
+4. Ratios and percentages.
+5. Algebraic expressions.
+6. Linear equations.
+7. Inequalities.
+8. Exponents and logarithms.
+9. Polynomials.
+10. Factorisation.
+11. Quadratics.
+12. Functions.
+13. Coordinate geometry.
+14. Trigonometry.
+15. Matrices and vectors.
+16. Complex numbers.
+17. Probability and statistics.
+18. Limits.
+19. Differentiation.
+20. Integration.
+21. Differential equations.
+22. Numerical methods.
+23. Optimisation.
+24. Discrete Mathematics.
+25. Higher Mathematics support.
+
+## 17.5 Phase 4: Physics engine
+
+Implementation order:
+
+1. Units.
+2. Dimensions.
+3. Measurement.
+4. Kinematics.
+5. Projectile motion.
+6. Newton’s laws.
+7. Energy and momentum.
+8. Thermodynamics.
+9. Circuits.
+10. Waves.
+11. Decay.
+12. Basic optics.
+
+## 17.6 Phase 5: DSA engine
+
+Implementation order:
+
+1. Complexity framework.
+2. Arrays and strings.
+3. Linked lists.
+4. Stacks and queues.
+5. Searching.
+6. Sorting.
+7. Trees.
+8. Heaps.
+9. AVL trees.
+10. Graph representation.
+11. BFS and DFS.
+12. Shortest paths.
+13. Minimum spanning trees.
+14. String algorithms.
+15. Greedy and dynamic programming foundations.
+
+## 17.7 Phase 6: Visualisation
+
+Deliverables:
+
+- Common chart model.
+- Function plotting.
+- Coordinate geometry.
+- Vector rendering.
+- Physics trajectory visualisation.
+- Parameter sliders.
+- Canvas controls.
+- DSA event renderer.
+- Playback controls.
+- Export features.
+
+## 17.8 Phase 7: Agentic workflows
+
+Deliverables:
+
+- Domain selection.
+- Intent classification.
+- Parameter extraction.
+- Clarification handling.
+- Task registry.
+- DAG builder.
+- Cycle detection.
+- Task execution.
+- Value piping.
+- SSE events.
+- Cancellation.
+- Failure recovery.
+- Workflow history.
+
+## 17.9 Phase 8: Release preparation
+
+Deliverables:
+
+- Security review.
+- Performance testing.
+- Database backup strategy.
+- Monitoring.
+- Error dashboards.
+- Deployment manifests.
+- Documentation.
+- User guide.
+- API reference.
+- Release notes.
+- Licence confirmation.
+- Production checklist.
+
+The existing documentation identifies API reference, environment templates, deployment manifests and a production checklist as remaining documentation areas. cite [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/1894394140/7b798a1e-5fca-4673-91b4-ab45fab6a4c1/paste.txt?AWSAccessKeyId=ASIA2F3EMEYESAMFH6RH&Signature=qDRwdGDbPWtS0vtllX2Z0IPANOQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEGUaCXVzLWVhc3QtMSJHMEUCIEZtjpnmo7NXiMmlSa4sb62idEI6w3kDCh3R%2F%2Frw7FVZAiEAoPl7WLoUq0fSO8UM%2FCzcLkVq%2BlmTU2KNxr7cfeRvZkUq8wQILhABGgw2OTk3NTMzMDk3MDUiDN4rOB1lHsAZTFHIWyrQBM3SXbPk%2FKusJ6jKwoproZcK5%2BHQ1YAon2vDOjNtbMmL4xOQ%2FS%2F8xlC4PYRjhO%2BLMo4zaLxDJxaysm%2FBO8S9y1zlUeWkk0xWyQFfskpyQJ1HbeG%2FLwumkqq4UC2Z8lk1P9FHaRE%2FdbmXW7ZWM3bgRUgRWDpE1lGPyT9RKBodoqxWenkZTSZQJGYuyjMtI6OrDuq5bBP225x%2FvP9Cgk1XNCx0BWZaw7cQ9%2Bvqg3n8GM2ZHFK38Px90TwUpbR4OtTRlwDg6u2kwlHaAHrQXjdPIJvPKoGyLtR0ig%2BZaE6Km1Qio8pWPa88TJ%2BpTTAFZlJb%2BPVk2zwpoI6KjyDGvrMcNqbmq62WHna0dquNXTG%2B5d%2BY7O2L8x5N6OMYjF%2FyadUw8k1e7ugFj9Bh1Rvy7vsxz2PyVlfC7PDCKWvYWwDgQUkB1tItv%2FWhpYTWGD43YjKVQ%2BB%2FYkuj8QF9ixWIUc8gkZgbVNfFSoMvNDN5M2OVDfZf%2B9d5gOJlCunvSj%2F0ermT5vqO%2BUbfMOy%2Bd3mbfOGa3QHptZWC9Br2Ync6MYxLgbSDn0MXiv50r3qXNGhlzauChxe3fPvypztRkn98EtzleU5ukjnrhTEwzvRAJ%2BRJz0U8V1ObKAPMiQQjM%2BUc%2FOUxZzcHQFeoPRsbhEXy5V8oWhlh7WhFTAXLNsaAzjDVrrilnyz%2BVZBXJjbGHnrMCP3i4J0mg9%2BN62%2FTyGF7Nc3LD%2BvRWte5TNiuRRgKMu5x6uSawLICerKFtUb6czX0NPQABOMLBVg%2BYu0ZZlgEh8VjfIQwuOaG1AY6mAG4PIjivZqRdsIy7XjIomWAxWkuRfptjb4tZVp1HFKhmKu%2FB%2B1IrPTRJyOQrdgSEtxoFrwjP6F7iQLj8ZkBu59OrIPJ8B1H2y6ndT2xdBIR518%2BXcA3B%2FqOjR4SkB%2FDte9V9woyRhG2GQX6fJeSfBKO4rM4lD%2FEHnCgUOC%2BZa5MbMM4te1DGrosvY0pkMboFG8F8wXhOPJ%2BHQ%3D%3D&Expires=1786888459)
+
+***
+
+# 18. Testing Strategy
+
+## 18.1 Unit testing
+
+Test:
+
+- Parser tokens.
+- AST evaluation.
+- Algebra operations.
+- Matrix operations.
+- Calculus methods.
+- Physics formulas.
+- Unit conversions.
+- DSA algorithms.
+- Trace generation.
+- Validation rules.
+
+## 18.2 Property-based testing
+
+Useful properties:
+
+- \(a + b = b + a\) for valid arithmetic inputs.
+- Matrix multiplication dimensions are respected.
+- Sorting output is ordered.
+- BFS visits reachable nodes.
+- AVL tree balance invariant remains valid.
+- Unit conversion round trips preserve values within tolerance.
+- Probability results remain within \([0,1]\).
+
+## 18.3 Integration testing
+
+Test:
+
+- REST endpoints.
+- Authentication.
+- Role restrictions.
+- MongoDB persistence.
+- History ownership.
+- SSE workflow delivery.
+- Frontend-backend contracts.
+- Search and theory retrieval.
+
+## 18.4 End-to-end testing
+
+Test:
+
+- Login.
+- Open theory topic.
+- Submit calculator form.
+- View trace.
+- View graph.
+- Save calculation.
+- Open history.
+- Start Agentic workflow.
+- Receive SSE events.
+- Run DSA visualisation.
+
+## 18.5 Numerical testing
+
+Use:
+
+- Known textbook examples.
+- Independent reference calculations.
+- Tolerance checks.
+- Boundary values.
+- Overflow and underflow tests.
+- Convergence failure tests.
+- Precision regression tests.
+
+***
+
+# 19. Security
+
+## 19.1 Authentication
+
+- Stateless JWT.
+- Secure password hashing.
+- Token expiration.
+- Refresh strategy if required.
+- Audience and issuer validation.
+- Role and scope checks.
+
+## 19.2 Authorisation
+
+Example permissions:
+
+```text
+SCOPE_THEORY_READ
+SCOPE_MATH_EXECUTE
+SCOPE_PHYSICS_EXECUTE
+SCOPE_DSA_EXECUTE
+SCOPE_AGENT_ORCHESTRATE
+SCOPE_HISTORY_READ
+SCOPE_ADMIN_MANAGE
+```
+
+The current plan includes method-level authorization for Mathematics and Agentic operations. cite [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/1894394140/7b798a1e-5fca-4673-91b4-ab45fab6a4c1/paste.txt?AWSAccessKeyId=ASIA2F3EMEYESAMFH6RH&Signature=qDRwdGDbPWtS0vtllX2Z0IPANOQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEGUaCXVzLWVhc3QtMSJHMEUCIEZtjpnmo7NXiMmlSa4sb62idEI6w3kDCh3R%2F%2Frw7FVZAiEAoPl7WLoUq0fSO8UM%2FCzcLkVq%2BlmTU2KNxr7cfeRvZkUq8wQILhABGgw2OTk3NTMzMDk3MDUiDN4rOB1lHsAZTFHIWyrQBM3SXbPk%2FKusJ6jKwoproZcK5%2BHQ1YAon2vDOjNtbMmL4xOQ%2FS%2F8xlC4PYRjhO%2BLMo4zaLxDJxaysm%2FBO8S9y1zlUeWkk0xWyQFfskpyQJ1HbeG%2FLwumkqq4UC2Z8lk1P9FHaRE%2FdbmXW7ZWM3bgRUgRWDpE1lGPyT9RKBodoqxWenkZTSZQJGYuyjMtI6OrDuq5bBP225x%2FvP9Cgk1XNCx0BWZaw7cQ9%2Bvqg3n8GM2ZHFK38Px90TwUpbR4OtTRlwDg6u2kwlHaAHrQXjdPIJvPKoGyLtR0ig%2BZaE6Km1Qio8pWPa88TJ%2BpTTAFZlJb%2BPVk2zwpoI6KjyDGvrMcNqbmq62WHna0dquNXTG%2B5d%2BY7O2L8x5N6OMYjF%2FyadUw8k1e7ugFj9Bh1Rvy7vsxz2PyVlfC7PDCKWvYWwDgQUkB1tItv%2FWhpYTWGD43YjKVQ%2BB%2FYkuj8QF9ixWIUc8gkZgbVNfFSoMvNDN5M2OVDfZf%2B9d5gOJlCunvSj%2F0ermT5vqO%2BUbfMOy%2Bd3mbfOGa3QHptZWC9Br2Ync6MYxLgbSDn0MXiv50r3qXNGhlzauChxe3fPvypztRkn98EtzleU5ukjnrhTEwzvRAJ%2BRJz0U8V1ObKAPMiQQjM%2BUc%2FOUxZzcHQFeoPRsbhEXy5V8oWhlh7WhFTAXLNsaAzjDVrrilnyz%2BVZBXJjbGHnrMCP3i4J0mg9%2BN62%2FTyGF7Nc3LD%2BvRWte5TNiuRRgKMu5x6uSawLICerKFtUb6czX0NPQABOMLBVg%2BYu0ZZlgEh8VjfIQwuOaG1AY6mAG4PIjivZqRdsIy7XjIomWAxWkuRfptjb4tZVp1HFKhmKu%2FB%2B1IrPTRJyOQrdgSEtxoFrwjP6F7iQLj8ZkBu59OrIPJ8B1H2y6ndT2xdBIR518%2BXcA3B%2FqOjR4SkB%2FDte9V9woyRhG2GQX6fJeSfBKO4rM4lD%2FEHnCgUOC%2BZa5MbMM4te1DGrosvY0pkMboFG8F8wXhOPJ%2BHQ%3D%3D&Expires=1786888459)
+
+## 19.3 Input security
+
+- Request-size limits.
+- Expression-length limits.
+- Matrix-size limits.
+- Simulation-time limits.
+- Algorithm input limits.
+- Query parameter validation.
+- Repository query sanitisation.
+- Markdown and LaTeX sanitisation.
+- Rate limiting.
+
+## 19.4 Secret management
+
+Never store:
+
+- JWT secrets.
+- Database credentials.
+- API keys.
+- Encryption keys.
+- Production passwords.
+
+Use:
+
+- Environment variables.
+- Secret managers.
+- Container secrets.
+- CI secret storage.
+
+***
+
+# 20. Performance and Scalability
+
+## 20.1 Performance targets
+
+Define targets only after benchmarking, but track:
+
+- Tokenisation time.
+- Parsing time.
+- Calculation time.
+- Database query time.
+- JWT filter time.
+- SSE event delay.
+- Frontend graph rendering time.
+- Algorithm animation frame rate.
+
+The current documentation proposes target latencies for tokenisation, calculation and JWT processing, along with virtual threads and parallel DAG execution. These should be treated as testable hypotheses rather than guaranteed results before benchmarking. cite [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/1894394140/7b798a1e-5fca-4673-91b4-ab45fab6a4c1/paste.txt?AWSAccessKeyId=ASIA2F3EMEYESAMFH6RH&Signature=qDRwdGDbPWtS0vtllX2Z0IPANOQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEGUaCXVzLWVhc3QtMSJHMEUCIEZtjpnmo7NXiMmlSa4sb62idEI6w3kDCh3R%2F%2Frw7FVZAiEAoPl7WLoUq0fSO8UM%2FCzcLkVq%2BlmTU2KNxr7cfeRvZkUq8wQILhABGgw2OTk3NTMzMDk3MDUiDN4rOB1lHsAZTFHIWyrQBM3SXbPk%2FKusJ6jKwoproZcK5%2BHQ1YAon2vDOjNtbMmL4xOQ%2FS%2F8xlC4PYRjhO%2BLMo4zaLxDJxaysm%2FBO8S9y1zlUeWkk0xWyQFfskpyQJ1HbeG%2FLwumkqq4UC2Z8lk1P9FHaRE%2FdbmXW7ZWM3bgRUgRWDpE1lGPyT9RKBodoqxWenkZTSZQJGYuyjMtI6OrDuq5bBP225x%2FvP9Cgk1XNCx0BWZaw7cQ9%2Bvqg3n8GM2ZHFK38Px90TwUpbR4OtTRlwDg6u2kwlHaAHrQXjdPIJvPKoGyLtR0ig%2BZaE6Km1Qio8pWPa88TJ%2BpTTAFZlJb%2BPVk2zwpoI6KjyDGvrMcNqbmq62WHna0dquNXTG%2B5d%2BY7O2L8x5N6OMYjF%2FyadUw8k1e7ugFj9Bh1Rvy7vsxz2PyVlfC7PDCKWvYWwDgQUkB1tItv%2FWhpYTWGD43YjKVQ%2BB%2FYkuj8QF9ixWIUc8gkZgbVNfFSoMvNDN5M2OVDfZf%2B9d5gOJlCunvSj%2F0ermT5vqO%2BUbfMOy%2Bd3mbfOGa3QHptZWC9Br2Ync6MYxLgbSDn0MXiv50r3qXNGhlzauChxe3fPvypztRkn98EtzleU5ukjnrhTEwzvRAJ%2BRJz0U8V1ObKAPMiQQjM%2BUc%2FOUxZzcHQFeoPRsbhEXy5V8oWhlh7WhFTAXLNsaAzjDVrrilnyz%2BVZBXJjbGHnrMCP3i4J0mg9%2BN62%2FTyGF7Nc3LD%2BvRWte5TNiuRRgKMu5x6uSawLICerKFtUb6czX0NPQABOMLBVg%2BYu0ZZlgEh8VjfIQwuOaG1AY6mAG4PIjivZqRdsIy7XjIomWAxWkuRfptjb4tZVp1HFKhmKu%2FB%2B1IrPTRJyOQrdgSEtxoFrwjP6F7iQLj8ZkBu59OrIPJ8B1H2y6ndT2xdBIR518%2BXcA3B%2FqOjR4SkB%2FDte9V9woyRhG2GQX6fJeSfBKO4rM4lD%2FEHnCgUOC%2BZa5MbMM4te1DGrosvY0pkMboFG8F8wXhOPJ%2BHQ%3D%3D&Expires=1786888459)
+
+## 20.2 Scalability strategy
+
+- Use stateless backend services.
+- Use virtual threads for I/O-heavy work.
+- Use bounded pools for CPU-heavy computation.
+- Limit expensive calculations.
+- Paginate history queries.
+- Cache immutable theory nodes.
+- Cache formulas and metadata.
+- Stream long workflows.
+- Execute independent DAG tasks in parallel.
+- Apply backpressure to SSE streams.
+- Protect MongoDB with indexes.
+
+## 20.3 Resource controls
+
+Apply limits for:
+
+- Expression size.
+- Matrix dimensions.
+- Graph vertices and edges.
+- Simulation steps.
+- Iteration count.
+- Recursion depth.
+- Request rate.
+- Concurrent workflows.
+- Stored history size.
+
+***
+
+# 21. Deployment
+
+## 21.1 Development deployment
+
+```text
+nexus-ui
+nexus-gateway
+nexus-data
+```
+
+The current deployment plan separates UI, gateway and database services. cite [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/1894394140/7b798a1e-5fca-4673-91b4-ab45fab6a4c1/paste.txt?AWSAccessKeyId=ASIA2F3EMEYESAMFH6RH&Signature=qDRwdGDbPWtS0vtllX2Z0IPANOQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEGUaCXVzLWVhc3QtMSJHMEUCIEZtjpnmo7NXiMmlSa4sb62idEI6w3kDCh3R%2F%2Frw7FVZAiEAoPl7WLoUq0fSO8UM%2FCzcLkVq%2BlmTU2KNxr7cfeRvZkUq8wQILhABGgw2OTk3NTMzMDk3MDUiDN4rOB1lHsAZTFHIWyrQBM3SXbPk%2FKusJ6jKwoproZcK5%2BHQ1YAon2vDOjNtbMmL4xOQ%2FS%2F8xlC4PYRjhO%2BLMo4zaLxDJxaysm%2FBO8S9y1zlUeWkk0xWyQFfskpyQJ1HbeG%2FLwumkqq4UC2Z8lk1P9FHaRE%2FdbmXW7ZWM3bgRUgRWDpE1lGPyT9RKBodoqxWenkZTSZQJGYuyjMtI6OrDuq5bBP225x%2FvP9Cgk1XNCx0BWZaw7cQ9%2Bvqg3n8GM2ZHFK38Px90TwUpbR4OtTRlwDg6u2kwlHaAHrQXjdPIJvPKoGyLtR0ig%2BZaE6Km1Qio8pWPa88TJ%2BpTTAFZlJb%2BPVk2zwpoI6KjyDGvrMcNqbmq62WHna0dquNXTG%2B5d%2BY7O2L8x5N6OMYjF%2FyadUw8k1e7ugFj9Bh1Rvy7vsxz2PyVlfC7PDCKWvYWwDgQUkB1tItv%2FWhpYTWGD43YjKVQ%2BB%2FYkuj8QF9ixWIUc8gkZgbVNfFSoMvNDN5M2OVDfZf%2B9d5gOJlCunvSj%2F0ermT5vqO%2BUbfMOy%2Bd3mbfOGa3QHptZWC9Br2Ync6MYxLgbSDn0MXiv50r3qXNGhlzauChxe3fPvypztRkn98EtzleU5ukjnrhTEwzvRAJ%2BRJz0U8V1ObKAPMiQQjM%2BUc%2FOUxZzcHQFeoPRsbhEXy5V8oWhlh7WhFTAXLNsaAzjDVrrilnyz%2BVZBXJjbGHnrMCP3i4J0mg9%2BN62%2FTyGF7Nc3LD%2BvRWte5TNiuRRgKMu5x6uSawLICerKFtUb6czX0NPQABOMLBVg%2BYu0ZZlgEh8VjfIQwuOaG1AY6mAG4PIjivZqRdsIy7XjIomWAxWkuRfptjb4tZVp1HFKhmKu%2FB%2B1IrPTRJyOQrdgSEtxoFrwjP6F7iQLj8ZkBu59OrIPJ8B1H2y6ndT2xdBIR518%2BXcA3B%2FqOjR4SkB%2FDte9V9woyRhG2GQX6fJeSfBKO4rM4lD%2FEHnCgUOC%2BZa5MbMM4te1DGrosvY0pkMboFG8F8wXhOPJ%2BHQ%3D%3D&Expires=1786888459)
+
+## 21.2 Production deployment
+
+Recommended services:
+
+```text
+Reverse proxy / gateway
+Frontend container
+Backend container
+MongoDB
+Monitoring service
+Log aggregation
+Backup service
+```
+
+## 21.3 Docker
+
+Use:
+
+- Multi-stage Maven build.
+- Java runtime image.
+- Angular production build.
+- Nginx static hosting.
+- Docker Compose for local development.
+- Kubernetes or Helm for larger deployments.
+- Environment-injected secrets.
+
+## 21.4 CI/CD pipeline
+
+```text
+Checkout
+  ↓
+Environment setup
+  ↓
+Backend compile
+  ↓
+Frontend compile
+  ↓
+Lint
+  ↓
+Unit tests
+  ↓
+Integration tests
+  ↓
+E2E tests
+  ↓
+Security scanning
+  ↓
+Container build
+  ↓
+Image scanning
+  ↓
+Artifact publication
+  ↓
+Deployment
+```
+
+The current project includes a CI sequence with environment setup, compilation, tests, security audits and build artifacts. cite [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/1894394140/7b798a1e-5fca-4673-91b4-ab45fab6a4c1/paste.txt?AWSAccessKeyId=ASIA2F3EMEYESAMFH6RH&Signature=qDRwdGDbPWtS0vtllX2Z0IPANOQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEGUaCXVzLWVhc3QtMSJHMEUCIEZtjpnmo7NXiMmlSa4sb62idEI6w3kDCh3R%2F%2Frw7FVZAiEAoPl7WLoUq0fSO8UM%2FCzcLkVq%2BlmTU2KNxr7cfeRvZkUq8wQILhABGgw2OTk3NTMzMDk3MDUiDN4rOB1lHsAZTFHIWyrQBM3SXbPk%2FKusJ6jKwoproZcK5%2BHQ1YAon2vDOjNtbMmL4xOQ%2FS%2F8xlC4PYRjhO%2BLMo4zaLxDJxaysm%2FBO8S9y1zlUeWkk0xWyQFfskpyQJ1HbeG%2FLwumkqq4UC2Z8lk1P9FHaRE%2FdbmXW7ZWM3bgRUgRWDpE1lGPyT9RKBodoqxWenkZTSZQJGYuyjMtI6OrDuq5bBP225x%2FvP9Cgk1XNCx0BWZaw7cQ9%2Bvqg3n8GM2ZHFK38Px90TwUpbR4OtTRlwDg6u2kwlHaAHrQXjdPIJvPKoGyLtR0ig%2BZaE6Km1Qio8pWPa88TJ%2BpTTAFZlJb%2BPVk2zwpoI6KjyDGvrMcNqbmq62WHna0dquNXTG%2B5d%2BY7O2L8x5N6OMYjF%2FyadUw8k1e7ugFj9Bh1Rvy7vsxz2PyVlfC7PDCKWvYWwDgQUkB1tItv%2FWhpYTWGD43YjKVQ%2BB%2FYkuj8QF9ixWIUc8gkZgbVNfFSoMvNDN5M2OVDfZf%2B9d5gOJlCunvSj%2F0ermT5vqO%2BUbfMOy%2Bd3mbfOGa3QHptZWC9Br2Ync6MYxLgbSDn0MXiv50r3qXNGhlzauChxe3fPvypztRkn98EtzleU5ukjnrhTEwzvRAJ%2BRJz0U8V1ObKAPMiQQjM%2BUc%2FOUxZzcHQFeoPRsbhEXy5V8oWhlh7WhFTAXLNsaAzjDVrrilnyz%2BVZBXJjbGHnrMCP3i4J0mg9%2BN62%2FTyGF7Nc3LD%2BvRWte5TNiuRRgKMu5x6uSawLICerKFtUb6czX0NPQABOMLBVg%2BYu0ZZlgEh8VjfIQwuOaG1AY6mAG4PIjivZqRdsIy7XjIomWAxWkuRfptjb4tZVp1HFKhmKu%2FB%2B1IrPTRJyOQrdgSEtxoFrwjP6F7iQLj8ZkBu59OrIPJ8B1H2y6ndT2xdBIR518%2BXcA3B%2FqOjR4SkB%2FDte9V9woyRhG2GQX6fJeSfBKO4rM4lD%2FEHnCgUOC%2BZa5MbMM4te1DGrosvY0pkMboFG8F8wXhOPJ%2BHQ%3D%3D&Expires=1786888459)
+
+***
+
+# 22. Project Governance
+
+## 22.1 Branching strategy
+
+```text
+main
+develop
+feature/*
+bugfix/*
+hotfix/*
+release/*
+```
+
+## 22.2 Pull request requirements
+
+Every pull request should include:
+
+- Description.
+- Related issue.
+- Architecture impact.
+- API impact.
+- Database impact.
+- Security impact.
+- Test evidence.
+- Screenshots for UI changes.
+- Documentation updates.
+- Migration notes.
+
+## 22.3 Definition of ready
+
+A task is ready when:
+
+- Requirements are clear.
+- Inputs and outputs are defined.
+- Dependencies are known.
+- Acceptance criteria exist.
+- Domain is selected.
+- Validation rules are identified.
+- Test cases are planned.
+
+## 22.4 Definition of done
+
+A task is complete when:
+
+- Code is implemented.
+- Tests pass.
+- Validation exists.
+- Errors are handled.
+- API documentation is updated.
+- Theory content is updated where necessary.
+- UI is connected.
+- Security is reviewed.
+- No unapproved placeholders remain.
+
+***
+
+# 23. Risks and Mitigation
+
+| Risk | Mitigation |
+|---|---|
+| Scope becomes too large | Use topic registry and implementation statuses |
+| AI generates incorrect algorithms | Restrict AI to registered engines |
+| Floating-point errors | Use exact types or documented tolerances |
+| Physics produces invalid results | Add unit and dimension validation |
+| Frontend and backend drift | Use versioned DTOs and contract tests |
+| Large calculations exhaust resources | Add execution limits and cancellation |
+| Database history grows indefinitely | Pagination, retention and archival |
+| Agent creates invalid DAG | Schema validation and cycle detection |
+| Security vulnerabilities | CI security scanning and reviews |
+| Inconsistent theory content | Versioned editorial workflow |
+| Poor user experience | UX testing and domain-specific layouts |
+
+***
+
+# 24. Success Metrics
+
+## 24.1 Coverage metrics
+
+- Percentage of Mathematics topics documented.
+- Percentage of Mathematics topics functional.
+- Physics topic coverage.
+- DSA topic coverage.
+- Number of formulas.
+- Number of calculators.
+- Number of visualisations.
+- Number of exercises.
+
+## 24.2 Quality metrics
+
+- Calculation correctness rate.
+- Unit conversion correctness.
+- Test pass rate.
+- API error rate.
+- Workflow failure rate.
+- Numerical convergence rate.
+- Security vulnerability count.
+- Average response latency.
+
+## 24.3 Learning metrics
+
+- Topic completion.
+- Exercise success rate.
+- Repeated mistakes.
+- Time spent per topic.
+- Learning path completion.
+- Active users.
+- Saved calculations.
+- Visualisation usage.
+
+***
+
+# 25. Version 1 Definition of Done
+
+Version 1 should be considered complete when:
+
+- The frontend and backend are separate applications.
+- Authentication and user management work.
+- MongoDB persistence works.
+- Theory Encyclopedia is available.
+- Every Mathematics roadmap topic is registered.
+- Every Mathematics topic has at least one functional implementation mode.
+- Selected Physics topics support unit-aware calculations.
+- Selected DSA topics support execution and complexity information.
+- Calculations produce steps and warnings.
+- Graphs and visualisations work for supported features.
+- History is saved and retrievable.
+- Application Mode works through structured forms.
+- Agentic Mode works for registered workflows.
+- REST APIs are documented.
+- SSE workflows are documented.
+- Security controls are active.
+- CI/CD runs tests and security checks.
+- Docker deployment works.
+- Known limitations are documented.
+- No feature claims exceed the actual implementation.
+
+***
+
+# 26. Recommended Documentation Files
+
+Create these documents in the project:
+
+```text
+docs/
+├── 00-master-project-documentation.md
+├── 01-project-overview.md
+├── 02-goals-and-vision.md
+├── 03-requirements.md
+├── 04-domain-coverage.md
+├── 05-mathematics-roadmap.md
+├── 06-physics-roadmap.md
+├── 07-dsa-roadmap.md
+├── 08-system-architecture.md
+├── 09-frontend-architecture.md
+├── 10-backend-architecture.md
+├── 11-parser-and-engine-design.md
+├── 12-api-reference.md
+├── 13-database-design.md
+├── 14-security-design.md
+├── 15-ui-ux-design.md
+├── 16-agentic-workflow-design.md
+├── 17-visualisation-design.md
+├── 18-testing-strategy.md
+├── 19-performance-plan.md
+├── 20-deployment-guide.md
+├── 21-ai-development-guide.md
+├── 22-contributing-guide.md
+├── 23-troubleshooting.md
+├── 24-release-process.md
+├── 25-changelog.md
+└── 26-license.md
+```
+
+Your current project documentation contains much of the technical foundation, but it still identifies the API reference, environment templates, deployment manifests, sample DTOs, changelog and licence as areas requiring completion. cite [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/attachments/1894394140/7b798a1e-5fca-4673-91b4-ab45fab6a4c1/paste.txt?AWSAccessKeyId=ASIA2F3EMEYESAMFH6RH&Signature=qDRwdGDbPWtS0vtllX2Z0IPANOQ%3D&x-amz-security-token=IQoJb3JpZ2luX2VjEGUaCXVzLWVhc3QtMSJHMEUCIEZtjpnmo7NXiMmlSa4sb62idEI6w3kDCh3R%2F%2Frw7FVZAiEAoPl7WLoUq0fSO8UM%2FCzcLkVq%2BlmTU2KNxr7cfeRvZkUq8wQILhABGgw2OTk3NTMzMDk3MDUiDN4rOB1lHsAZTFHIWyrQBM3SXbPk%2FKusJ6jKwoproZcK5%2BHQ1YAon2vDOjNtbMmL4xOQ%2FS%2F8xlC4PYRjhO%2BLMo4zaLxDJxaysm%2FBO8S9y1zlUeWkk0xWyQFfskpyQJ1HbeG%2FLwumkqq4UC2Z8lk1P9FHaRE%2FdbmXW7ZWM3bgRUgRWDpE1lGPyT9RKBodoqxWenkZTSZQJGYuyjMtI6OrDuq5bBP225x%2FvP9Cgk1XNCx0BWZaw7cQ9%2Bvqg3n8GM2ZHFK38Px90TwUpbR4OtTRlwDg6u2kwlHaAHrQXjdPIJvPKoGyLtR0ig%2BZaE6Km1Qio8pWPa88TJ%2BpTTAFZlJb%2BPVk2zwpoI6KjyDGvrMcNqbmq62WHna0dquNXTG%2B5d%2BY7O2L8x5N6OMYjF%2FyadUw8k1e7ugFj9Bh1Rvy7vsxz2PyVlfC7PDCKWvYWwDgQUkB1tItv%2FWhpYTWGD43YjKVQ%2BB%2FYkuj8QF9ixWIUc8gkZgbVNfFSoMvNDN5M2OVDfZf%2B9d5gOJlCunvSj%2F0ermT5vqO%2BUbfMOy%2Bd3mbfOGa3QHptZWC9Br2Ync6MYxLgbSDn0MXiv50r3qXNGhlzauChxe3fPvypztRkn98EtzleU5ukjnrhTEwzvRAJ%2BRJz0U8V1ObKAPMiQQjM%2BUc%2FOUxZzcHQFeoPRsbhEXy5V8oWhlh7WhFTAXLNsaAzjDVrrilnyz%2BVZBXJjbGHnrMCP3i4J0mg9%2BN62%2FTyGF7Nc3LD%2BvRWte5TNiuRRgKMu5x6uSawLICerKFtUb6czX0NPQABOMLBVg%2BYu0ZZlgEh8VjfIQwuOaG1AY6mAG4PIjivZqRdsIy7XjIomWAxWkuRfptjb4tZVp1HFKhmKu%2FB%2B1IrPTRJyOQrdgSEtxoFrwjP6F7iQLj8ZkBu59OrIPJ8B1H2y6ndT2xdBIR518%2BXcA3B%2FqOjR4SkB%2FDte9V9woyRhG2GQX6fJeSfBKO4rM4lD%2FEHnCgUOC%2BZa5MbMM4te1DGrosvY0pkMboFG8F8wXhOPJ%2BHQ%3D%3D&Expires=1786888459)
+
+***
+
+# Final Project Statement
+
+NexusMath-AI should be developed as:
+
+> **A secure, explainable and deterministic learning-and-computation platform that connects complete Mathematics coverage with selected Physics and DSA functionality through a modular Java backend, independent Angular frontend, interactive visualisations and controlled AI orchestration.**
+
+The most important implementation rule is:
+
+> **The AI may interpret, plan, explain and connect operations, but trusted domain engines must validate and perform the actual computation.**
+
+This architecture preserves your ambition to cover complete Mathematics while keeping the platform reliable, testable, extensible and suitable for future Physics, DSA, AI and institutional features.
