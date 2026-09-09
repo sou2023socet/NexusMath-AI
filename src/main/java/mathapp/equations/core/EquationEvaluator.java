@@ -53,13 +53,24 @@ public class EquationEvaluator {
     }
 
     // --- 3. Helper: Break string into variables and operators ---
+    /*
+     * 3x + 4y * 10x
+     * 
+     * output will be String list array 
+     * 
+     * ["3x" + "+", "4y" ,"*", "10x"]*/
     private List<String> tokenize(String equation) {
         List<String> tokens = new ArrayList<>();
         StringBuilder variable = new StringBuilder();
 
         for (int i = 0; i < equation.length(); i++) {
             char c = equation.charAt(i);
-
+            
+            // Ignore whitespace completely
+            if (Character.isWhitespace(c)) {
+                continue;
+            }
+            
             if (getPriority(c) != -1) {
                 if (variable.length() > 0) {
                     tokens.add(variable.toString());
@@ -78,6 +89,9 @@ public class EquationEvaluator {
     }
 
     // --- 4. Shunting-Yard Algorithm (Using Priority) ---
+    /*
+     * converting equation into postfix equation
+     * */
     private List<String> convertToRPN(List<String> tokens) {
         List<String> output = new ArrayList<>();
         Stack<Character> operators = new Stack<>();
@@ -85,10 +99,12 @@ public class EquationEvaluator {
         for (String token : tokens) {
             if (token.length() == 1 && getPriority(token.charAt(0)) != -1) {
                 char op = token.charAt(0);
-                // While top of stack has higher or equal priority, pop it to output
-                while (!operators.isEmpty() && getPriority(operators.peek()) >= getPriority(op)) {
-                    output.add(String.valueOf(operators.pop()));
-                }
+                // '^' is right-associative (use >), others are left-associative (use >=)
+                while (!operators.isEmpty() && (op == '^' ? getPriority(operators.peek()) > getPriority(op)
+						: getPriority(operators.peek()) >= getPriority(op))) {
+					output.add(String.valueOf(operators.pop()));
+				}
+				
                 operators.push(op);
             } else {
                 output.add(token);

@@ -22,7 +22,7 @@ public class MainGUIApp extends Application {
         String cssPath = getClass().getResource("style.css").toExternalForm();
         scene.getStylesheets().add(cssPath);
 
-        primaryStage.setTitle("Math Solver Pro");
+        primaryStage.setTitle("NexusMath-Ai");
         primaryStage.setScene(scene);
         
         // We set minimum sizes so the auto-adjustment doesn't break if shrunk too small

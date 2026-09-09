@@ -26,22 +26,22 @@ public class NumberPropertiesController {
         MathLogger.screenOpened("NUMBER_PROPERTIES_SCREEN");
         // Populate the property selection dropdown
         propertyCombo.setItems(FXCollections.observableArrayList(
-                
-                "Check Natural Numbers (List)",
-                "Check Whole Numbers (List)",
-                "Check Number Is Integers",// add logic
-                "Check Positive Number",
-                "Check Negative Number",
-                "Check Rational Numbers (List)",
-                "Check Irrational Number (List)",// add logic
-                "Check Real Number",// add logic
-                "Complex Number",// add logic
+                // 1.1 Number Systems
+                "Check Natural Numbers (List)", // done
+                "Check Whole Numbers (List)", // done
+                "Check Number Is Integers (List)", // done
+                "Check Positive Number (List)", // done
+                "Check Negative Number", // done
+                "Check Rational Numbers (List)", // done
+                "Check Irrational Number (List)",// done
+                "Check Real Number (List)",// done
+                "Complex Number (List)",// done
                 "Number Sets & Classification",// add logic
                 "Number Line",// add logic
                 "Place Value",// add logic
                 "Comparing Number",// add logic
-                "Ordering Number",// add logic
-                "Ordering Number",// add logic
+                "Ordering Number",// das sorting algortihm will be add
+                "Absolute Value",
                 "Numerical Distance",// add logic
                 "Properties of Numbers",// add logic
                 "Closure property",// add logic
@@ -57,16 +57,16 @@ public class NumberPropertiesController {
                 "Check CoPrime Number",// add logic
                 "Consecutive Number",// add logic
                 
+                // 1.2 Basic Oprations
                 // Basic Oprations (Calculator is also covered) 
                 "Addition",
                 "Subtraction",
                 "Multiplication",
                 "Division",
                 "Order of operations",
-                
-                
                 "BODMAS",// need to check for add
                 "PEMDAS",// need to check for add
+                "Unary plus & minus",
                 "Estimation",// add logic not requred but need to be add
                 "Approximation",// add logic 
                 "Rounding / Round Off",// add logic
@@ -77,6 +77,91 @@ public class NumberPropertiesController {
                 "Percentage error",// add logic
                 "Numerical expressions",// add logic
                 "Nested expressions",// add logic
+                
+                // 1.3 Fraction and decimals
+                "Proper Fractions",
+                "Improper Fraction",
+                "Mixed Fraction",
+                "Equivalent Fraction",
+                "Simplifying Fraction",
+                "Comparing Frcation",
+                "Adding Fraction",
+                "Subtracting Fraction",
+                "Multiplying Fraction",
+                "Dividing Fraction",
+                "Decimal Notaction",
+                "Terminating Decimal",
+                "Recurring Decimal",
+                "Converting Fractions to Decimals",
+                "Converting Decimals to Fractions",
+                "Decimal Approximation",
+                "Fractional Expressions",
+                
+                // 1.4 Factors and multiples
+                "Factors",
+                "Multiples",
+                "Prime Factorisation",
+                "Divisibility Rules",
+                "Highest Common Divisor",
+                "Least Common Multiple",
+                "Euclidean Algorithm",
+                "Extended Euclidean algorithm",
+                "Remainders",
+                "Modular Arithmetic foundations",
+                "Application of HCF",
+                "Application of LCM",
+                "Factor Trees",
+                
+                // 1.5 Number Theory
+                "Divisibility",
+                "Congruence Modulo n",
+                "Modular addition",
+                "Modular Subtraction",
+                "Modular Multiplication",
+                "Modular Exponentiation",
+                "Prime Testing",
+                "Trial Divison",
+                "Sieve of Eratosthenes",
+                "Sieve of Sundaram",
+                "Fundamental theorem of arithmetic",
+                "Euler’s totient function",
+                "Divisor-counting function",
+                "Sum-of-divisors function",
+                "Perfect numbers",
+                "Amicable numbers",
+                "Chinese remainder theorem",
+                "Fermat’s little theorem",
+                "Euler’s theorem",
+                "Wilson’s theorem",
+                "Miller–Rabin primality testing",
+                "Integer factorisation",
+                "Diophantine equations",
+                "Linear Diophantine equations",
+                
+                // 1.6 Ratio, proportion and variation 
+                "Ratio",
+                "Equivalent ratios",
+                "Simplifying ratios",
+                "Comparing ratios",
+                "Proportion",
+                "Direct proportion",
+                "Inverse proportion",
+                "Joint variation",
+                "Partial variation",
+                "Continued proportion",
+                "Unitary method",
+                "Partnership problems",
+                "Mixture problems",
+                "Alligation",
+                "Scale",
+                "Maps",
+                "Speed, distance and time",
+                "Work and time",
+                "Applications of proportion",
+                
+                // 1.7 Percentages and financial arithmetic 
+                
+                
                 
                 
                 "Check Any Even in List",
@@ -129,6 +214,35 @@ public class NumberPropertiesController {
 
     private String evaluateProperty(String input, String property) {
         switch (property) {
+            case "Check Natural Numbers (List)":
+                return checkNaturalList(input);
+            case "Check Whole Numbers (List)":
+                return checkWholeList(input);
+            case "Check Number Is Integers (List)":
+            	return checkIntegerList(input);
+            case "Check Positive Number (List)":
+            	return checkPositiveList(input);
+            case "Check Negative Number (List)":
+            	return checkNegativeList(input);
+            case "Check Rational Numbers (List)":
+                return checkRationalList(input);
+            case "Check Irrational Number (List)":
+            	return checkIrrationalList(input);
+            case "Check Real Number (List)":
+            	return checkReallList(input);
+            case "CHeck Complex Number (List)":
+            	return checkComplexNumberList(input);
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
+            	
             case "Check Even Number":
                 return checkSingleEven(input);
             case "Check Odd Number":
@@ -139,12 +253,6 @@ public class NumberPropertiesController {
                 return checkSingleNegative(input);
             case "Check Prime Number":
                 return checkSinglePrime(input);
-            case "Check Natural Numbers (List)":
-                return checkNaturalList(input);
-            case "Check Whole Numbers (List)":
-                return checkWholeList(input);
-            case "Check Rational Numbers (List)":
-                return checkRationalList(input);
             case "Check Any Even in List":
                 return checkAnyEven(input);
             case "Check Any Odd in List":
@@ -213,11 +321,47 @@ public class NumberPropertiesController {
         boolean result = NumberProperties.isWholeNumberList(list);
         return formatListResult("Whole Numbers", result, list);
     }
+    
+    private String checkIntegerList(String input) {
+    	ArrayList<Double> list = parseDoubleList(input);
+        boolean result = NumberProperties.isIntergerNumberList(list);
+        return formatListResult("Integer Numbers", result, list);
+    }
+    
+    private String checkPositiveList(String input) {
+    	ArrayList<Double> list = parseDoubleList(input);
+        boolean result = NumberProperties.isPositiveNumberList(list);
+        return formatListResult("Postive Numbers", result, list);
+    }
+    
+    private String checkNegativeList(String input) {
+    	ArrayList<Double> list = parseDoubleList(input);
+        boolean result = NumberProperties.isNegativeNumberList(list);
+        return formatListResult("Negative Numbers", result, list);
+    }
 
     private String checkRationalList(String input) {
         ArrayList<Double> list = parseDoubleList(input);
         boolean result = NumberProperties.isRationalNumberList(list);
         return formatListResult("Rational Numbers", result, list);
+    }
+    
+    private String checkIrrationalList(String input) {
+        ArrayList<Double> list = parseDoubleList(input);
+        boolean result = NumberProperties.isIrrationalNumberList(list);
+        return formatListResult("Irrational Numbers", result, list);
+    }
+    
+    private String checkReallList(String input) {
+        ArrayList<Double> list = parseDoubleList(input);
+        boolean result = NumberProperties.isRealNumberList(list);
+        return formatListResult("Real Numbers", result, list);
+    }
+    
+    private String checkComplexNumberList(String input) {
+        ArrayList<Double> list = parseDoubleList(input);
+        boolean result = NumberProperties.(list);
+        return formatListResult("Complex Numbers", result, list);
     }
 
     private String checkAnyEven(String input) {
@@ -307,5 +451,14 @@ public class NumberPropertiesController {
         String status = result ? "✅ Yes, all numbers are " + propertyName : "❌ No, not all numbers are " + propertyName;
         return "📋 List: " + list + "\n\n➡️ " + status;
     }
+    
+    private String checkIrrationalNumber(String input) {
+        double num = Double.parseDouble(input);
+        boolean result = NumberProperties.irrational(num);
+        return formatSingleResult(
+            num + " is " + (result ? "✅ Irrational" : "❌Not Irrational")
+        );
+    }
+
 }
 

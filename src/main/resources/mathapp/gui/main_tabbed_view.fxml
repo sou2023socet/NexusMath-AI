@@ -13,7 +13,7 @@
             <padding>
                 <Insets left="20"/>
             </padding>
-            <Label text="Math Solver Pro" textFill="WHITE" style="-fx-font-size:20px; -fx-font-weight:bold;"/>
+            <Label text="NexusMath-Ai" textFill="WHITE" style="-fx-font-size:20px; -fx-font-weight:bold;"/>
         </HBox>
     </top>
 
@@ -50,7 +50,7 @@
                 <Button fx:id="tabHome" text="⌂ Home" maxWidth="Infinity" onAction="#navToWelcome" styleClass="sidebar-button"/>
                 <Button fx:id="tabCalculator" text="▣ Calculator" maxWidth="Infinity" onAction="#navToCalculatorTab" styleClass="sidebar-button"/>
                 <Button fx:id="tabSolver" text="◢ Equation Solver" maxWidth="Infinity" onAction="#navToCalculator" styleClass="sidebar-button"/>
-                <Button fx:id="tabNumberProperties" text="# Number Properties" maxWidth="Infinity" onAction="#navToNumberProperties" styleClass="sidebar-button"/>
+                <Button fx:id="tabNumberProperties" text="# Number Fuctions" maxWidth="Infinity" onAction="#navToNumberProperties" styleClass="sidebar-button"/>
                 <Button fx:id="tabGuide" text="▤ Guide" maxWidth="Infinity" onAction="#navToGuide" styleClass="sidebar-button"/>
                 <Button fx:id="tabAbout" text="ⓘ About" maxWidth="Infinity" onAction="#navToAbout" styleClass="sidebar-button"/>
             </VBox>
