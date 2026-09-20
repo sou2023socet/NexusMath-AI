@@ -1,8 +1,14 @@
-package mathapp.gui;
+package mathapp.gui.auth;
 
 import java.io.IOException;
 
-import mathapp.logging.MathLogger;
+import mathapp.gui.api.JacksonLite;
+import mathapp.logging.*;
+import mathapp.gui.auth.AuthContext;
+import mathapp.gui.auth.AuthMainController;
+import mathapp.gui.auth.AuthState;
+import mathapp.gui.api.ApiClient;
+import mathapp.gui.api.JacksonLite;
 
 public class AuthServiceClient {
 

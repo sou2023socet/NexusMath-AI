@@ -1,4 +1,4 @@
-package mathapp.gui;
+package mathapp.gui.auth;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +15,9 @@ import javafx.event.ActionEvent;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+
+import mathapp.gui.MultiEquationController;
+import mathapp.gui.auth.*;
 
 import mathapp.logging.MathLogger;
 

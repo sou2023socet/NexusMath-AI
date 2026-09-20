@@ -1,4 +1,4 @@
-package mathapp.gui;
+package mathapp.gui.api;
 
 import java.io.IOException;
 import java.net.URI;

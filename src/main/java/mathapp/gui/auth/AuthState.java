@@ -1,4 +1,4 @@
-package mathapp.gui;
+package mathapp.gui.auth;
 
 public class AuthState {
 

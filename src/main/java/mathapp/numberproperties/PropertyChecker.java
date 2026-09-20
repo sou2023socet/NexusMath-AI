@@ -1,12 +1,10 @@
-package mathapp;
+package mathapp.numberproperties;
 
-import mathapp.nuberproperties.NumberPropertyChecker;
-import mathapp.nuberproperties.PropertyCheckResult;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class Main {
+public class PropertyChecker {
     public static void main(String[] args) {
         NumberPropertyChecker checker = new NumberPropertyChecker();
 

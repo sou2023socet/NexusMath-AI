@@ -1,5 +1,6 @@
 package mathapp.numberproperties;
 
+import mathapp.equations.core.EquationEvaluator;
 import mathapp.logging.MathLogger;
 import java.util.*;
 

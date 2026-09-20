@@ -1,4 +1,4 @@
-package mathapp.gui;
+package mathapp.gui.api;
 
 /**
  * Minimal JSON extraction without adding dependencies.

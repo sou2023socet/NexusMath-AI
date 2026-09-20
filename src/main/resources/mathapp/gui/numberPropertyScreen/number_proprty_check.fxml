@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/17"
-    xmlns:fx="http://javafx.com/fxml/1" fx:controller="mathapp.gui.NumberPropertiesController" spacing="18" alignment="TOP_CENTER" styleClass="screen-card">
+    xmlns:fx="http://javafx.com/fxml/1" fx:controller="mathapp.gui.pages.numberProperties.NumberPropertiesController" spacing="18" alignment="TOP_CENTER" styleClass="screen-card">
 
     <padding>
         <Insets top="25" right="25" bottom="25" left="25"/>

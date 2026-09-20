@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane styleClass="root-pane" stylesheets="@style.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mathapp.gui.MultiEquationController">
+
+    <top>
+        <HBox alignment="CENTER_LEFT" styleClass="header">
+            <Label text="Math Solver Pro" textFill="WHITE" style="-fx-font-size: 18px; -fx-font-weight: bold;" />
+        </HBox>
+    </top>
+
+    <center>
+        <StackPane fx:id="screenContainer" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+            </BorderPane.margin>
+
+            <VBox fx:id="welcomeScreen" alignment="CENTER" spacing="20.0" styleClass="screen-card">
+                <Label styleClass="title-text" text="Welcome to Math Solver Pro" />
+                <Label styleClass="body-text" text="A powerful tool to resolve multi-variable equation systems instantly." />
+                <Button onAction="#navToCalculator" styleClass="btn-primary" text="Get Started" />
+            </VBox>
+
+            <VBox fx:id="guideScreen" spacing="15.0" styleClass="screen-card" visible="false">
+                <Label styleClass="title-text" text="How to Use" />
+                <Label styleClass="body-text" text="1. Enter one equation per line (e.g., speed = dist / time)." wrapText="true"/>
+                <Label styleClass="body-text" text="2. Variables are case-sensitive." wrapText="true"/>
+                <Label styleClass="body-text" text="3. Define known variables using spaces (e.g., dist=100 time=2)." wrapText="true"/>
+                <Label styleClass="body-text" text="4. Set your target variable with =? (e.g., speed=?)." wrapText="true"/>
+            </VBox>
+
+            <VBox fx:id="aboutScreen" spacing="15.0" styleClass="screen-card" visible="false">
+                <Label styleClass="title-text" text="About Us" />
+                <Label styleClass="body-text" text="Version: 2.0.0 (Modern UI Update)" />
+                <Label styleClass="body-text" text="Vision: Making complex mathematical logic accessible across desktop and mobile layouts." wrapText="true"/>
+                <Label styleClass="body-text" text="Goals: Provide robust algebraic breakdown capabilities." wrapText="true"/>
+            </VBox>
+
+            <VBox fx:id="calculatorScreen" spacing="10.0" styleClass="screen-card" visible="false">
+                <Label styleClass="title-text" text="Equation System" />
+                
+                <Label styleClass="body-text" text="Equations:" />
+                <TextArea fx:id="equationsArea" promptText="speed = dist / time&#10;rate = speed * 2" VBox.vgrow="ALWAYS" />
+                
+                <Label styleClass="body-text" text="Variables &amp; Target:" />
+                <TextField fx:id="variablesField" promptText="dist=100 time=2 rate=?" />
+                
+                <HBox spacing="10.0">
+                    <Button onAction="#handleSolve" styleClass="btn-primary" text="Solve" />
+                    <Button onAction="#handleTestCase" style="-fx-background-color: #ecf0f1; -fx-text-fill: black;" styleClass="btn-primary" text="Load Test Case" />
+                    <Button onAction="#handleClear" style="-fx-background-color: transparent; -fx-text-fill: #e74c3c;" styleClass="btn-primary" text="Clear" />
+                </HBox>
+                
+                <Label styleClass="body-text" text="Results:" />
+                <TextArea fx:id="outputArea" editable="false" style="-fx-font-family: 'Consolas';" VBox.vgrow="ALWAYS" />
+            </VBox>
+        </StackPane>
+    </center>
+</BorderPane>

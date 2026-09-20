@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="mathapp.gui.AuthMainController"
+      fx:controller="mathapp.gui.auth.AuthMainController"
       spacing="10.0" alignment="CENTER" styleClass="screen-card">
     <children>
         <VBox fx:id="authContainer" spacing="12.0" alignment="CENTER" />

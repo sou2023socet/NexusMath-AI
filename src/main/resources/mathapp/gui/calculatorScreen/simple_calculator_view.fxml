@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/17"
-        xmlns:fx="http://javafx.com/fxml/1" fx:controller="mathapp.gui.SimpleCalculatorController" spacing="18" alignment="TOP_CENTER" styleClass="calculator-root">
+        xmlns:fx="http://javafx.com/fxml/1" fx:controller="mathapp.gui.pages.calcualtor.SimpleCalculatorController" spacing="18" alignment="TOP_CENTER" styleClass="calculator-root">
 
         <padding>
                 <Insets top="25" right="25" bottom="25" left="25"/>

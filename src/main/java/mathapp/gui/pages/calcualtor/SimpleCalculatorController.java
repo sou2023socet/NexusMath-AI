@@ -1,4 +1,4 @@
-package mathapp.gui;
+package mathapp.gui.pages.calcualtor;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
