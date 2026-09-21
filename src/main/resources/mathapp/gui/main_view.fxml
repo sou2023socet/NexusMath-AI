@@ -62,6 +62,7 @@
                 <Button fx:id="tabCalculator" text="▣ Calculator" maxWidth="Infinity" onAction="#navToCalculatorTab" styleClass="sidebar-button"/>
                 <Button fx:id="tabSolver" text="◢ Equation Solver" maxWidth="Infinity" onAction="#navToCalculator" styleClass="sidebar-button"/>
                 <Button fx:id="tabNumberProperties" text="# Number Functions" maxWidth="Infinity" onAction="#navToNumberProperties" styleClass="sidebar-button"/>
+                <Button fx:id="tabSequences" text="∯ Sequences &amp; Patterns" maxWidth="Infinity" onAction="#navToSequences" styleClass="sidebar-button"/>
                 <Button fx:id="tabGuide" text="▤ Guide" maxWidth="Infinity" onAction="#navToGuide" styleClass="sidebar-button"/>
                 <Button fx:id="tabAbout" text="ⓘ About" maxWidth="Infinity" onAction="#navToAbout" styleClass="sidebar-button"/>
             </VBox>
@@ -81,10 +82,15 @@
             </VBox>
             
             <!-- HOME SCREEN -->
-            <VBox fx:id="welcomeScreen" alignment="CENTER" spacing="20" visible="false" styleClass="screen-card">
+            <!-- <VBox fx:id="welcomeScreen" alignment="CENTER" spacing="20" visible="false" styleClass="screen-card">
                 <Label text="Welcome to Math Solver Pro" styleClass="title-text"/>
                 <Label text="A powerful tool to resolve multi-variable equation systems instantly." wrapText="true" styleClass="body-text"/>
                 <Label text="Login is required to use Solve/Calculate." wrapText="true" styleClass="body-text"/>
+            </VBox> -->
+            <VBox fx:id="welcomeScreen" alignment="CENTER" spacing="20.0" styleClass="screen-card">
+                <Label styleClass="title-text" text="Welcome to Math Solver Pro" />
+                <Label styleClass="body-text" text="A powerful tool to resolve multi-variable equation systems instantly." />
+                <!-- <Button onAction="#navToCalculator" styleClass="btn-primary" text="Get Started" /> -->
             </VBox>
             
             <!-- GUIDE SCREEN -->
@@ -106,6 +112,11 @@
             <!-- NUMBER PROPERTIES SCREEN -->
             <VBox fx:id="numberPropertiesScreen" spacing="10" visible="false" styleClass="screen-card">
                 <fx:include source="numberPropertyScreen/number_proprty_check.fxml"/>
+            </VBox>
+
+            <!-- SEQUENCE SOLVER SCREEN (Modular Embed) -->
+            <VBox fx:id="sequenceSolverScreen" visible="false">
+                <fx:include source="sequanceSeriesScreen\sequence_solver_view.fxml"/>
             </VBox>
             
             <!-- EQUATION SOLVER SCREEN (Modular Embed) -->

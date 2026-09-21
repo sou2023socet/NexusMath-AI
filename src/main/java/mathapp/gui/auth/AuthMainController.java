@@ -16,9 +16,8 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import mathapp.gui.MultiEquationController;
-import mathapp.gui.auth.*;
-
+import mathapp.gui.MainViewController;
+import mathapp.gui.navigation.NavigationManager;
 import mathapp.logging.MathLogger;
 
 public class AuthMainController {
@@ -35,6 +34,8 @@ public class AuthMainController {
     private Node loginView;
     private Node registerView;
     private Node forgotView;
+
+    private NavigationManager navigationManager;
 
     // Store direct references to UI fields for reliable access (survives toggle replacements)
     private final Map<String, TextInputControl> textFieldRefs = new HashMap<>();
@@ -513,7 +514,7 @@ public class AuthMainController {
      * Notify MultiEquationController to update user labels after login state change.
      */
     private void notifyUserLabelsUpdated() {
-        MultiEquationController controller = MultiEquationController.getInstance();
+        MainViewController controller = MainViewController.getInstance();
         if (controller != null) {
             controller.refreshUserLabels();
         }

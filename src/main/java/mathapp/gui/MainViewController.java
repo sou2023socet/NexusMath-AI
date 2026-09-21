@@ -15,6 +15,8 @@ import mathapp.logging.MathLogger;
 
 public class MainViewController {
 
+    private static MainViewController instance;
+
     // View Containers / Screens
     @FXML private VBox authScreen;
     @FXML private VBox welcomeScreen;
@@ -36,6 +38,8 @@ public class MainViewController {
     @FXML private Button tabSolver;
     @FXML private Button tabCalculator;
     @FXML private Button tabNumberProperties;
+    @FXML private Button tabSequences;
+    @FXML private VBox sequenceSolverScreen;
     @FXML private Button tabGuide;
     @FXML private Button tabAbout;
 
@@ -45,6 +49,7 @@ public class MainViewController {
 
     @FXML
     public void initialize() {
+        instance = this;
         MathLogger.screenOpened("MAIN_VIEW_INITIALIZED");
         this.navigationManager = new NavigationManager(authScreen);
         refreshUserLabels();
@@ -55,6 +60,10 @@ public class MainViewController {
 
         tabSolver.setDisable(!loggedIn);
         tabCalculator.setDisable(!loggedIn);
+        tabNumberProperties.setDisable(!loggedIn);
+        tabSequences.setDisable(!loggedIn);
+        tabAbout.setDisable(!loggedIn);
+        tabGuide.setDisable(!loggedIn);
 
         if (!loggedIn) {
             userNameLabel.setText("Guest User");
@@ -67,13 +76,15 @@ public class MainViewController {
             userEmailLabel.setText(authState.getEmail() != null ? authState.getEmail() : "Unknown");
             userMenuButton.setText("Account");
             menuLogin.setDisable(true);
-            menuLogout.setDisable(false);
+            menuLogout.setDisable(false);        
+            instance.navigationManager.switchScreen(instance.welcomeScreen);
         }
     }
 
     // --- Navigation Actions ---
     @FXML void navToCalculatorTab(ActionEvent event) { navigationManager.switchScreen(simpleCalculatorTab); }
     @FXML void navToNumberProperties(ActionEvent event) { navigationManager.switchScreen(numberPropertiesScreen); }
+    @FXML void navToSequences(ActionEvent event) { navigationManager.switchScreen(sequenceSolverScreen); }
     @FXML void navToGuide(ActionEvent event) { navigationManager.switchScreen(guideScreen); }
     @FXML void navToAbout(ActionEvent event) { navigationManager.switchScreen(aboutScreen); }
     @FXML void navToCalculator(ActionEvent event) { navigationManager.switchScreen(calculatorScreen); }
@@ -99,5 +110,9 @@ public class MainViewController {
         refreshUserLabels();
         MathLogger.operationSuccess("LOGOUT", "user logged out");
         navigationManager.switchScreen(authScreen);
+    }
+
+    public static MainViewController getInstance() {
+        return instance;
     }
 }
