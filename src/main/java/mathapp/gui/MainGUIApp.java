@@ -13,6 +13,9 @@ public class MainGUIApp extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         URL fxmlLocation = getClass().getResource("main_view.fxml");
+        if (fxmlLocation == null) {
+            throw new IllegalStateException("Main view resource not found: main_view.fxml");
+        }
         Parent root = FXMLLoader.load(fxmlLocation);
         
         // Simulating a modern mobile/tablet responsive aspect ratio (450x700)

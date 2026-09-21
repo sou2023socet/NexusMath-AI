@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.ScrollPane?>
 
 <BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1" 
@@ -25,7 +26,9 @@
             <padding>
                 <Insets left="20"/>
             </padding>
-            <Label text="NexusMath-Ai" textFill="WHITE" style="-fx-font-size:20px; -fx-font-weight:bold;"/>
+            <Label text="✦ NexusMath-Ai" styleClass="brand-title" style="-fx-text-fill: white;"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button fx:id="themeButton" text="☾" onAction="#handleThemeToggle" styleClass="header-theme-button"/>
         </HBox>
     </top>
 
@@ -36,7 +39,7 @@
             <VBox spacing="12" styleClass="user-card">
                 <HBox alignment="CENTER_LEFT" spacing="10">
                     <StackPane styleClass="avatar">
-                        <Label text="👤" style="-fx-font-size:28;"/>
+                        <Label text="👤" styleClass="avatar-icon" style="-fx-text-fill: white;"/>
                     </StackPane>
                     <Region HBox.hgrow="ALWAYS"/>
                     <MenuButton fx:id="userMenuButton" text="Account">
@@ -87,7 +90,7 @@
                 <Label text="A powerful tool to resolve multi-variable equation systems instantly." wrapText="true" styleClass="body-text"/>
                 <Label text="Login is required to use Solve/Calculate." wrapText="true" styleClass="body-text"/>
             </VBox> -->
-            <VBox fx:id="welcomeScreen" alignment="CENTER" spacing="20.0" styleClass="screen-card">
+            <VBox fx:id="welcomeScreen" alignment="CENTER" spacing="20.0" visible="false" styleClass="screen-card">
                 <Label styleClass="title-text" text="Welcome to Math Solver Pro" />
                 <Label styleClass="body-text" text="A powerful tool to resolve multi-variable equation systems instantly." />
                 <!-- <Button onAction="#navToCalculator" styleClass="btn-primary" text="Get Started" /> -->
@@ -95,11 +98,36 @@
             
             <!-- GUIDE SCREEN -->
             <VBox fx:id="guideScreen" spacing="15" visible="false" styleClass="screen-card">
-                <Label text="How to Use" styleClass="title-text"/>
-                <Label text="1. Enter one equation per line." wrapText="true" styleClass="body-text"/>
-                <Label text="2. Variables are case sensitive." wrapText="true" styleClass="body-text"/>
-                <Label text="3. Define values like: x=10 y=20" wrapText="true" styleClass="body-text"/>
-                <Label text="4. Use ? for target variable." wrapText="true" styleClass="body-text"/>
+                <ScrollPane fitToWidth="true" hbarPolicy="NEVER" VBox.vgrow="ALWAYS">
+                    <content>
+                        <VBox spacing="14" fillWidth="true">
+                            <Label text="NexusMath-Ai Guide" styleClass="title-text"/>
+                            <Label text="Use the sidebar to open each workspace. Login is required for calculator, solver, number, sequence, statistics, probability, guide, and about screens." wrapText="true" styleClass="body-text"/>
+
+                            <Label text="1. Account and navigation" styleClass="section-header"/>
+                            <Label text="How it works: the application opens on the Login screen. After a successful login, the sidebar becomes available.\nHow to use it: enter your registered email and password, then press Login. Use Create Account for registration or Forgot Password to request a reset link. Use the Account menu to log out. Home returns to the welcome screen, and every sidebar option opens inside the same window." wrapText="true" styleClass="body-text"/>
+
+                            <Label text="2. Simple Calculator" styleClass="section-header"/>
+                            <Label text="How it works: the display stores the current number and the selected operator stores the pending calculation.\nHow to use it: press 12, press +, press 8, then press =. The result is 20. Press x² after entering 5 to get 25. Press xʸ to enter a base and exponent, % to calculate a percentage, . for decimals, backspace to remove one character, and C to reset the display." wrapText="true" styleClass="body-text"/>
+
+                            <Label text="3. Equation Solver" styleClass="section-header"/>
+                            <Label text="How it works: equations are read one per line, known values are substituted, and the unknown marked with =? is solved.\nHow to use it: enter distance = speed * time and acceleration = speed / time. In Variables enter distance=100 time=5 acceleration=?. Press Solve; the result includes speed=20 and acceleration=4. Press Load Test Case to fill this example automatically, or Clear to remove all fields. Variable names are case-sensitive and the target must use =?." wrapText="true" styleClass="body-text"/>
+
+                            <Label text="4. Number Functions" styleClass="section-header"/>
+                            <Label text="How it works: the selected property determines whether the input is checked as one number or processed as a list.\nHow to use it: select Prime, enter 17, and press Check to test whether 17 is prime. Select Factors and enter 12 to list its factors. For list operations, select HCF or LCM and enter 12, 18, 24. The result area shows the calculation. Press Clear to reset the input and result." wrapText="true" styleClass="body-text"/>
+
+                            <Label text="5. Sequences and Series" styleClass="section-header"/>
+                            <Label text="How it works: the engine compares the entered terms, calculates differences or ratios where appropriate, and identifies a formula or pattern for the selected operation.\nHow to use it: select the required operation, enter 2, 5, 10, 17, 26 using commas or spaces, then press Analyze / Calculate. Use Load Sample Sequence to see a valid example. Read the formula, difference table, or generated terms in the output area, and press Clear to start again." wrapText="true" styleClass="body-text"/>
+
+
+                            <Label text="8. How to check results" styleClass="section-header"/>
+                            <Label text="After pressing an action button, check the output area or chart on the same screen. Reports include the calculated value and, where supported, the formula and intermediate steps. Try the examples in this Guide first, then replace one input at a time with your own data. Use decimal numbers with a period, keep list lengths consistent, and avoid blank matrix rows. If an error appears, correct the format described in the message and run the action again; output areas are read-only reports." wrapText="true" styleClass="body-text"/>
+
+                            <Label text="9. About" styleClass="section-header"/>
+                            <Label text="The About screen identifies the NexusMath-Ai application. Use the sidebar at any time to move between the available mathematical workspaces." wrapText="true" styleClass="body-text"/>
+                        </VBox>
+                    </content>
+                </ScrollPane>
             </VBox>
             
             <!-- ABOUT SCREEN -->
@@ -116,7 +144,7 @@
 
             <!-- SEQUENCE SOLVER SCREEN (Modular Embed) -->
             <VBox fx:id="sequenceSolverScreen" visible="false">
-                <fx:include source="sequanceSeriesScreen\sequence_solver_view.fxml"/>
+                <fx:include source="sequanceSeriesScreen/sequence_solver_view.fxml"/>
             </VBox>
             
             <!-- EQUATION SOLVER SCREEN (Modular Embed) -->

@@ -18,11 +18,11 @@
     </padding>
 
     <!-- Title -->
-    <Label text="Number Properties Check" styleClass="title-text"/>
+    <Label text="Number Properties" styleClass="page-title"/>
 
     <!-- Property Selection Dropdown -->
     <VBox spacing="8" fillWidth="true">
-        <Label text="Select Property to Check:" styleClass="body-text"/>
+        <Label text="Select Property to Check:" styleClass="field-label"/>
         <ComboBox fx:id="propertyCombo" maxWidth="Infinity" prefHeight="40"/>
     </VBox>
 
@@ -30,10 +30,10 @@
 
     <!-- Input Section -->
     <VBox spacing="8" fillWidth="true">
-        <Label text="Enter Number(s):" styleClass="body-text"/>
-        <Label text="Single number for: Even, Odd, Positive, Negative, Prime, Factors" style="-fx-font-size: 11px; -fx-text-fill: #888888;"/>
-        <Label text="Comma-separated list for: Natural, Whole, Rational, HCF, LCM, Counts" style="-fx-font-size: 11px; -fx-text-fill: #888888;"/>
-        <TextField fx:id="inputField" promptText="e.g. 12 or 12, 18, 24" prefHeight="50" styleClass="display-field"/>
+        <Label text="Enter Number(s):" styleClass="field-label"/>
+        <Label text="Single number for: Even, Odd, Positive, Negative, Prime, Factors" styleClass="hint-text"/>
+        <Label text="Comma-separated list for: Natural, Whole, Rational, HCF, LCM, Counts" styleClass="hint-text"/>
+        <TextField fx:id="inputField" promptText="e.g. 12 or 12, 18, 24" prefHeight="50" styleClass="number-input"/>
     </VBox>
 
     <!-- Action Buttons -->
@@ -46,8 +46,8 @@
 
     <!-- Result Section -->
     <VBox spacing="8" fillWidth="true" VBox.vgrow="ALWAYS">
-        <Label text="Result:" styleClass="body-text"/>
-        <TextArea fx:id="resultArea" editable="false" wrapText="true" promptText="Result will appear here..." VBox.vgrow="ALWAYS" prefHeight="200" styleClass="display-field"/>
+        <Label text="Result:" styleClass="result-label"/>
+        <TextArea fx:id="resultArea" editable="false" wrapText="true" promptText="Result will appear here..." VBox.vgrow="ALWAYS" prefHeight="200" styleClass="result-text-area"/>
 
     </VBox>
 

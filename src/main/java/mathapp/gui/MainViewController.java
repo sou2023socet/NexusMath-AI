@@ -1,11 +1,14 @@
 package mathapp.gui;
 
 import javafx.event.ActionEvent;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
+import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Labeled;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 import mathapp.gui.auth.AuthContext;
 import mathapp.gui.auth.AuthServiceClient;
@@ -32,6 +35,7 @@ public class MainViewController {
     @FXML private MenuButton userMenuButton;
     @FXML private MenuItem menuLogin;
     @FXML private MenuItem menuLogout;
+    @FXML private Button themeButton;
 
     // Navigation Tabs
     @FXML private Button tabHome;
@@ -46,13 +50,33 @@ public class MainViewController {
     private NavigationManager navigationManager;
     private final AuthState authState = AuthContext.getState();
     private final AuthServiceClient authClient = new AuthServiceClient("http://localhost:8081");
+    private boolean lightMode;
 
     @FXML
     public void initialize() {
         instance = this;
         MathLogger.screenOpened("MAIN_VIEW_INITIALIZED");
         this.navigationManager = new NavigationManager(authScreen);
+        Platform.runLater(() -> applyTheme(false));
         refreshUserLabels();
+    }
+
+    @FXML
+    void handleThemeToggle(ActionEvent event) {
+        lightMode = !lightMode;
+        applyTheme(lightMode);
+    }
+
+    private void applyTheme(boolean lightMode) {
+        Parent root = themeButton == null || themeButton.getScene() == null
+                ? null : themeButton.getScene().getRoot();
+        if (root == null) {
+            return;
+        }
+        root.getStyleClass().removeAll("theme-light", "theme-dark");
+        root.getStyleClass().add(lightMode ? "theme-light" : "theme-dark");
+        themeButton.setText(lightMode ? "☀" : "☾");
+        themeButton.setAccessibleText(lightMode ? "Switch to dark mode" : "Switch to light mode");
     }
 
     public void refreshUserLabels() {
