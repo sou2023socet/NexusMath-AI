@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<TabPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mathapp.controller.MainViewController" tabClosingPolicy="UNAVAILABLE">
+    <!-- Sequences Tab -->
+    <Tab text="Sequence Pattern Engine">
+        <VBox spacing="10">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+            <Label text="Enter numerical sequence terms (comma or space separated):"/>
+            <HBox spacing="10">
+                <TextField fx:id="sequenceInput" HBox.hgrow="ALWAYS" promptText="e.g., 2, 4, 8, 16, 32"/>
+                <Button text="Analyze" onAction="#handleAnalyzeSequence"/>
+            </HBox>
+            <TextArea fx:id="sequenceOutput" VBox.vgrow="ALWAYS" editable="false" wrapText="true"/>
+        </VBox>
+    </Tab>
+
+    <!-- Regression Tab -->
+    <Tab text="Bivariate Stats &amp; Regression">
+        <VBox spacing="10">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+            <GridPane hgap="10" vgap="10">
+                <Label text="X Values:" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                <TextField fx:id="xValuesInput" promptText="1, 2, 3, 4, 5" GridPane.columnIndex="1" GridPane.rowIndex="0" HBox.hgrow="ALWAYS"/>
+                
+                <Label text="Y Values:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                <TextField fx:id="yValuesInput" promptText="2.1, 3.9, 6.1, 8.2, 10.1" GridPane.columnIndex="1" GridPane.rowIndex="1" HBox.hgrow="ALWAYS"/>
+                
+                <Label text="Target x0 (Optional):" GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+                <TextField fx:id="predictXInput" promptText="6.0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+            </GridPane>
+            <Button text="Run Regression Analysis" onAction="#handleCalculateRegression"/>
+            <TextArea fx:id="regressionOutput" VBox.vgrow="ALWAYS" editable="false" wrapText="true"/>
+        </VBox>
+    </Tab>
+
+    <!-- Combinatorics Tab -->
+    <Tab text="Combinatorics">
+        <VBox spacing="10">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="n:"/>
+                <TextField fx:id="nInput" prefWidth="80" promptText="10"/>
+                <Label text="r:"/>
+                <TextField fx:id="rInput" prefWidth="80" promptText="3"/>
+                <Button text="Calculate nCr" onAction="#handleCalculateCombinations"/>
+            </HBox>
+            <TextArea fx:id="combinatoricsOutput" VBox.vgrow="ALWAYS" editable="false" wrapText="true"/>
+        </VBox>
+    </Tab>
+
+    <!-- Matrix Tab -->
+    <Tab text="Linear Algebra Engine">
+        <VBox spacing="10">
+            <padding><Insets top="15" right="15" bottom="15" left="15"/></padding>
+            <Label text="Enter square matrix rows (space-separated values per line):"/>
+            <TextArea fx:id="matrixInputArea" prefHeight="120" promptText="1 2 3&#10;0 1 4&#10;5 6 0"/>
+            <Button text="Compute Inversion &amp; Determinant" onAction="#handleInvertMatrix"/>
+            <TextArea fx:id="matrixOutputArea" VBox.vgrow="ALWAYS" editable="false"/>
+        </VBox>
+    </Tab>
+</TabPane>
