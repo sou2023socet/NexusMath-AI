@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="680.0" prefWidth="960.0" spacing="10.0" styleClass="stats-screen" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mathapp.gui.stats.ProbabilityUiController">
+   <padding>
+      <Insets bottom="14.0" left="14.0" right="14.0" top="14.0" />
+   </padding>
+   <children>
+      <Label styleClass="header-title" text="Probability Theory &amp; Bayesian Inference Workspace" />
+      <TabPane tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+        <tabs>
+          <!-- Tab 1: Set Theory & Venn Analysis -->
+          <Tab text="Venn Set Analysis">
+               <content>
+                  <VBox spacing="12.0">
+                     <padding>
+                        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                     </padding>
+                     <children>
+                        <Label styleClass="section-header" text="2-Set Probability Inputs" />
+                        <HBox alignment="CENTER_LEFT" spacing="12.0">
+                           <children>
+                              <Label text="P(A):" />
+                              <TextField fx:id="paField" prefWidth="80.0" promptText="0.4" />
+                              <Label text="P(B):" />
+                              <TextField fx:id="pbField" prefWidth="80.0" promptText="0.5" />
+                              <Label text="P(A ∩ B):" />
+                              <TextField fx:id="pIntersectField" prefWidth="80.0" promptText="0.2" />
+                              <Button mnemonicParsing="false" onAction="#handleSolveVenn2" styleClass="primary-button" text="Calculate Venn Probabilities" />
+                           </children>
+                        </HBox>
+                        <TextArea fx:id="setOutputArea" editable="false" prefHeight="350.0" styleClass="report-text-area" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+               </content>
+          </Tab>
+          
+          <!-- Tab 2: Bayesian Updating -->
+          <Tab text="Bayesian Inference Engine">
+               <content>
+                  <VBox spacing="12.0">
+                     <padding>
+                        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                     </padding>
+                     <children>
+                        <Label styleClass="section-header" text="Bayesian Hypothesis &amp; Likelihood Parameters" />
+                        <GridPane hgap="10.0" vgap="10.0">
+                           <children>
+                              <Label text="Hypothesis Names:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                              <TextField fx:id="hypothesisNamesField" promptText="H1, H2, H3" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                              <Label text="Prior Probabilities P(H_k):" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                              <TextField fx:id="priorsField" promptText="0.5, 0.3, 0.2" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                              <Label text="Likelihoods P(E | H_k):" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                              <TextField fx:id="likelihoodsField" promptText="0.8, 0.4, 0.1" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                           </children>
+                        </GridPane>
+                        <Button mnemonicParsing="false" onAction="#handleComputeBayes" styleClass="primary-button" text="Compute Posterior Probabilities P(H_k | E)" />
+                        <TextArea fx:id="bayesOutputArea" editable="false" prefHeight="300.0" styleClass="report-text-area" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+               </content>
+          </Tab>
+          
+          <!-- Tab 3: Contingency Table Analysis -->
+          <Tab text="Contingency Table (Chi-Square)">
+               <content>
+                  <VBox spacing="12.0">
+                     <padding>
+                        <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                     </padding>
+                     <children>
+                        <Label styleClass="section-header" text="Enter Raw Frequency Matrix (Space/Comma Delimited)" />
+                        <TextArea fx:id="contingencyInputArea" prefHeight="150.0" promptText="10, 20, 30&#10;15, 25, 35" />
+                        <Button mnemonicParsing="false" onAction="#handleAnalyzeContingencyTable" styleClass="primary-button" text="Run Chi-Square Test of Independence" />
+                        <TextArea fx:id="contingencyOutputArea" editable="false" prefHeight="250.0" styleClass="report-text-area" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+               </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</VBox>
