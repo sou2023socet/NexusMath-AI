@@ -28,6 +28,9 @@ public class MainViewController {
     @FXML private VBox calculatorScreen;
     @FXML private VBox simpleCalculatorTab;
     @FXML private VBox numberPropertiesScreen;
+    @FXML private VBox statisticsScreen;
+    @FXML private VBox probabilityScreen;
+    @FXML private VBox mathEnginesScreen;
 
     // Header / User Labels
     @FXML private Labeled userNameLabel;
@@ -43,6 +46,9 @@ public class MainViewController {
     @FXML private Button tabCalculator;
     @FXML private Button tabNumberProperties;
     @FXML private Button tabSequences;
+    @FXML private Button tabStatistics;
+    @FXML private Button tabProbability;
+    @FXML private Button tabMathEngines;
     @FXML private VBox sequenceSolverScreen;
     @FXML private Button tabGuide;
     @FXML private Button tabAbout;
@@ -86,6 +92,9 @@ public class MainViewController {
         tabCalculator.setDisable(!loggedIn);
         tabNumberProperties.setDisable(!loggedIn);
         tabSequences.setDisable(!loggedIn);
+        tabStatistics.setDisable(!loggedIn);
+        tabProbability.setDisable(!loggedIn);
+        tabMathEngines.setDisable(!loggedIn);
         tabAbout.setDisable(!loggedIn);
         tabGuide.setDisable(!loggedIn);
 
@@ -109,6 +118,9 @@ public class MainViewController {
     @FXML void navToCalculatorTab(ActionEvent event) { navigationManager.switchScreen(simpleCalculatorTab); }
     @FXML void navToNumberProperties(ActionEvent event) { navigationManager.switchScreen(numberPropertiesScreen); }
     @FXML void navToSequences(ActionEvent event) { navigationManager.switchScreen(sequenceSolverScreen); }
+    @FXML void navToStatistics(ActionEvent event) { navigationManager.switchScreen(statisticsScreen); }
+    @FXML void navToProbability(ActionEvent event) { navigationManager.switchScreen(probabilityScreen); }
+    @FXML void navToMathEngines(ActionEvent event) { navigationManager.switchScreen(mathEnginesScreen); }
     @FXML void navToGuide(ActionEvent event) { navigationManager.switchScreen(guideScreen); }
     @FXML void navToAbout(ActionEvent event) { navigationManager.switchScreen(aboutScreen); }
     @FXML void navToCalculator(ActionEvent event) { navigationManager.switchScreen(calculatorScreen); }

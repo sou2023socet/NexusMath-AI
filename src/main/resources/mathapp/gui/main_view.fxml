@@ -66,6 +66,9 @@
                 <Button fx:id="tabSolver" text="◢ Equation Solver" maxWidth="Infinity" onAction="#navToCalculator" styleClass="sidebar-button"/>
                 <Button fx:id="tabNumberProperties" text="# Number Functions" maxWidth="Infinity" onAction="#navToNumberProperties" styleClass="sidebar-button"/>
                 <Button fx:id="tabSequences" text="∯ Sequences &amp; Patterns" maxWidth="Infinity" onAction="#navToSequences" styleClass="sidebar-button"/>
+                <Button fx:id="tabStatistics" text="▥ Statistics &amp; Regression" maxWidth="Infinity" onAction="#navToStatistics" styleClass="sidebar-button"/>
+                <Button fx:id="tabProbability" text="◉ Probability" maxWidth="Infinity" onAction="#navToProbability" styleClass="sidebar-button"/>
+                <Button fx:id="tabMathEngines" text="⚙ Math Engines" maxWidth="Infinity" onAction="#navToMathEngines" styleClass="sidebar-button"/>
                 <Button fx:id="tabGuide" text="▤ Guide" maxWidth="Infinity" onAction="#navToGuide" styleClass="sidebar-button"/>
                 <Button fx:id="tabAbout" text="ⓘ About" maxWidth="Infinity" onAction="#navToAbout" styleClass="sidebar-button"/>
             </VBox>
@@ -119,6 +122,11 @@
                             <Label text="5. Sequences and Series" styleClass="section-header"/>
                             <Label text="How it works: the engine compares the entered terms, calculates differences or ratios where appropriate, and identifies a formula or pattern for the selected operation.\nHow to use it: select the required operation, enter 2, 5, 10, 17, 26 using commas or spaces, then press Analyze / Calculate. Use Load Sample Sequence to see a valid example. Read the formula, difference table, or generated terms in the output area, and press Clear to start again." wrapText="true" styleClass="body-text"/>
 
+                            <Label text="6. Statistics and Regression" styleClass="section-header"/>
+                            <Label text="How it works: each line becomes an (x, y) observation. The selected model calculates fitted values, errors, correlation, and a report; the chart shows the observations and fitted curve.\nHow to use it: enter 1, 2.1 on the first line and continue with one x,y pair per line. Select Linear and press Execute Regression Analysis. For Polynomial choose a degree; for Exponential use positive y values; for Logistic use binary y values such as 0 and 1 and set the threshold. Load Sample Data provides a valid dataset." wrapText="true" styleClass="body-text"/>
+
+                            <Label text="7. Probability Workspace" styleClass="section-header"/>
+                            <Label text="How it works: each probability tab validates the supplied probabilities or counts and returns a mathematical report.\nVenn example: enter P(A)=0.4, P(B)=0.5, P(A ∩ B)=0.2, then press Calculate Venn Probabilities to see union, only-A, only-B, and neither.\nBayes example: enter names H1, H2, H3; priors 0.5, 0.3, 0.2; likelihoods 0.8, 0.4, 0.1, then press Compute Posterior Probabilities. The three lists must have matching lengths.\nContingency example: enter 10, 20, 30 on one line and 15, 25, 35 on the next, then press Run Chi-Square Test of Independence. Keep every row the same length." wrapText="true" styleClass="body-text"/>
 
                             <Label text="8. How to check results" styleClass="section-header"/>
                             <Label text="After pressing an action button, check the output area or chart on the same screen. Reports include the calculated value and, where supported, the formula and intermediate steps. Try the examples in this Guide first, then replace one input at a time with your own data. Use decimal numbers with a period, keep list lengths consistent, and avoid blank matrix rows. If an error appears, correct the format described in the message and run the action again; output areas are read-only reports." wrapText="true" styleClass="body-text"/>
@@ -140,6 +148,21 @@
             <!-- NUMBER PROPERTIES SCREEN -->
             <VBox fx:id="numberPropertiesScreen" spacing="10" visible="false" styleClass="screen-card">
                 <fx:include source="numberPropertyScreen/number_proprty_check.fxml"/>
+            </VBox>
+
+            <!-- STATISTICS SCREEN -->
+            <VBox fx:id="statisticsScreen" visible="false" styleClass="screen-card">
+                <fx:include source="stats/stats_view.fxml"/>
+            </VBox>
+
+            <!-- PROBABILITY SCREEN -->
+            <VBox fx:id="probabilityScreen" visible="false" styleClass="screen-card">
+                <fx:include source="stats/probability_view.fxml"/>
+            </VBox>
+
+            <!-- LEGACY MATH ENGINES TAB -->
+            <VBox fx:id="mathEnginesScreen" visible="false" styleClass="screen-card">
+                <fx:include source="MainView.fxml"/>
             </VBox>
 
             <!-- SEQUENCE SOLVER SCREEN (Modular Embed) -->
