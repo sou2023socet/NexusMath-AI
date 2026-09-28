@@ -31,12 +31,17 @@
         </columnConstraints>
 
         <!-- Operation Selection -->
-        <Label text="Operation / Mode:" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="body-text"/>
+        <Label text="Sequence / Series Operation:" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="body-text"/>
         <ComboBox fx:id="operationComboBox" maxWidth="Infinity" GridPane.columnIndex="1" GridPane.rowIndex="0" promptText="Select Operation..."/>
 
         <!-- Sequence Input Field -->
         <Label fx:id="inputLabel" text="Sequence Input:" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="body-text"/>
         <TextField fx:id="sequenceInputField" promptText="e.g., 2, 5, 10, 17, 26" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+         <Label fx:id="termIndexLabel" text="Target term n:" visible="false" managed="false"
+             GridPane.columnIndex="0" GridPane.rowIndex="2" styleClass="body-text"/>
+         <TextField fx:id="termIndexField" promptText="e.g., 10" visible="false" managed="false"
+                 GridPane.columnIndex="1" GridPane.rowIndex="2"/>
     </GridPane>
 
     <!-- Action Buttons -->
