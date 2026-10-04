@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>mathapp-solver</name>
+	<name>auth-backend</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -22,7 +22,7 @@
 	</natures>
 	<filteredResources>
 		<filter>
-			<id>1784469571524</id>
+			<id>1784469571463</id>
 			<name></name>
 			<type>30</type>
 			<matcher>
