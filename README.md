@@ -41,6 +41,45 @@ Base path: `/api/auth`
 
 Public endpoints are allowed during authentication flows and password reset pages, while all other requests require JWT validation.
 
+## Math API
+
+The JavaFX client is maintained in the separate `mathapp` project. Authenticated
+math requests are handled here so calculation code is not executed by the UI.
+The API currently supports:
+
+- `POST /api/math/arithmetic`
+- `POST /api/math/equations/solve`
+- `POST /api/math/sequences/evaluate` and `/api/math/sequences/analyze`
+- `POST /api/math/number-properties/evaluate`
+- `POST /api/math/matrices/evaluate`
+- `POST /api/math/statistics/regression`, `/statistics/correlation`,
+  `/statistics/venn2`, `/statistics/bayes`, and `/statistics/contingency`
+- `POST /api/math/distributions/evaluate`
+- `POST /api/math/combinatorics`
+
+Math endpoints require the same JWT issued by `/api/auth/login` or
+`/api/auth/register`.
+
+## Run and test independently
+
+This project is an independent Spring Boot service. It can be built and tested
+without the JavaFX project:
+
+```bash
+mvn verify
+```
+
+Starting the service requires the configured MySQL database and application
+configuration. From this project root, run:
+
+```bash
+mvn spring-boot:run
+```
+
+The JavaFX frontend is a separate project and is not needed to start this
+service. Conversely, the frontend can launch on its own, but its authenticated
+math actions require this service to be reachable.
+
 ## Security model
 
 The service uses Spring Security with a stateless session strategy and a custom JWT filter. Requests such as registration, login, forgot-password, reset-password, and static assets are permitted without an active session. Other routes require a valid token.
@@ -63,6 +102,18 @@ From the project root:
 ```bash
 mvn clean spring-boot:run
 ```
+
+The development profile creates the `mathapp_auth` database when it is missing,
+provided the configured MySQL user has permission to create databases. You can
+also create or verify it explicitly with the PowerShell script:
+
+```powershell
+.\scripts\create-database.ps1 -Username root
+```
+
+The script prompts for the MySQL password. Override `-Server`, `-Port`,
+`-Username`, or `-Database` when your local MySQL setup differs. The MySQL
+client tools must be available on `PATH`.
 
 For a packaged build:
 
@@ -97,4 +148,7 @@ auth-backend/
 
 ## Notes
 
-This project is designed to work alongside the JavaFX desktop app in the sibling `mathapp` module. The auth backend manages secure identity and the math app consumes the generated JWT tokens for protected access.
+This project is designed to work alongside the JavaFX desktop app in the
+separate `mathapp` repository. The backend owns calculation engines and APIs;
+the desktop client consumes those APIs using generated JWT tokens. Neither
+project imports or builds the other.
