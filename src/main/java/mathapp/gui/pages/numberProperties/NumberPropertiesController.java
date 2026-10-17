@@ -4,13 +4,9 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import mathapp.numberproperties.NumberProperties;
+import mathapp.gui.api.MathServiceClient;
+import mathapp.gui.auth.AuthContext;
 import mathapp.logging.MathLogger;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class NumberPropertiesController {
 
@@ -19,6 +15,7 @@ public class NumberPropertiesController {
     @FXML private TextArea resultArea;
     @FXML private Button actionCheckButton;
     @FXML private Button actionClearButton;
+    private final MathServiceClient mathServiceClient = new MathServiceClient();
 
     // ======================== Enum Definition ========================
 
@@ -203,16 +200,6 @@ public class NumberPropertiesController {
         }
     }
 
-    // Input types for the handler
-    public enum InputType {
-        DOUBLE_LIST,
-        INTEGER_LIST,
-        SINGLE_DOUBLE,
-        SINGLE_LONG,
-        STRING_LIST,
-        PLAIN_STRING
-    }
-
     // ======================== JavaFX Handlers ========================
 
     @FXML
@@ -225,23 +212,29 @@ public class NumberPropertiesController {
 
     @FXML
     void handleCheck(ActionEvent event) {
-        String inputText = inputField.getText().trim();
+        String inputText = inputField.getText() == null ? "" : inputField.getText().trim();
         NumberProperty selectedProperty = propertyCombo.getValue();
+
+        if (selectedProperty == null) {
+            resultArea.setText("❌ Error: Please select a number property.");
+            return;
+        }
 
         MathLogger.operationStarted("CHECK_PROPERTY", selectedProperty + " | input=" + inputText);
         if (inputText.isEmpty()) {
             MathLogger.operationFailed("CHECK_PROPERTY", "Empty input");
-            resultArea.setText(handleOutput("Please enter a number or a list of numbers (comma-separated).", true));
+            resultArea.setText("❌ Error: Please enter a number or a list of numbers (comma-separated).");
             return;
         }
 
         try {
-            String result = evaluateProperty(inputText, selectedProperty);
+            String result = mathServiceClient.evaluateNumberProperty(
+                    selectedProperty.name(), inputText, AuthContext.getState().getToken());
             resultArea.setText(result);
-            MathLogger.operationSuccess("CHECK_PROPERTY", selectedProperty + " -> " + result.replace("\n", " | "));
+            MathLogger.operationSuccess("CHECK_PROPERTY", selectedProperty + " completed remotely");
         } catch (Exception e) {
             MathLogger.operationFailed("CHECK_PROPERTY", selectedProperty + " failed", e);
-            resultArea.setText(handleOutput(e.getMessage(), true));
+            resultArea.setText("❌ Error: " + e.getMessage());
         }
     }
 
@@ -252,278 +245,4 @@ public class NumberPropertiesController {
         propertyCombo.getSelectionModel().selectFirst();
     }
 
-    // ======================== Core Evaluation ========================
-
-    private String evaluateProperty(String input, NumberProperty property) throws Exception {
-        switch (property) {
-            case CHECK_NATURAL_NUMBERS_LIST: {
-                ArrayList<Integer> list = handleInput(input, InputType.INTEGER_LIST);
-                boolean res = NumberProperties.isNaturalNumberList(list);
-                return handleOutput("Natural Numbers", res, list);
-            }
-            case CHECK_WHOLE_NUMBERS_LIST: {
-                ArrayList<Integer> list = handleInput(input, InputType.INTEGER_LIST);
-                boolean res = NumberProperties.isWholeNumberList(list);
-                return handleOutput("Whole Numbers", res, list);
-            }
-            case CHECK_NUMBER_IS_INTEGERS_LIST: {
-                ArrayList<Double> list = handleInput(input, InputType.DOUBLE_LIST);
-                boolean res = NumberProperties.isIntergerNumberList(list);
-                return handleOutput("Integer Numbers", res, list);
-            }
-            case CHECK_POSITIVE_NUMBER_LIST: {
-                ArrayList<Double> list = handleInput(input, InputType.DOUBLE_LIST);
-                boolean res = NumberProperties.isPositiveNumberList(list);
-                return handleOutput("Positive Numbers", res, list);
-            }
-            case CHECK_NEGATIVE_NUMBER_LIST: {
-                ArrayList<Double> list = handleInput(input, InputType.DOUBLE_LIST);
-                boolean res = NumberProperties.isNegativeNumberList(list);
-                return handleOutput("Negative Numbers", res, list);
-            }
-            case CHECK_RATIONAL_NUMBERS_LIST: {
-                ArrayList<Double> list = handleInput(input, InputType.DOUBLE_LIST);
-                boolean res = NumberProperties.isRationalNumberList(list);
-                return handleOutput("Rational Numbers", res, list);
-            }
-            case CHECK_IRRATIONAL_NUMBER_LIST: {
-                ArrayList<Double> list = handleInput(input, InputType.DOUBLE_LIST);
-                boolean res = NumberProperties.isIrrationalNumberList(list);
-                return handleOutput("Irrational Numbers", res, list);
-            }
-            case CHECK_REAL_NUMBER_LIST: {
-                ArrayList<Double> list = handleInput(input, InputType.DOUBLE_LIST);
-                boolean res = NumberProperties.isRealNumberList(list);
-                return handleOutput("Real Numbers", res, list);
-            }
-            case COMPLEX_NUMBER_LIST: {
-                List<String> tokens = handleInput(input, InputType.STRING_LIST);
-                List<double[]> numbers = new ArrayList<>();
-                for (String token : tokens) {
-                    numbers.add(NumberProperties.parseComplexString(token.trim()));
-                }
-                return handleOutput(NumberProperties.checkComplexNumbers(numbers));
-            }
-            case PLACE_VALUE: {
-                Long number = handleInput(input, InputType.SINGLE_LONG);
-                int digitCount = String.valueOf(Math.abs(number)).length();
-                String digitLabel = digitCount + " - digit number";
-                String wordRepresentation = NumberProperties.convertToWords(number);
-                List<String> placeValues = NumberProperties.placeValue(number);
-                return handleOutput(NumberProperties.outputHandler(digitLabel, wordRepresentation, placeValues));
-            }
-            case FACTOR_TREES: {
-                Double num = handleInput(input, InputType.SINGLE_DOUBLE);
-                String treeResult = NumberProperties.generateFactorTree(num);
-                return handleOutput(treeResult);
-            }
-            case CHECK_EVEN_NUMBER: {
-                Double num = handleInput(input, InputType.SINGLE_DOUBLE);
-                boolean res = NumberProperties.evenNumber(num);
-                return handleOutput(num + " is " + (res ? "Even" : "Not Even"), !res);
-            }
-            case CHECK_ODD_NUMBER: {
-                Double num = handleInput(input, InputType.SINGLE_DOUBLE);
-                boolean res = NumberProperties.oddNumber(num);
-                return handleOutput(num + " is " + (res ? "Odd" : "Not Odd"), !res);
-            }
-            case CHECK_POSITIVE_NUMBER: {
-                Double num = handleInput(input, InputType.SINGLE_DOUBLE);
-                boolean res = NumberProperties.positive(num);
-                return handleOutput(num + " is " + (res ? "Positive" : "Negative"), !res);
-            }
-            case CHECK_NEGATIVE_NUMBER: {
-                Double num = handleInput(input, InputType.SINGLE_DOUBLE);
-                boolean res = NumberProperties.negative(num);
-                return handleOutput(num + " is " + (res ? "Negative" : "Not Negative (Zero or Positive)"), !res);
-            }
-            case CHECK_PRIME_NUMBER: {
-                Long num = handleInput(input, InputType.SINGLE_LONG);
-                boolean res = NumberProperties.prime(num.intValue());
-                return handleOutput(num + " is " + (res ? "Prime" : "Not Prime"), !res);
-            }
-            case CHECK_COMPOSITE_NUMBER: {
-                Double num = handleInput(input, InputType.SINGLE_DOUBLE);
-                boolean res = NumberProperties.isComposite(num);
-                return handleOutput(num + " is " + (res ? "Composite" : "Not Composite"), res);
-            }
-            case CHECK_COPRIME_NUMBER: {
-                ArrayList<Double> list = handleInput(input, InputType.DOUBLE_LIST);
-                if (list.size() < 2) {
-                    throw new IllegalArgumentException("Please enter two numbers separated by a comma (e.g., 8, 15).");
-                }
-                double num1 = list.get(0);
-                double num2 = list.get(1);
-                boolean res = NumberProperties.isCoprime(num1, num2);
-                
-                String msg = (int) num1 + " and " + (int) num2 + " are " + 
-                        (res ? "Co-Prime (GCD = 1)" : "Not Co-Prime (GCD > 1)");
-                return handleOutput(msg, res, list);
-            }
-            case CONSECUTIVE_NUMBER: {
-                ArrayList<Double> list = handleInput(input, InputType.DOUBLE_LIST);
-                boolean isConsecutive = NumberProperties.isConsecutive(list);
-                return handleOutput("Consecutive Number Sequence", isConsecutive, list);
-            }
-
-            case PRIME_FACTORISATION: {
-                Double num = handleInput(input, InputType.SINGLE_DOUBLE);
-                String result = NumberProperties.primeFactorisationFormatted(num);
-                return handleOutput(result);
-            }
-
-            case EUCLIDEAN_ALGORITHM: {
-                ArrayList<Integer> list = handleInput(input, InputType.INTEGER_LIST);
-                if (list.size() < 2) {
-                    throw new IllegalArgumentException("Please provide two integer numbers separated by a comma (e.g., 252, 105).");
-                }
-                String steps = NumberProperties.euclideanAlgorithmSteps(list.get(0), list.get(1));
-                return handleOutput(steps);
-            }
-
-            case EXTENDED_EUCLIDEAN_ALGORITHM: {
-                ArrayList<Integer> list = handleInput(input, InputType.INTEGER_LIST);
-                if (list.size() < 2) {
-                    throw new IllegalArgumentException("Please provide two integer numbers separated by a comma (e.g., 240, 46).");
-                }
-                String result = NumberProperties.extendedEuclideanAlgorithm(list.get(0), list.get(1));
-                return handleOutput(result);
-            }
-
-            case REMAINDERS: {
-                ArrayList<Integer> list = handleInput(input, InputType.INTEGER_LIST);
-                if (list.size() < 2) {
-                    throw new IllegalArgumentException("Please enter Dividend and Divisor separated by a comma (e.g., 29, 6).");
-                }
-                String result = NumberProperties.calculateRemainderDetails(list.get(0), list.get(1));
-                return handleOutput(result);
-            }
-            case CHECK_ANY_EVEN_IN_LIST: {
-                ArrayList<Double> list = handleInput(input, InputType.DOUBLE_LIST);
-                boolean res = NumberProperties.anyEvenInList(list);
-                return handleOutput("Contains any Even number?", !res, list);
-            }
-            case CHECK_ANY_ODD_IN_LIST: {
-                ArrayList<Double> list = handleInput(input, InputType.DOUBLE_LIST);
-                boolean res = NumberProperties.anyOddInList(list);
-                return handleOutput("Contains any Odd number?", !res, list);
-            }
-            case COUNT_ODD_NUMBERS_IN_LIST: {
-                ArrayList<Double> list = handleInput(input, InputType.DOUBLE_LIST);
-                int count = NumberProperties.oddCountInList(list);
-                return handleOutput("📋 List: " + list + "\n\n🔢 Odd count: " + count);
-            }
-            case COUNT_EVEN_NUMBERS_IN_LIST: {
-                ArrayList<Double> list = handleInput(input, InputType.DOUBLE_LIST);
-                int count = NumberProperties.evenCountInList(list);
-                return handleOutput("📋 List: " + list + "\n\n🔢 Even count: " + count);
-            }
-            case FIND_FACTORS: {
-                Double num = handleInput(input, InputType.SINGLE_DOUBLE);
-                List<Integer> factorList = NumberProperties.factors(num, new ArrayList<>());
-                String msg = "🔢 Factors of " + num.intValue() + ":\n" +
-                        (factorList.isEmpty() ? "  No factors found (prime number)" : "  " + factorList);
-                return handleOutput(msg);
-            }
-            case CHECK_PERFECT_NUMBER: {
-                Double num = handleInput(input, InputType.SINGLE_DOUBLE);
-                List<Integer> factorList = NumberProperties.factors(num, new ArrayList<>());
-                boolean isPerfect = NumberProperties.getIsPerfectNumber(num);
-                String msg = "🔢 Factors of " + num.intValue() + ":\n" +
-                        (factorList.isEmpty() ? "  No factors found" : "  " + factorList) + 
-                        "\nIs Perfect Number: " + (isPerfect ? "Yes" : "No");
-                return handleOutput(msg);
-            }
-            case FIND_CO_PRIME_FACTORS: {
-                Double num = handleInput(input, InputType.SINGLE_DOUBLE);
-                List<Integer> factorList = NumberProperties.coPrimeFactor(num, new ArrayList<>());
-                String msg = "🔢 CoPrime Factors of " + num.intValue() + ":\n" +
-                        (factorList.isEmpty() ? "  No CoPrime Factors found" : "  " + factorList);
-                return handleOutput(msg);
-            }
-            case FIND_HCF: {
-                ArrayList<Double> list = handleInput(input, InputType.DOUBLE_LIST);
-                int result = NumberProperties.hcf(list);
-                return handleOutput("📋 List: " + list + "\n\n📐 HCF = " + result);
-            }
-            case FIND_LCM: {
-                ArrayList<Double> list = handleInput(input, InputType.DOUBLE_LIST);
-                int result = NumberProperties.lcm(list);
-                return handleOutput("📋 List: " + list + "\n\n📐 LCM = " + result);
-            }
-            default:
-                return handleOutput("Feature not implemented yet for: " + property.getDisplayName(), true);
-        }
-    }
-
-    // ======================== Input Handler ========================
-
-    @SuppressWarnings("unchecked")
-    private <T> T handleInput(String input, InputType targetType) throws IllegalArgumentException {
-        if (input == null || input.trim().isEmpty()) {
-            throw new IllegalArgumentException("Input cannot be empty.");
-        }
-
-        String cleaned = input.trim();
-
-        try {
-            switch (targetType) {
-                case DOUBLE_LIST:
-                    return (T) Arrays.stream(cleaned.split(","))
-                            .map(String::trim)
-                            .map(Double::parseDouble)
-                            .collect(Collectors.toCollection(ArrayList::new));
-
-                case INTEGER_LIST:
-                    return (T) Arrays.stream(cleaned.split(","))
-                            .map(String::trim)
-                            .map(Integer::parseInt)
-                            .collect(Collectors.toCollection(ArrayList::new));
-
-                case SINGLE_DOUBLE:
-                    return (T) Double.valueOf(cleaned);
-
-                case SINGLE_LONG:
-                    return (T) Long.valueOf(cleaned);
-
-                case STRING_LIST:
-                    return (T) Arrays.stream(cleaned.split(","))
-                            .map(String::trim)
-                            .collect(Collectors.toList());
-
-                case PLAIN_STRING:
-                    return (T) cleaned;
-
-                default:
-                    throw new IllegalArgumentException("Unsupported input type provided.");
-            }
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("Invalid numerical input format. Please check your numbers.");
-        }
-    }
-
-    // ======================== Output Handler ========================
-
-    private String handleOutput(String message) {
-        return handleOutput(message, false);
-    }
-
-    private String handleOutput(String message, boolean isError) {
-        if (isError) {
-            return "❌ Error: " + message;
-        }
-        return "✅ Result:\n\n" + message;
-    }
-
-    private String handleOutput(String message, boolean status, Object context) {
-        String icon = status ? "✅" : "❌";
-        return "📋 Input: " + context + "\n\n➡️ " + message + " " + icon;
-    }
-
-    private String handleOutput(String propertyName, boolean status, List<?> list) {
-        String statusText = status 
-                ? "✅ Yes, all numbers are " + propertyName 
-                : "❌ No, not all numbers are " + propertyName;
-        return "📋 List: " + list + "\n\n➡️ " + statusText;
-    }
 }

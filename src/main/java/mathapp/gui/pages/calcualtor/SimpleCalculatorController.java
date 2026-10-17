@@ -5,8 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-import mathapp.arithmetic.ArithmeticOperations;
-import mathapp.arithmetic.ExponentFunctions;
+import mathapp.gui.api.MathServiceClient;
+import mathapp.gui.auth.AuthContext;
 import mathapp.logging.MathLogger;
 
 public class SimpleCalculatorController {
@@ -17,6 +17,7 @@ public class SimpleCalculatorController {
     private double firstNumber = 0;
     private String operator = "";
     private boolean startNewNumber = true;
+    private final MathServiceClient mathServiceClient = new MathServiceClient();
 
     @FXML
     public void initialize() {
@@ -104,39 +105,19 @@ public class SimpleCalculatorController {
 
             double secondNumber = Double.parseDouble(displayField.getText());
 
-            double result;
-
-            switch (operator) {
-
-                case "+":
-                    result = ArithmeticOperations.sum(firstNumber, secondNumber);
-                    break;
-
-                case "-":
-                    result = ArithmeticOperations.subtract(firstNumber, secondNumber);
-                    break;
-
-                case "*":
-                    result = ArithmeticOperations.multiply(firstNumber, secondNumber);
-                    break;
-
-                case "/":
-                    result = ArithmeticOperations.divide(firstNumber, secondNumber);
-                    break;
-
-                case "%":
-                    result = ArithmeticOperations.remainder(firstNumber, secondNumber);
-                    break;
-
-                case "^":
-                    result = ExponentFunctions.power(firstNumber, secondNumber);
-                    break;
-
-                default:
-                    result = secondNumber;
-                    break;
-
-            }
+            String operation = switch (operator) {
+                case "+" -> "ADD";
+                case "-" -> "SUBTRACT";
+                case "*" -> "MULTIPLY";
+                case "/" -> "DIVIDE";
+                case "%" -> "REMAINDER";
+                case "^" -> "POWER";
+                default -> null;
+            };
+            double result = operation == null
+                    ? secondNumber
+                    : mathServiceClient.arithmetic(
+                            operation, firstNumber, secondNumber, AuthContext.getState().getToken());
 
             displayResult(result);
             MathLogger.operationSuccess("CALCULATE", firstNumber + " " + operator + " " + secondNumber + " = " + result);
@@ -155,7 +136,7 @@ public class SimpleCalculatorController {
         } catch (Exception ex) {
 
             MathLogger.operationFailed("CALCULATE", "Calculation error", ex);
-            displayField.setText("Error");
+            displayField.setText("Calculation service error: " + ex.getMessage());
 
             startNewNumber = true;
 
@@ -218,7 +199,8 @@ public class SimpleCalculatorController {
 
             double value = Double.parseDouble(displayField.getText());
 
-            double result = ArithmeticOperations.square(value);
+            double result = mathServiceClient.arithmetic(
+                    "SQUARE", value, null, AuthContext.getState().getToken());
 
             displayResult(result);
 

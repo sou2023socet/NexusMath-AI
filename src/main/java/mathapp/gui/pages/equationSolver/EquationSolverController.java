@@ -5,14 +5,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import mathapp.equations.EquationGenerator;
-import mathapp.equations.MultipleEquationHandler;
-import mathapp.equations.api.EquationSolver;
+import mathapp.gui.api.MathServiceClient;
+import mathapp.gui.auth.AuthContext;
 import mathapp.logging.MathLogger;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 public class EquationSolverController {
@@ -23,14 +21,7 @@ public class EquationSolverController {
     @FXML private Button actionSolveButton;
     @FXML private Button actionLoadTestCaseButton;
 
-    private MultipleEquationHandler multiHandler;
-
-    @FXML
-    public void initialize() {
-        EquationSolver coreSolver = new EquationSolver();
-        EquationGenerator generator = new EquationGenerator(coreSolver);
-        this.multiHandler = new MultipleEquationHandler(generator, coreSolver);
-    }
+    private final MathServiceClient mathServiceClient = new MathServiceClient();
 
     @FXML
     void handleSolve(ActionEvent event) {
@@ -49,14 +40,10 @@ public class EquationSolverController {
                 .collect(Collectors.toList());
 
         try {
-            Map<String, Double> finalState = multiHandler.solveSystem(equationsList, varText);
-
-            StringBuilder sb = new StringBuilder("✅ Success! Resolved Variables:\n\n");
-            for (Map.Entry<String, Double> entry : finalState.entrySet()) {
-                sb.append(" • ").append(entry.getKey()).append(" = ").append(entry.getValue()).append("\n");
-            }
-            outputArea.setText(sb.toString());
-            MathLogger.operationSuccess("SOLVE", "result=" + finalState);
+            String result = mathServiceClient.solveSystem(
+                    equationsList, varText, AuthContext.getState().getToken());
+            outputArea.setText("✅ Success!\n\n" + result);
+            MathLogger.operationSuccess("SOLVE", "equation system solved remotely");
         } catch (Exception e) {
             MathLogger.operationFailed("SOLVE", "System Logic Error", e);
             outputArea.setText("❌ System Logic Error. Check syntax and variable names.\n" +

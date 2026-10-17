@@ -4,9 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import mathapp.gui.api.MathServiceClient;
+import mathapp.gui.auth.AuthContext;
 import mathapp.logging.MathLogger;
-import mathapp.stats.engine.ProbabilityAndSetCalculator.*;
-import mathapp.stats.facade.StatsServiceFacade;
 
 import java.util.Arrays;
 import java.util.List;
@@ -33,7 +33,7 @@ public class ProbabilityUiController {
     @FXML private TextArea contingencyInputArea;
     @FXML private TextArea contingencyOutputArea;
 
-    private final StatsServiceFacade statsFacade = new StatsServiceFacade();
+    private final MathServiceClient mathServiceClient = new MathServiceClient();
 
     @FXML
     void handleSolveVenn2(ActionEvent event) {
@@ -42,15 +42,8 @@ public class ProbabilityUiController {
             double pB = Double.parseDouble(pbField.getText().trim());
             double pIntersect = Double.parseDouble(pIntersectField.getText().trim());
 
-            Venn2SetResult res = statsFacade.solveVenn2(pA, pB, pIntersect);
-
-            StringBuilder sb = new StringBuilder("### 2-Set Venn Diagram Analysis\n\n");
-            sb.append(String.format("* $P(A)$: `%.4f` | $P(B)$: `%.4f` | $P(A \\cap B)$: `%.4f`\n", res.pA(), res.pB(), res.pIntersect()));
-            sb.append(String.format("* Union $P(A \\cup B)$: `%.4f` (%.2f%%)\n", res.pUnion(), res.pUnion() * 100.0));
-            sb.append(String.format("* Only $A$: `%.4f` | Only $B$: `%.4f`\n", res.pAOnly(), res.pBOnly()));
-            sb.append(String.format("* Neither $P((A \\cup B)^c)$: `%.4f`\n", res.pNeither()));
-
-            setOutputArea.setText(sb.toString());
+            setOutputArea.setText(mathServiceClient.solveVenn2(
+                    pA, pB, pIntersect, AuthContext.getState().getToken()));
         } catch (Exception e) {
             setOutputArea.setText("❌ Input Error: " + e.getMessage());
         }
@@ -68,8 +61,8 @@ public class ProbabilityUiController {
             List<Double> likelihoods = Arrays.stream(likelihoodsField.getText().split("[,\\s]+"))
                     .filter(s -> !s.isBlank()).map(Double::parseDouble).collect(Collectors.toList());
 
-            BayesResult result = statsFacade.updateBayes(names, priors, likelihoods);
-            bayesOutputArea.setText(result.stepByStepReport());
+            bayesOutputArea.setText(mathServiceClient.updateBayes(
+                    names, priors, likelihoods, AuthContext.getState().getToken()));
         } catch (Exception e) {
             bayesOutputArea.setText("❌ Bayes Computation Error: " + e.getMessage());
         }
@@ -92,8 +85,8 @@ public class ProbabilityUiController {
                 }
             }
 
-            ContingencyResult result = statsFacade.analyzeContingency(counts);
-            contingencyOutputArea.setText(result.stepByStepReport());
+            contingencyOutputArea.setText(mathServiceClient.analyzeContingency(
+                    counts, AuthContext.getState().getToken()));
         } catch (Exception e) {
             contingencyOutputArea.setText("❌ Table Analysis Error: " + e.getMessage());
         }

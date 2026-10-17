@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import mathapp.gui.MainViewController;
+import mathapp.gui.api.ApiClient;
 import mathapp.gui.navigation.NavigationManager;
 import mathapp.logging.MathLogger;
 
@@ -27,7 +28,7 @@ public class AuthMainController {
     @FXML private Button actionSolveButton;
     @FXML private Button actionCalculateButton;
 
-    private final AuthServiceClient authClient = new AuthServiceClient("http://localhost:8081");
+    private final AuthServiceClient authClient = new AuthServiceClient(ApiClient.configuredBaseUrl());
     private final AuthState authState = AuthContext.getState();
 
     private boolean authViewsLoaded = false;
@@ -520,4 +521,3 @@ public class AuthMainController {
         }
     }
 }
-

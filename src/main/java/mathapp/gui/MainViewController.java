@@ -10,6 +10,7 @@ import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
+import mathapp.gui.api.ApiClient;
 import mathapp.gui.auth.AuthContext;
 import mathapp.gui.auth.AuthServiceClient;
 import mathapp.gui.auth.AuthState;
@@ -55,7 +56,7 @@ public class MainViewController {
 
     private NavigationManager navigationManager;
     private final AuthState authState = AuthContext.getState();
-    private final AuthServiceClient authClient = new AuthServiceClient("http://localhost:8081");
+    private final AuthServiceClient authClient = new AuthServiceClient(ApiClient.configuredBaseUrl());
     private boolean lightMode;
 
     @FXML

@@ -1,21 +1,17 @@
 # NexusMath-AI Math Workbench
 
-This project is the main desktop mathematics application in the NexusMath-AI suite. It is built as a JavaFX-based scientific computing workbench that combines calculation tools, algebra utilities, numerical methods, equation solving, and statistics in one interface.
+This project is the JavaFX desktop frontend in the NexusMath-AI suite. It owns the user interface, authentication flow, and HTTP clients; calculation engines run in the separate `auth-backend` service.
 
 ## Overview
 
-The application is organized as a modular Java project centered around a GUI-driven workspace. It targets educational and analytical math workflows with a polished desktop UI and a set of reusable engine packages for mathematical computations.
+The frontend is an independently buildable Java 21/Maven application. It sends math and authentication requests over REST and does not include local math calculation engines. It can launch without the backend, but login and math actions require a reachable backend.
 
 ## Key capabilities
 
-- Arithmetic and calculator-style workflows
-- Algebraic operations and matrix utilities
-- Equation and expression solving
-- Number property analysis
-- Numerical computation tools
-- Statistics and data-oriented calculations
+- JavaFX screens for arithmetic, equations, matrices, sequences, number properties, statistics, probability, and distributions
+- Authenticated REST requests to the backend for calculations
+- Configurable backend URL
 - JavaFX desktop interface with FXML and CSS styling
-- Modular project organization by domain
 
 ## Technology stack
 
@@ -32,16 +28,33 @@ The application is organized as a modular Java project centered around a GUI-dri
 
 ## Run the project
 
-From the project root:
+From this project root, build and test the frontend independently:
 
 ```bash
-mvn clean javafx:run
+mvn test
 ```
 
-To build the app package:
+Launch the JavaFX UI independently with:
 
 ```bash
-mvn clean package
+mvn javafx:run
+```
+
+The frontend's math and login features require the separately running backend.
+Its default URL is `http://localhost:8081`; override it with
+`MATHAPP_API_BASE_URL` or the `mathapp.api.base-url` JVM property. For example,
+in PowerShell:
+
+```powershell
+$env:MATHAPP_API_BASE_URL = "http://localhost:8081"
+mvn javafx:run
+```
+
+Run `mvn test` to execute the frontend HTTP-client tests without requiring a
+running backend. The packaged JavaFX installer is Windows-specific:
+
+```bash
+mvn package
 ```
 
 ## Main project structure
@@ -49,16 +62,9 @@ mvn clean package
 ```text
 mathapp/
 ├── src/main/java/mathapp/
-│   ├── algebra/           # matrix and symbolic algebra logic
-│   ├── apps/              # app-level workflows and screens
-│   ├── arithmetic/        # arithmetic utilities and calculators
-│   ├── controller/        # controller logic and navigation helpers
-│   ├── equations/         # equation solving components
-│   ├── gui/               # JavaFX UI, FXML, CSS and screen controllers
-│   ├── logging/           # logging support
-│   ├── numberproperties/  # number analysis features
-│   ├── numerical/         # numerical analysis tools
-│   ├── stats/            # statistics modules
+│   ├── controller/        # JavaFX view controller
+│   ├── gui/               # JavaFX UI, API clients, FXML, CSS and screen controllers
+│   ├── logging/           # frontend logging
 │   ├── MathAppLauncher.java
 │   └── ...
 ├── src/main/resources/mathapp/gui/
@@ -67,24 +73,16 @@ mathapp/
 │   ├── style.css
 │   └── ...
 ├── src/test/java/mathapp/
-│   ├── gui/
-│   └── stats/
+│   └── gui/api/           # REST client tests using an in-process HTTP server
 ├── pom.xml
 ├── README.md
 ├── SEQUENCE_ANALYZER.md
 └── logs/
 ```
 
-## Domain areas represented in the codebase
-
-- Algebra: matrix operations and engine logic
-- Arithmetic: core numeric computation routines
-- Equations: solving and manipulation workflows
-- Numerical: approximation and numerical analysis
-- Number properties: digit, prime, divisor, and classification helpers
-- Statistics: statistical calculators and analysis modules
-- GUI: screen routing and JavaFX views
-
 ## Notes
 
-This application is the main NexusMath-AI user-facing platform. The sibling authentication service in the `auth-backend` module provides secure login and account management services for the broader product.
+The frontend and backend are separate Maven projects and can be built and
+started independently. The backend is the sole owner of calculation logic;
+the frontend contains only presentation, request/response models, and REST
+client code.

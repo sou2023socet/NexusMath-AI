@@ -10,9 +10,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 
-import mathapp.stats.engine.DistributionEngineImpl.DistributionEvaluationResult;
-import mathapp.stats.engine.DistributionEngineImpl.DistributionPoint;
-import mathapp.stats.facade.StatsServiceFacade;
+import mathapp.gui.api.MathServiceClient;
+import mathapp.gui.auth.AuthContext;
 
 /**
  * JavaFX Controller for Plotting Binomial and Gaussian/Normal Distribution Curves.
@@ -37,7 +36,7 @@ public class DistributionUiController {
     @FXML private BarChart<String, Number> discreteChart;
     @FXML private TextArea distributionReportArea;
 
-    private final StatsServiceFacade statsFacade = new StatsServiceFacade();
+    private final MathServiceClient mathServiceClient = new MathServiceClient();
 
     @FXML
     public void initialize() {
@@ -72,14 +71,16 @@ public class DistributionUiController {
                 double stdDev = Double.parseDouble(stdDevField.getText().trim());
                 double x = Double.parseDouble(xValField.getText().trim());
 
-                DistributionEvaluationResult res = statsFacade.evaluateNormalDistribution(mean, stdDev, x);
-                distributionReportArea.setText(res.stepByStepReport());
+                MathServiceClient.DistributionResponse res = mathServiceClient.evaluateDistribution(
+                        new MathServiceClient.DistributionRequest("NORMAL", mean, stdDev, x, null, null, null),
+                        AuthContext.getState().getToken());
+                distributionReportArea.setText(res.report());
 
                 continuousChart.getData().clear();
                 XYChart.Series<Number, Number> pdfSeries = new XYChart.Series<>();
                 pdfSeries.setName(String.format("N(μ=%.2f, σ=%.2f)", mean, stdDev));
 
-                for (DistributionPoint pt : res.curvePoints()) {
+                for (MathServiceClient.DistributionPoint pt : res.points()) {
                     pdfSeries.getData().add(new XYChart.Data<>(pt.x(), pt.pdfOrPmf()));
                 }
                 continuousChart.getData().add(pdfSeries);
@@ -89,14 +90,16 @@ public class DistributionUiController {
                 double p = Double.parseDouble(probPField.getText().trim());
                 int k = Integer.parseInt(kSuccessesField.getText().trim());
 
-                DistributionEvaluationResult res = statsFacade.evaluateBinomialDistribution(n, p, k);
-                distributionReportArea.setText(res.stepByStepReport());
+                MathServiceClient.DistributionResponse res = mathServiceClient.evaluateDistribution(
+                        new MathServiceClient.DistributionRequest("BINOMIAL", null, null, null, n, p, k),
+                        AuthContext.getState().getToken());
+                distributionReportArea.setText(res.report());
 
                 discreteChart.getData().clear();
                 XYChart.Series<String, Number> pmfSeries = new XYChart.Series<>();
                 pmfSeries.setName(String.format("B(n=%d, p=%.2f)", n, p));
 
-                for (DistributionPoint pt : res.curvePoints()) {
+                for (MathServiceClient.DistributionPoint pt : res.points()) {
                     pmfSeries.getData().add(new XYChart.Data<>(String.valueOf((int) pt.x()), pt.pdfOrPmf()));
                 }
                 discreteChart.getData().add(pmfSeries);

@@ -1,15 +1,40 @@
 package mathapp.gui.pages.sequanceSeries;
 
-import mathapp.gui.pages.sequanceSeries.PatternsAndSequencesController;
-import mathapp.gui.pages.sequanceSeries.PatternsAndSequencesController.Domain2Property;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.util.StringConverter;
+import mathapp.gui.api.MathServiceClient;
+import mathapp.gui.auth.AuthContext;
 import mathapp.logging.MathLogger;
 
 public class SequenceSolverController {
+
+    public enum Domain2Property {
+        ANALYZE_SEQUENCE_PATTERN("Analyze Sequence Pattern"),
+        PREDICT_NEXT_TERMS("Predict Next Terms"),
+        GENERATE_DIFFERENCE_TABLE("Generate Difference Table"),
+        FIND_NTH_TERM("Find nth Term"),
+        SUM_SERIES_TO_N("Sum Series Through n"),
+        POLYGONAL_NUMBERS("Polygonal Numbers"),
+        FIBONACCI_SEQUENCE("Fibonacci Sequence"),
+        CATALAN_NUMBERS("Catalan Numbers"),
+        PASCALS_TRIANGLE("Pascal's Triangle"),
+        CHECK_MONOTONIC_AND_BOUNDS("Check Monotonicity and Bounds"),
+        FREQUENCY_TABLE("Frequency Table"),
+        STEM_AND_LEAF_PLOT("Stem and Leaf Plot");
+
+        private final String displayName;
+
+        Domain2Property(String displayName) {
+            this.displayName = displayName;
+        }
+
+        public String getDisplayName() {
+            return displayName;
+        }
+    }
 
     @FXML private ComboBox<Domain2Property> operationComboBox;
     @FXML private Label inputLabel;
@@ -19,7 +44,7 @@ public class SequenceSolverController {
     @FXML private TextArea outputArea;
     @FXML private Button actionAnalyzeButton;
 
-    private final PatternsAndSequencesController domainController = new PatternsAndSequencesController();
+    private final MathServiceClient mathServiceClient = new MathServiceClient();
 
     @FXML
     public void initialize() {
@@ -40,7 +65,7 @@ public class SequenceSolverController {
             }
         });
 
-        // Populate ComboBox with domain operations
+        // Populate ComboBox with available operations
         operationComboBox.setItems(FXCollections.observableArrayList(Domain2Property.values()));
         operationComboBox.getSelectionModel().select(Domain2Property.ANALYZE_SEQUENCE_PATTERN);
 
@@ -117,7 +142,8 @@ public class SequenceSolverController {
         MathLogger.operationStarted("SEQUENCE_EVALUATE", "op=" + selectedOp + ", input=" + input);
 
         try {
-            String result = domainController.evaluateProperty(selectedOp, input, targetN);
+            String result = mathServiceClient.evaluateSequence(
+                    selectedOp.name(), input, targetN, AuthContext.getState().getToken());
             outputArea.setText("✅ Result:\n\n" + result);
             MathLogger.operationSuccess("SEQUENCE_EVALUATE", "Evaluation completed");
         } catch (Exception e) {

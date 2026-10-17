@@ -6,11 +6,9 @@ import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import mathapp.gui.api.MathServiceClient;
+import mathapp.gui.auth.AuthContext;
 import mathapp.logging.MathLogger;
-import mathapp.stats.core.StatisticalState.DataPoint2D;
-import mathapp.stats.dto.LogisticRegressionResult;
-import mathapp.stats.dto.RegressionResult;
-import mathapp.stats.facade.StatsServiceFacade;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +28,7 @@ public class StatsController {
     @FXML private NumberAxis xAxis;
     @FXML private NumberAxis yAxis;
 
-    private final StatsServiceFacade statsFacade = new StatsServiceFacade();
+    private final MathServiceClient mathServiceClient = new MathServiceClient();
 
     @FXML
     public void initialize() {
@@ -46,7 +44,7 @@ public class StatsController {
 
     @FXML
     void handleRunAnalysis(ActionEvent event) {
-        List<DataPoint2D> points = parseDataPoints(inputDataArea.getText());
+        List<MathServiceClient.DataPoint> points = parseDataPoints(inputDataArea.getText());
         if (points.size() < 2) {
             reportOutputArea.setText("❌ Error: At least 2 valid data points (x, y) are required.");
             return;
@@ -61,37 +59,32 @@ public class StatsController {
             // Plot Raw Observations
             XYChart.Series<Number, Number> rawSeries = new XYChart.Series<>();
             rawSeries.setName("Observed Points");
-            for (DataPoint2D pt : points) {
+            for (MathServiceClient.DataPoint pt : points) {
                 rawSeries.getData().add(new XYChart.Data<>(pt.x(), pt.y()));
             }
             regressionChart.getData().add(rawSeries);
 
             if ("Logistic".equals(selectedModel)) {
                 double threshold = Double.parseDouble(thresholdField.getText().trim());
-                LogisticRegressionResult result = statsFacade.fitLogisticModel(points, threshold);
-                reportOutputArea.setText(result.stepByStepReport());
+                MathServiceClient.RegressionResponse result = mathServiceClient.fitRegression(
+                        "LOGISTIC", points, null, threshold, AuthContext.getState().getToken());
+                reportOutputArea.setText(result.report());
 
                 XYChart.Series<Number, Number> fitSeries = new XYChart.Series<>();
                 fitSeries.setName("Logistic Probability Fit");
-                for (DataPoint2D pt : result.predictedProbabilities()) {
+                for (MathServiceClient.DataPoint pt : result.predictedProbabilities()) {
                     fitSeries.getData().add(new XYChart.Data<>(pt.x(), pt.y()));
                 }
                 regressionChart.getData().add(fitSeries);
             } else {
-                RegressionResult result;
-                switch (selectedModel) {
-                    case "Polynomial" -> result = statsFacade.fitPolynomialModel(points, polyDegreeSpinner.getValue());
-                    case "Exponential" -> result = statsFacade.fitExponentialModel(points);
-                    default -> result = statsFacade.fitLinearModel(points);
-                }
-
-                reportOutputArea.setText(result.stepByStepReport());
+                String operation = selectedModel.toUpperCase(java.util.Locale.ROOT);
+                Integer degree = "Polynomial".equals(selectedModel) ? polyDegreeSpinner.getValue() : null;
+                MathServiceClient.RegressionResponse result = mathServiceClient.fitRegression(
+                        operation, points, degree, null, AuthContext.getState().getToken());
+                reportOutputArea.setText(result.report());
 
                 XYChart.Series<Number, Number> fitSeries = new XYChart.Series<>();
-                fitSeries.setName("Fitted Curve: " + result.latexFormula());
-                // for (DataPoint2D pt : result.fittedPoints()) {
-                //     fitSeries.getData().add(new XYChart.Data<>(pt.x(), pt.y()));
-                // }
+                fitSeries.setName("Fitted Curve: " + selectedModel);
                 regressionChart.getData().add(fitSeries);
             }
 
@@ -102,8 +95,8 @@ public class StatsController {
         }
     }
 
-    private List<DataPoint2D> parseDataPoints(String rawText) {
-        List<DataPoint2D> points = new ArrayList<>();
+    private List<MathServiceClient.DataPoint> parseDataPoints(String rawText) {
+        List<MathServiceClient.DataPoint> points = new ArrayList<>();
         if (rawText == null || rawText.isBlank()) return points;
 
         String[] lines = rawText.split("\\r?\\n");
@@ -113,7 +106,7 @@ public class StatsController {
                 try {
                     double x = Double.parseDouble(tokens[0]);
                     double y = Double.parseDouble(tokens[1]);
-                    points.add(new DataPoint2D(x, y));
+                    points.add(new MathServiceClient.DataPoint(x, y));
                 } catch (NumberFormatException ignored) {
                     // Skip header or malformed line
                 }
