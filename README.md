@@ -94,6 +94,12 @@ Important values:
 - database: `jdbc:mysql://localhost:3306/mathapp_auth`
 - profile: `dev`
 - frontend URL: `http://localhost:8081` (used for password reset links)
+- CORS origins are defined by the active profile's `cors.allowed-origins` property. The
+  development profile allows `localhost` ports `3000`, `4200`, `4201`, `4202`,
+  `5173`, `8080`, and `8081`. Add new local web-client origins to
+  `application-dev.yml`; they do not need to be repeated on controllers.
+- The Docker profile reads allowed origins from `CORS_ALLOWED_ORIGINS`, defaulting
+  to `http://localhost:4200`. Set multiple origins as a comma-separated list.
 
 ## Running the service
 
