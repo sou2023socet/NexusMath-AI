@@ -58,7 +58,7 @@ describe('MathApiService', () => {
     request.flush('Resolved variables:\nx = 1\ny = 2');
   });
 
-  it('clears the in-memory session after logout', () => {
+  it('clears the saved session after logout', () => {
     auth.login('student@example.com', 'example-password').subscribe();
     http.expectOne('/api/auth/login').flush({
       token: 'test-jwt',

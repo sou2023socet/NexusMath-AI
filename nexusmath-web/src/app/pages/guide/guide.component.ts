@@ -14,7 +14,7 @@ import { Component } from '@angular/core';
       <div class="guide-list">
         <article class="card">
           <h2>1. Sign in</h2>
-          <p>Register or sign in with the backend account. Protected calculation routes require an active in-memory session.</p>
+          <p>Register or sign in with the backend account. Your sign-in lasts for this browser tab and survives page reloads.</p>
         </article>
         <article class="card">
           <h2>2. Select an operation</h2>

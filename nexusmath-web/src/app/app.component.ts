@@ -20,10 +20,16 @@ export class AppComponent {
     { path: '/theory', label: 'Theory' },
     { path: '/guide', label: 'Guide' },
   ];
-  lightTheme = false;
+  lightTheme = localStorage.getItem('nexusmath.theme') === 'light';
+
+  constructor() {
+    document.documentElement.classList.toggle('theme-light', this.lightTheme);
+  }
 
   toggleTheme(): void {
     this.lightTheme = !this.lightTheme;
+    localStorage.setItem('nexusmath.theme', this.lightTheme ? 'light' : 'dark');
+    document.documentElement.classList.toggle('theme-light', this.lightTheme);
   }
 
   logout(): void {

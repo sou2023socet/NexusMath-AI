@@ -50,9 +50,9 @@ The production build uses the Angular CLI bundle budgets in [angular.json](./ang
 ## Authentication and API behavior
 
 - Login and registration use the existing `/api/auth` contracts (`email`, `username`, and `password`).
-- The JWT is held in application memory only; it is not written to local storage or cookies. A browser refresh requires a new login.
+- The JWT-backed session is stored in tab-scoped `sessionStorage`, so it survives page reloads and is cleared when the tab session ends or the user signs out. It is not stored in persistent `localStorage` or cookies.
 - A functional route guard gates math and related workbench routes. An HTTP interceptor attaches the bearer token to `/api/` requests.
-- Sign out calls the stateless backend logout endpoint, then clears the in-memory session.
+- Sign out calls the stateless backend logout endpoint, then clears the current tab's saved session.
 - The client does not store calculation history. Reset-password email links continue to use the existing backend reset page.
 - The math API remains the source of truth for calculation, validation, and error messages. Client-side checks provide early feedback but do not replace backend validation.
 

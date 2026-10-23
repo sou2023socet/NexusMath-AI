@@ -14,8 +14,9 @@ export interface AuthMessage {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  private readonly sessionStorageKey = 'nexusmath.auth.session';
   private readonly http = inject(HttpClient);
-  private readonly session = signal<AuthResponse | null>(null);
+  private readonly session = signal<AuthResponse | null>(this.restoreSession());
 
   readonly currentUser = this.session.asReadonly();
 
@@ -25,13 +26,13 @@ export class AuthService {
 
   login(email: string, password: string): Observable<AuthResponse> {
     return this.http.post<AuthResponse>('/api/auth/login', { email, password }).pipe(
-      tap((response) => this.session.set(response)),
+      tap((response) => this.setSession(response)),
     );
   }
 
   register(email: string, username: string, password: string): Observable<AuthResponse> {
     return this.http.post<AuthResponse>('/api/auth/register', { email, username, password }).pipe(
-      tap((response) => this.session.set(response)),
+      tap((response) => this.setSession(response)),
     );
   }
 
@@ -41,11 +42,48 @@ export class AuthService {
 
   logout(): Observable<unknown> {
     return this.http.post('/api/auth/logout', {}).pipe(
-      finalize(() => this.session.set(null)),
+      finalize(() => this.clearSession()),
     );
   }
 
   clearSession(): void {
+    sessionStorage.removeItem(this.sessionStorageKey);
     this.session.set(null);
   }
+
+  private restoreSession(): AuthResponse | null {
+    const storedSession = sessionStorage.getItem(this.sessionStorageKey);
+    if (!storedSession) {
+      return null;
+    }
+
+    try {
+      const parsed: unknown = JSON.parse(storedSession);
+      if (isAuthResponse(parsed)) {
+        return parsed;
+      }
+    } catch (error) {
+      console.error('Unable to restore the saved sign-in session.', error);
+    }
+
+    sessionStorage.removeItem(this.sessionStorageKey);
+    return null;
+  }
+
+  private setSession(response: AuthResponse): void {
+    sessionStorage.setItem(this.sessionStorageKey, JSON.stringify(response));
+    this.session.set(response);
+  }
+}
+
+function isAuthResponse(value: unknown): value is AuthResponse {
+  return typeof value === 'object'
+    && value !== null
+    && 'token' in value
+    && typeof value.token === 'string'
+    && value.token.length > 0
+    && 'username' in value
+    && typeof value.username === 'string'
+    && 'email' in value
+    && typeof value.email === 'string';
 }

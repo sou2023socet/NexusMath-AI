@@ -30,7 +30,7 @@ Status legend: **Implemented** means the Angular interaction and corresponding A
 
 | Existing feature | Backend/API | Angular implementation | Tests | Status / remaining |
 | --- | --- | --- | --- | --- |
-| Login and registration | `POST /api/auth/login`, `/register` | `/login`, in-memory JWT session, route guard, bearer interceptor | Angular auth/interceptor tests; backend math suite does not exercise auth | Implemented; real DB/auth integration remains unverified |
+| Login and registration | `POST /api/auth/login`, `/register` | `/login`, tab-scoped `sessionStorage` JWT session, route guard, bearer interceptor | Angular auth/interceptor tests; backend math suite does not exercise auth | Implemented; real DB/auth integration remains unverified |
 | Forgot password | `POST /api/auth/forgot-password` | Forgot-password mode on `/login` | Angular request-contract test | Implemented; email delivery needs configured backend mail |
 | Logout | `POST /api/auth/logout` | Sidebar sign-out and memory clear | Angular logout test | Implemented |
 | Home/welcome and navigation | JavaFX `MainViewController` | `/dashboard`, responsive shared shell | Build only | Implemented; no activity/history API exists |
