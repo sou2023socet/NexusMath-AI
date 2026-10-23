@@ -1,0 +1,300 @@
+:root {
+  color-scheme: dark;
+  --background: #11151b;
+  --surface: #1a2028;
+  --surface-raised: #222a34;
+  --border: #35404d;
+  --text: #e6edf3;
+  --muted: #aab5c2;
+  --primary: #073763;
+  --primary-strong: #05294a;
+  --danger: #e76f75;
+  font-family: "Segoe UI", "SF Pro Text", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--background);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--background);
+}
+
+.app-shell.theme-light {
+  color-scheme: light;
+  --background: #f6f8fb;
+  --surface: #ffffff;
+  --surface-raised: #edf3fa;
+  --border: #c9d4e0;
+  --text: #1d2733;
+  --muted: #5d6b78;
+  --primary: #073763;
+  --primary-strong: #05294a;
+  --danger: #c83e4b;
+  background: var(--background);
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #6ca8df;
+  outline-offset: 2px;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  margin-bottom: 0;
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+.page-shell {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.page-header {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.eyebrow {
+  margin-bottom: 0.4rem;
+  color: #89bce8;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.panel,
+.card,
+.stat-card,
+.auth-card {
+  padding: 1.15rem;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  background: var(--surface);
+}
+
+.card-grid,
+.topic-grid,
+.agent-list,
+.guide-list,
+.stats-grid,
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+  gap: 1rem;
+}
+
+.stats-grid {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 180px), 1fr));
+}
+
+.stat-card {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.stat-card strong {
+  font-size: 1.8rem;
+}
+
+.link-list,
+.activity-list {
+  display: grid;
+  gap: 0.75rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.link-list a {
+  color: #9ccbf2;
+}
+
+.activity-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.5rem;
+}
+
+.tool-panel {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 850px;
+}
+
+.tool-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.field-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.field-row > div {
+  display: grid;
+  flex: 1 1 170px;
+  gap: 0.35rem;
+}
+
+label {
+  color: var(--text);
+  font-weight: 600;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  min-height: 2.65rem;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 0.3rem;
+  color: var(--text);
+  background: var(--surface-raised);
+}
+
+textarea {
+  resize: vertical;
+}
+
+button {
+  min-height: 2.65rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 0.3rem;
+  color: var(--text);
+  background: var(--surface-raised);
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.primary {
+  width: fit-content;
+  border-color: var(--primary);
+  color: #fff;
+  background: var(--primary);
+  font-weight: 700;
+}
+
+.primary:hover:not(:disabled) {
+  background: var(--primary-strong);
+}
+
+.secondary-button {
+  width: 100%;
+}
+
+.text-button {
+  padding: 0;
+  border: 0;
+  color: #9ccbf2;
+  background: transparent;
+  text-align: left;
+}
+
+.error-message {
+  margin: 0;
+  color: var(--danger);
+}
+
+.success-message {
+  margin: 0;
+  color: #35a269;
+}
+
+.result-panel pre {
+  overflow: auto;
+  max-height: 28rem;
+  margin: 0;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-family: Consolas, "Courier New", monospace;
+}
+
+.result-plot {
+  display: block;
+  width: min(100%, 640px);
+  height: auto;
+  margin-top: 1rem;
+  border: 1px solid var(--border);
+  background: var(--surface-raised);
+}
+
+.plot-axis {
+  stroke: var(--muted);
+  stroke-width: 1;
+}
+
+.plot-line {
+  fill: none;
+  stroke: #6ca8df;
+  stroke-width: 2;
+}
+
+.auth-page {
+  display: grid;
+  min-height: calc(100vh - 4rem);
+  place-items: center;
+}
+
+.auth-card {
+  display: grid;
+  width: min(100%, 420px);
+  gap: 0.75rem;
+}
+
+@media (max-width: 600px) {
+  .main-panel {
+    padding: 1rem;
+  }
+
+  .page-header {
+    align-items: start;
+  }
+
+  .activity-list li {
+    flex-direction: column;
+  }
+}

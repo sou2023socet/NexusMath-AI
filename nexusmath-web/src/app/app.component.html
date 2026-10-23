@@ -1,0 +1,35 @@
+<div class="app-shell" [class.theme-light]="lightTheme">
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">N</span>
+      <div>
+        <strong>NexusMath</strong>
+        <small>AI portal</small>
+      </div>
+    </div>
+
+    <nav class="nav">
+      <a
+        *ngFor="let item of navItems"
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: false }"
+      >
+        {{ item.label }}
+      </a>
+      <a routerLink="/agents" routerLinkActive="active">AI workspace</a>
+    </nav>
+    <div class="sidebar-account">
+      <button type="button" class="secondary-button" (click)="toggleTheme()" [attr.aria-pressed]="lightTheme">
+        {{ lightTheme ? 'Switch to dark theme' : 'Switch to light theme' }}
+      </button>
+      <button *ngIf="auth.isAuthenticated()" type="button" class="secondary-button" (click)="logout()">Sign out</button>
+      <a *ngIf="!auth.isAuthenticated()" routerLink="/login">Sign in</a>
+      <a routerLink="/about" routerLinkActive="active">About</a>
+    </div>
+  </aside>
+
+  <main class="main-panel">
+    <router-outlet />
+  </main>
+</div>
