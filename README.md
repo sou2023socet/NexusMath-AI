@@ -60,6 +60,37 @@ The API currently supports:
 Math endpoints require the same JWT issued by `/api/auth/login` or
 `/api/auth/register`.
 
+## Department AI chat
+
+The authenticated `/api/ai-chat/sessions` API provides separate Mathematics,
+Physics, and DSA chat sessions. The default provider is Gemini with the
+`gemini-3.8-flash` model. Configure the secret only in the backend environment
+as `GEMINI_API_KEY`; optionally set `AI_PROVIDER`, `GEMINI_MODEL`, or
+`AI_TIMEOUT` (for example, `20s`). Chat availability is controlled independently
+in `application-dev.yml`, `application-test.yml`, `application-prod.yml`, and
+`application-docker.yml` using `ai.chat.enabled` or the `AI_CHAT_ENABLED`
+environment override. The provider key must be set in the backend process
+environment; do not put it in a configuration file. The chat config endpoint
+reports chat as disabled when the provider key is missing. Test, production,
+and Docker profiles default to disabled;
+set `AI_CHAT_ENABLED=true` to enable AI chat in those profiles. The frontend reads
+the non-secret `/api/ai-chat/config` flag and disables its chat controls when
+backend AI chat is off. No provider secret or chat context is included in Angular.
+
+The development profile enables chat by default. Test, production, and Docker
+profiles default to disabled. To disable chat in development, set
+`AI_CHAT_ENABLED=false`; to enable it in another profile, set
+`AI_CHAT_ENABLED=true`.
+
+Sessions and their messages exist only in backend runtime memory. They are
+bound to the authenticated user and department, expire after 30 minutes of
+inactivity, allow at most 10 user messages and 10 responses, and are cleared
+automatically after expiry or when the user exits the chat. The backend sends
+its server-maintained context with each provider request and disables provider
+storage where supported. Sessions and messages are not written to the database
+or logs. A backend restart clears all active sessions; users are informed of
+this in the chat UI.
+
 ## Run and test independently
 
 This project is an independent Spring Boot service. It can be built and tested
@@ -108,6 +139,19 @@ From the project root:
 ```bash
 mvn clean spring-boot:run
 ```
+
+On Windows, run `start-backend.bat` from this project or double-click it. If
+this backend is already listening on port `8081`, the script reuses that
+instance rather than starting a duplicate. If another process owns the port,
+the script reports its PID and exits without stopping it. Otherwise, the script
+checks for Java and Maven, forces Maven to refresh remote dependency metadata,
+runs `mvn clean install`, then starts the server with the `dev` profile.
+Maven's `-U` refreshes dependency metadata and snapshots; it does not change
+versions declared in `pom.xml`.
+
+To enable Gemini AI chat, set `GEMINI_API_KEY` in the terminal before starting
+the script. Without a key, the script disables AI chat unless `AI_CHAT_ENABLED`
+was explicitly set. The configured Gemini model is `gemini-3.8-flash`.
 
 The development profile creates the `mathapp_auth` database when it is missing,
 provided the configured MySQL user has permission to create databases. You can

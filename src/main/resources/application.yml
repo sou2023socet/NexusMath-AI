@@ -41,3 +41,12 @@ auth:
 app:
   frontend:
     url: http://localhost:8081
+
+ai:
+  chat:
+    enabled: ${AI_CHAT_ENABLED:true}
+    provider: ${AI_PROVIDER:gemini}
+    api-key: ${GEMINI_API_KEY:}
+    openai-model: ${OPENAI_MODEL:gpt-4o-mini}
+    gemini-model: ${GEMINI_MODEL:gemini-3.8-flash}
+    timeout: ${AI_TIMEOUT:200s}

@@ -33,3 +33,11 @@ cors:
     - http://localhost:5173
     - http://localhost:8080
     - http://localhost:8081
+
+ai:
+  chat:
+    enabled: ${AI_CHAT_ENABLED:true}
+    provider: ${AI_PROVIDER:gemini}
+    api-key: ${GEMINI_API_KEY:AQ.Ab8RN6KMO2N_YORGGnBiqhKo57VSzdp73RUKoSp2bPO0qy0JdQ}
+    gemini-model: ${GEMINI_MODEL:gemini-3.8-flash}
+    timeout: ${AI_TIMEOUT:20s}

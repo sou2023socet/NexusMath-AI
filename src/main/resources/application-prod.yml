@@ -19,3 +19,11 @@ logging:
   level:
     root: WARN
     com.mathapp: INFO
+
+ai:
+  chat:
+    enabled: ${AI_CHAT_ENABLED:false}
+    provider: ${AI_PROVIDER:gemini}
+    api-key: ${GEMINI_API_KEY:}
+    gemini-model: ${GEMINI_MODEL:gemini-3.8-flash}
+    timeout: ${AI_TIMEOUT:20s}
