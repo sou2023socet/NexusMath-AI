@@ -45,7 +45,33 @@ The production build uses the Angular CLI bundle budgets in [angular.json](./ang
 | `/theory` | Descriptive overview of topics supported by existing math services | Authenticated |
 | `/guide` | Client usage and session behavior | Authenticated |
 | `/about` | Application architecture summary | Authenticated |
-| `/agents` | Explicit notice that AI-agent services are not yet implemented | Authenticated |
+| `/agents` | Mathematics, Physics, and DSA AI chatbots | Authenticated |
+
+The authenticated `/agents` page includes separate Mathematics, Physics, and
+DSA chatbots. Each new chat starts an independent backend-managed session.
+Messages are held only in Angular component memory while the chat is open; the
+backend also keeps the context only in volatile memory. Exiting deletes the
+session, and backend restarts clear any remaining sessions. Chat sessions are
+not written to browser storage, files, logs, or the database. Provider
+credentials are configured only on the backend; see the
+[auth-backend README](../../auth-backend/README.md).
+AI chat cards and send controls use the authenticated `/api/ai-chat/config`
+response and are disabled whenever the active Spring profile disables AI chat.
+
+## One-command local setup
+
+From PowerShell, set the Gemini key for the current terminal and run the
+launcher:
+
+```powershell
+$env:GEMINI_API_KEY = "your-key"
+..\start-nexusmath-ai.bat
+```
+
+The launcher runs `mvn clean install`, restores the locked Angular packages
+with `npm ci`, then opens the backend and frontend in separate windows. Gemini
+is a hosted API model, so the launcher does not download model files. If the
+key is not set, it starts the backend with AI chat disabled.
 
 ## Authentication and API behavior
 
